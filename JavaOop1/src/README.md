@@ -17,6 +17,7 @@ Car s = new Car();
 6 通过构造方法给成员变量赋值
 
 7 把Car对象在堆内存的地址值赋给s变量
+![avatar](/Users/sanye/Desktop/whiteboard.png)
 
 /*
 作业1:
