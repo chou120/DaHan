@@ -7,8 +7,8 @@ package com.banyuan.oop2;
  */
 public class Car {
 
-  //  私有化属性和公有化方法的集合 叫封装  java  面向对象的第一个特征  也是一个标准的封装类(少了this)
-  
+  //私有化属性和公有化方法的集合 叫封装  java  面向对象的第一个特征  也是一个标准的封装类
+
   //创建一个汽车   汽车：品牌  名字  长度  高度  类型  产地 ....
   // 汽车行为特征: 驾驶     制冷    放歌  等等...
 
@@ -20,35 +20,36 @@ public class Car {
   private String  carAddress;
 
   //做个判断:判断车长是否满足条件
-  public  void  setCarLength(double  length){
-    if(length>=2.0 && length<=4.5){
-      carLength=length;  //做个判断
+  public  void  setCarLength(double  carLength){
+    if(carLength>=2.0 && carLength<=4.5){
+      this.carLength=carLength;  //做个判断
     }else{
-      carLength=1.0;
+      this.carLength=1.0;
     }
   }
-  public  void  setCarHeight(double  Height){
-    if(Height>=1.0 && Height<=1.9){
-      carHeight=Height;  //做个判断
+  public  void  setCarHeight(double  carHeight){
+    if(carHeight>=1.0 && carHeight<=1.9){
+      this.carHeight=carHeight;  //做个判断
     }else{
-      carHeight=1.0;
+      this.carHeight=1.0;
     }
   }
 
   //
-  public   void  setCarName(String  name){
-    carName=name;
+  public   void  setCarName(String  carName){
+    // 局部变量和全局变量 是不是以为 局部变量优先使用
+    this.carName=carName;  // 把值 赋值给本身   this表示当前对象
   }
 
-  public   void   setCarBrand(String  brand){
-    carBrand=brand;
+  public   void   setCarBrand(String  carBrand){
+    this.carBrand=carBrand;
   }
 
-  public  void  setCarAddress(String  address){
-    carAddress=address;
+  public  void  setCarAddress(String  carAddress){
+    this.carAddress=carAddress;
   }
-  public  void  setCarType(String  type){
-    carType=type;
+  public  void  setCarType(String  carType){
+    this.carType=carType;
   }
 
 //提供对外的访问方式
@@ -77,15 +78,26 @@ public class Car {
     return carType;
   }
 
-
-  //咱们能不能把公共的输出的代码提取出来
-  public  String    toString(){
-    return "车子名称:"+carName+",型号:"+carType+",品牌:"+carBrand+",产地："
-        + carAddress+",车长:"+carLength+",车高:"+carHeight;
+  @Override
+  public String toString() {
+    return "Car{" +
+        "carBrand='" + carBrand + '\'' +
+        ", carName='" + carName + '\'' +
+        ", carLength=" + carLength +
+        ", carHeight=" + carHeight +
+        ", carType='" + carType + '\'' +
+        ", carAddress='" + carAddress + '\'' +
+        '}';
   }
 
-  // 就是说 在类的方法里面 一般情况下 最好不要有输出语句   输出语句一般只在测试类里面存在
 
+
+  //咱们能不能把公共的输出的代码提取出来
+//  public  String    toString(){
+//    return "车子名称:"+this.carName+",型号:"+this.carType+",品牌:"+this.carBrand+",产地："
+//        + this.carAddress+",车长:"+this.carLength+",车高:"+this.carHeight;
+//  }
+  // 就是说 在类的方法里面 一般情况下 最好不要有输出语句   输出语句一般只在测试类里面存在
 //  public  void driver(){
 //
 //  }

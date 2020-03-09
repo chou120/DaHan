@@ -75,6 +75,31 @@ public class TestCar {
     String  str=newCar.getCarName();//取货汽车名字数据
     System.out.println("汽车名字:"+str+",Brand:"+newCar.getCarBrand());
 
+    newCar.setCarName("王二麻子");
+    System.out.println(newCar.getCarName());
+
+
+    //
+    Car  car3=new Car();  // car3 在 栈中   new  Car();在堆中  car3引用的其实就是堆里面的那个对象的地址
+    Car  car4=car3;// car3对象的地址 赋值给了car4
+    Car  car5=new Car();
+    car3.setCarName("大众");
+    car5.setCarName("大众");
+    System.out.println(car3.hashCode());//对象在内存的位置
+    System.out.println(car4.hashCode());
+    System.out.println(car5.hashCode());
+
+    car3=null;//  String  str=null;  类是引用类型     null 表示当前对象的名字在内存没有任何指向
+
+    //  java有一个机制 垃圾回收机制  对不用的数据进行垃圾回收
+
+
+    int n=0;
+    n=n++;
+
+
+
+
 
 
 
