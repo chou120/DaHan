@@ -28,7 +28,7 @@ public class TestPerson {
    *  非静态的可以任意调用
    *
    */
-  
+
 
   public static void main(String[] args) {
     //以对象数组作为一个存储的容器

@@ -19,6 +19,25 @@ public class Teacher {
     return   money=money-mon;
   }
 
+ static int  x=1;
+
+  public  Teacher(){
+    x++;
+    System.out.println("这是构造函数代码块...."+x);
+  }
+
+  {
+   x= x++ +1;
+    System.out.println("这是构造代码块...."+x);
+  }
+
+   static{
+    x++;
+     System.out.println("这是静态代码块"+x);
+   }
+
+
+
 
 
 }
