@@ -6,6 +6,7 @@ package com.banyuan.homework2;
  * @date 2020/3/11 9:31 上午
  */
 
+import com.sun.javaws.IconUtil;
 import java.util.Scanner;
 
 /**
@@ -31,9 +32,32 @@ public class TestExam {
     boolean   flag=Util.login(name, number);
     if(flag){
         Util.exam();
+        int   score=0;
       for (int i = 0; i <Util.question_index.length; i++) {
-        System.out.println(Util.question_index[i]);
+          //显示随机出来的题目
+        System.out.println(Util.questions[Util.question_index[i]].toString());
+        System.out.println("请输入您的答案:");
+        String   an=sc.next();
+        if(an.equals(Util.questions[Util.question_index[i]].getAnswer())){
+          score+=10;
+        }
       }
+      //把得到的分数塞进学生对象
+      for (int i = 0; i < Util.students.length; i++) {
+        if(Util.students[i].getStuName().equals(name)){
+          Util.students[i].setStuScore(score);
+        }
+      }
+      
+      for (int i = 0; i < Util.students.length; i++) {
+        System.out.println(Util.students[i].toString());
+      }
+
+
+
+
+
+
     }else{
       System.out.println("小伙子,你盗号呢？....");
     }

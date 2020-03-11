@@ -39,10 +39,7 @@ public class Util {
     for (int i = 0; i < question_index.length; i++) {
       question_index[i] = -1;
     }
-
-
   }
-
 
   //学生登录的方法
   public static boolean login(String stuName, String stuNumber) {
@@ -59,17 +56,25 @@ public class Util {
 
   //登录成功之后直接进入考试
   public static void exam() {
-  int  count=1;
-    for (int i = 0; i <question_index.length; i++) {
-        //生成十个随机数
-       int index = (int) (Math.random() * students.length);
-        //先不考虑随机下标一样
-       question_index[i]=index;
-
-
+  int  count=0;
+    while(count < question_index.length) {
+      //生成十个随机数
+      int index = (int) (Math.random() * questions.length);  //
+      //先不考虑随机下标一样
+      //question_index[i]=index;
+      //随机一个下标 如果数组里面存在就不放进去
+      boolean flag = true;
+      for (int i = 0; i < count; i++) {
+        if (index == question_index[i]) {
+          flag = false;
+          break;
+        }
+      }
+      if (flag) {
+        question_index[count] = index;
+        count++;
+      }
     }
-
-
 
     //使用随机数 得到 是个题目
 //    int count = 0;
