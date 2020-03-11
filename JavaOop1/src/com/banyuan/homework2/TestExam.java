@@ -48,7 +48,7 @@ public class TestExam {
           Util.students[i].setStuScore(score);
         }
       }
-      
+
       for (int i = 0; i < Util.students.length; i++) {
         System.out.println(Util.students[i].toString());
       }

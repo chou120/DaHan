@@ -75,37 +75,5 @@ public class Util {
         count++;
       }
     }
-
-    //使用随机数 得到 是个题目
-//    int count = 0;
-//    for (int i = 0; i < students.length; i++) {
-//
-//      //为了防止下标重复
-//      for (int j = 0; j < question_index.length; j++) { //10
-//
-//        //随机问题的下标
-//        int index = (int) (Math.random() * students.length); //循环十次
-//        int  key=0;
-//
-//        while(key<= count) {
-//
-//          if (index != question_index[key]) {
-//            if(key==count){
-//              question_index[count++]=index;
-//              System.out.println("----"+index);
-//              break;
-//            }
-//            key++;
-//          }else{
-//            break;
-//          }
-//
-//        }
-//
-//      }
-//    }
-
   }
-
-
 }
