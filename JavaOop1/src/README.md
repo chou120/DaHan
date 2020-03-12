@@ -52,10 +52,122 @@ static：
     
 ```
 
-```text
+```java
+
+class  Fu{
+    public int num=10;
+    public  Fu(){
+      System.out.println("我是你爹..."); 
+    } 
+  }
+class Son  extends Fu{
+    public int num=20;
+    public Son(){
+        System.out.println("我是你儿子..."); 
+     }   
+    public void show(){   
+      int  num=56;
+       System.out.println(num); 
+       System.out.println();  //this.num
+       System.out.println();  //super.num
+     }
+}      
+class  Test{
+    main(){
+    Son son=new Son();
+      son.show();  //最终得到的结果是     56      20     10
+}
+}
+//--------------------------------------
+
+class  Fu{
+    static{
+      System.out.println("静态代码块Fu..."); 
+    }
+    {
+      System.out.println("构造代码块Fu...."); 
+    }
+    public  Fu(){
+      System.out.println("无参构造代码块Fu..."); 
+    }
+  }
+class Son  extends Fu{
+    static{
+          System.out.println("静态代码块Son..."); 
+        }
+        {
+          System.out.println("构造代码块Son...."); 
+        }
+        public  Son(){
+          System.out.println("无参构造代码块Son..."); 
+        }
+    main(){
+    Son  son=new  Son();//求最终输出的结果
+}
+
+}      
+// ------------------------------
+class  X{ 
+        Y  y=new  Y();
+        X(){
+            System.out.println("X"); 
+          }   
+}
+class Y{
+          Y(){
+            System.out.println("Y"); 
+          } 
+
+}
+class Z extends X{
+        Y  y=new  Y();
+          Z(){
+            System.out.println("Z"); 
+          } 
+
+}
+
+//求   new  Z();最终结果
 
 
 ```
+```text
+继承的好处:
+    1.提高了代码的复用性
+        ---多个类中有相同的成员可以放到一个类中
+    2.提高了代码的维护性
+        --- 如果功能的代码需要修改 那么只需要修改一处即可
+    3.让类与类之间产生了关系,是多态的前提  
+        --- 是好处也是弊端: 类与类之间的耦合性更强了
+     
+     高内聚:就是自己能完成某件事的能力 （如果能在一个类中完成就尽量在一个类里面完成）   
+     低耦合:降低类与类之间的关系
+   
+    不好:使用继承打破了封装性
+         ---如果想要父类的属性   在调用者和里面 创建父类对象调用公共的访问方法去访问
+         ---但是在子类里面不需要创建父类对象就可以直接去调用父类的公共的访问方法区调用父类的属性
+    
+    什么时候使用继承？(使用继承的注意事项)
+        1.多个类中有相同的成员可以放到一个类中
+        2.不能为了部分的功能去继承
+            class  Fu{
+                  test(){
+                  
+                  }
+                  show(){
+                  
+                  }
+                     ...  有是个 
+              }
+            class   Son extends Fu{
+              //只想用其中一个 
+              
+            }
+           
+
+```
+
+
 
 
 
