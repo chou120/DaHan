@@ -7,12 +7,12 @@ package com.banyuan.club.oop3;
  */
 public class Employee  extends  Person1 {
 
-  @Override
+
   public String eat() {
     return "";
   }
 
-  @Override
+
   public void sleep() {
 
   }
@@ -23,8 +23,23 @@ public class Employee  extends  Person1 {
 
   }
 
-  @Override
+
   public void drink() {
+
+  }
+
+  @Override
+  public String eat(int num) {
+    return null;
+  }
+
+  @Override
+  public void sleep(Student student) {
+
+  }
+
+  @Override
+  public void drink(int[] num) {
 
   }
 }

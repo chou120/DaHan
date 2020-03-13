@@ -20,5 +20,18 @@ public class Teacher extends   Person {
   }
 
 
+  @Override
+  public String eat(int num) {
+    return null;
+  }
 
+  @Override
+  public void sleep(Student student) {
+
+  }
+
+  @Override
+  public void drink(int[] num) {
+
+  }
 }

@@ -11,14 +11,14 @@ public class AbstractDemo {
    */
 
   public static void main(String[] args) {
-    Person   person =new Student();
-    person.drink();
-
-    Person  person1=new Teacher();
-    person1.eat();
-
-    Person  person2=new Worker();
-    person2.sleep();
+//    Person   person =new Student();
+//    person.drink();
+//
+//    Person  person1=new Teacher();
+//    person1.eat();
+//
+//    Person  person2=new Worker();
+//    person2.sleep();
 
 
     //能不能创建一个父类自己的对象

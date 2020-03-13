@@ -17,4 +17,19 @@ public class Student  extends  Person {
   public  void  drink(){
     System.out.println("Student在喝酒....");
   }
+
+  @Override
+  public String eat(int num) {
+    return null;
+  }
+
+  @Override
+  public void sleep(Student student) {
+
+  }
+
+  @Override
+  public void drink(int[] num) {
+
+  }
 }

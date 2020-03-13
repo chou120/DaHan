@@ -9,6 +9,8 @@ public class Worker  extends   Person {
 
   public  void  eat(){
     System.out.println("Worker在吃饭....");
+
+
   }
 
   public  void  sleep(){
@@ -19,4 +21,18 @@ public class Worker  extends   Person {
     System.out.println("Worker在喝酒....");
   }
 
+  @Override
+  public String eat(int num) {
+    return null;
+  }
+
+  @Override
+  public void sleep(Student student) {
+
+  }
+
+  @Override
+  public void drink(int[] num) {
+
+  }
 }
