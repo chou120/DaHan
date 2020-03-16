@@ -5,7 +5,15 @@ package com.banyuan.club;
  * @version 1.0
  * @date 2020/3/16 11:33 上午
  */
-public class Student {
+public class Student  implements  Cloneable{
+
+  @Override
+  protected Object clone() throws CloneNotSupportedException {
+    return super.clone();
+  }
+
+
+
 
   private   String  name;
   private   String   address;

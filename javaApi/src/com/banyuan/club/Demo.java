@@ -8,7 +8,7 @@ package com.banyuan.club;
 public class Demo  extends   Object{
 
   // Object  是所有类的父类
-  public static void main(String[] args) {
+  public static void main(String[] args) throws CloneNotSupportedException {
 
     Object  obj=new Object();
 
@@ -29,7 +29,25 @@ public class Demo  extends   Object{
     System.out.println(obj.equals(obj2));
 
 
+    Student   student=new  Student();
+    Object   ob=student.clone();  //得到的是一个clone的副本
 
+    Student    stu=(Student) ob;
+
+    //请问  student 和 stu两个对象是否是同一个对象
+
+    System.out.println(student.hashCode());
+    System.out.println(stu.hashCode());
+
+
+    // 请问: equals()比较两个对象是否是同一个对象根据现实生活中  能完成咱们的 需求吗？
+    /*
+         现实生活中 能不能根据两个人相同的信息 去判断这两个人其实就是同一个人？
+
+
+
+
+     */
 
 
 
