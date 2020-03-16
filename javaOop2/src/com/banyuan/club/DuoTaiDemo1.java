@@ -21,6 +21,24 @@ public class DuoTaiDemo1 {
 
    */
 
+  public static void main(String[] args) {
+
+
+
+    char  x='B';
+
+    System.out.println(x+3);
+
+    int total = 0;
+    for ( int i = 0; i< 4; i++ ){
+      if ( i == 1) continue;
+      if ( i == 2) break;
+      total += i;
+    }
+    System.out.println(total);
+
+
+  }
 
 
 
