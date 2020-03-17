@@ -20,7 +20,14 @@
             16. 将字节数组以指定的编码格式转换成字符串，再转换后的字符串以指定的编码格式转换成字节数组
         */
 
-//作业2:
+//作业2: String  StringBuffer  StringBuilder   总结 
+
+
+//作业3:Date   Calender    SimpleDataFormat    Arrays  预习各个工具提供方法
+
+
+//作业4:字符串的练习
+
 
 
 ```
