@@ -2,25 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f241e3ce-d7c6-4ba7-b162-09feeea250dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ExceptionDemo.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/ExceptionDemo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/ExceptionDemo2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/Function.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/ImplFunction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/definitionException/Demo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/definitionException/MyException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaApi/src/com/banyuan/club/bigNumber/Demo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaApi/src/com/banyuan/club/util/Demo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaApi/src/com/banyuan/club/util/Student.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaApi/src/com/banyuan/club/utilArray/ArraysDemo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javaApi/out/production/javaAPI/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../javaApi/out/production/javaAPI/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javaApi/out/production/javaAPI/com/banyuan/club/utilAPI/DateDemo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../javaApi/out/production/javaAPI/com/banyuan/club/utilAPI/DateDemo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javaApi/src/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../javaApi/src/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javaApi/src/com/banyuan/club/utilAPI/DateDemo.java" beforeDir="false" afterPath="$PROJECT_DIR$/../javaApi/src/com/banyuan/club/utilAPI/DateDemo.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaCollection/src/com/banyuan/club/Demo1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ExceptionDemo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ExceptionDemo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/ExceptionDemo/com/banyuan/club/definitionException/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ExceptionDemo/com/banyuan/club/definitionException/Demo.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/definitionException/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/definitionException/Demo.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,8 +35,16 @@
   <component name="ProjectId" id="1ZFJsbi0pgrWQLOmTpF9GNipPrl" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.notifications" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -64,10 +58,11 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.Demo">
+  <component name="RunManager" selected="JUnit.Demo.show">
     <configuration name="Demo" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.banyuan.club.definitionException.Demo" />
       <module name="ExceptionDemo" />
+      <option name="VM_PARAMETERS" value="-ea" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.banyuan.club.definitionException.*" />
@@ -104,8 +99,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Demo.show" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="ExceptionDemo" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.banyuan.club.definitionException.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.banyuan.club.definitionException" />
+      <option name="MAIN_CLASS_NAME" value="com.banyuan.club.definitionException.Demo" />
+      <option name="METHOD_NAME" value="show" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="Application.Demo" />
+      <item itemvalue="Application.ExceptionDemo" />
+      <item itemvalue="Application.ExceptionDemo2" />
+      <item itemvalue="JUnit.Demo.show" />
+    </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.Demo.show" />
         <item itemvalue="Application.Demo" />
         <item itemvalue="Application.ExceptionDemo2" />
         <item itemvalue="Application.ExceptionDemo" />
@@ -122,7 +140,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1584429115390</updated>
-      <workItem from="1584429117395" duration="3289000" />
+      <workItem from="1584429117395" duration="3902000" />
+      <workItem from="1584493715737" duration="1724000" />
     </task>
     <servers />
   </component>
@@ -134,7 +153,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
