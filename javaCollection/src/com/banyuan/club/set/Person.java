@@ -7,7 +7,7 @@ import java.util.Objects;
  * @version 1.0
  * @date 2020/3/19 2:06 下午
  */
-public class Person {
+public class Person implements  Comparable{
 
   private  String  name;
   private  int age;
@@ -61,4 +61,17 @@ public class Person {
   public int hashCode() {
     return Objects.hash(name, age);
   }
+
+
+  @Override
+  public int compareTo(Object o) {
+    //如果是升序 当前对象参数在前  - 传递对象的参数在后
+    Person person=(Person)o;
+    int num=  this.age-person.getAge()> 0 ? 1 : -1;
+    return num;
+  }
+
+
+
+
 }

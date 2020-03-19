@@ -1,7 +1,9 @@
 package com.banyuan.club.set;
 
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
 /**
  * @author sanye
@@ -48,11 +50,11 @@ public class SetDemo {
 
      // Object []  obj=set.toArray();
 
-    String [] string={"赵一帆","韩朝"};
-
-    for (String ob:string) {  //增强 for 底层的原理就是  迭代器  Iterator
-      System.out.println(ob);
-    }
+//    String [] string={"赵一帆","韩朝"};
+//
+//    for (String ob:string) {  //增强 for 底层的原理就是  迭代器  Iterator
+//      System.out.println(ob);
+//    }
 
 //    Person [] per=new  Person[2];
 //    per[0]=new Person("老李", 36);
@@ -63,14 +65,54 @@ public class SetDemo {
 //    }
 
 
-
     /*
       假设 如果让你 去设计一个人员信息的统计  程序 你如何设计 ？
       身份证是保证 人员是否只有一个的 标志
 
-
-
      */
+
+
+
+    LinkedHashSet  linkedHashSet=new LinkedHashSet();
+        /*
+            底层存储：链表 保证数据的顺序
+                    hash表 保证数据的唯一
+         */
+    linkedHashSet.add("你好1");
+    linkedHashSet.add("你好2");
+    linkedHashSet.add("你好2");
+    linkedHashSet.add("你好4");
+    linkedHashSet.add(true);
+    linkedHashSet.add("你好5");
+
+
+   // System.out.println(linkedHashSet);
+
+    TreeSet  treeSet=new TreeSet(); //底层的存储是以 平衡树(红黑树)存储原理进行数据存储
+
+
+//    treeSet.add("周日");
+//    treeSet.add("周二");
+//    treeSet.add("周一");
+//    treeSet.add("周六");
+//    treeSet.add("周四");
+//    treeSet.add("周五");
+
+    /*
+        根据年龄进行排序   得到最终输出的结果
+        如果年龄一样  那么就根据字母的先后顺序输出
+     */
+    treeSet.add(new Person("张三", 34));
+    treeSet.add(new Person("李四", 27));
+    treeSet.add(new Person("王五", 31));
+    treeSet.add(new Person("赵三", 24));
+
+    //TreeSet集合已经实现了平衡树   你只需要要数据放进去  或者是要比较的条件放进去
+
+    for (Object  obj:treeSet) {
+      Person  p=(Person)obj;
+      System.out.println(p);
+    }
 
 
 
