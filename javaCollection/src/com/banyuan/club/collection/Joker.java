@@ -1,4 +1,4 @@
-package com.banyuan;
+package com.banyuan.club.collection;
 
 import java.util.ArrayList;
 import java.util.List;

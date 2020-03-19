@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f241e3ce-d7c6-4ba7-b162-09feeea250dc" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../javaCollection/src/com/banyuan/club/Demo1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ExceptionDemo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ExceptionDemo.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ExceptionDemo/com/banyuan/club/definitionException/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ExceptionDemo/com/banyuan/club/definitionException/Demo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/definitionException/Demo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/definitionException/Demo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaCollection/src/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../javaCollection/src/README.md" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -142,6 +138,7 @@
       <updated>1584429115390</updated>
       <workItem from="1584429117395" duration="3902000" />
       <workItem from="1584493715737" duration="1724000" />
+      <workItem from="1584587557406" duration="13000" />
     </task>
     <servers />
   </component>

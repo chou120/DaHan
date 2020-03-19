@@ -1,8 +1,7 @@
-package com.banyuan.club;
+package com.banyuan.club.collection;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Iterator;
 
 /**
  * @author sanye
@@ -18,9 +17,9 @@ public class Demo1 {
            存放各种数据类型的数据
            长度随着数据的多少进行变化
 
-       Collection
+                 Collection
 
-     List                       Set
+     List                            Set
 
 ArrayList  LinkedList
 Stack      Vector
