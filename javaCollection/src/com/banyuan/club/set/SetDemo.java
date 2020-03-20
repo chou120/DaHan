@@ -109,6 +109,8 @@ public class SetDemo {
 
     //TreeSet集合已经实现了平衡树   你只需要要数据放进去  或者是要比较的条件放进去
 
+
+
     for (Object  obj:treeSet) {
       Person  p=(Person)obj;
       System.out.println(p);
