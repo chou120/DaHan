@@ -5,7 +5,7 @@ package com.banyuan.club.genericityClass;
  * @version 1.0
  * @date 2020/3/23 11:28 上午
  */
-public class Point<T> {
+public class Point<T,K> {
 
 //  private Object  object;
 //
@@ -25,9 +25,22 @@ public class Point<T> {
 //  }
 
   private  T   data;
+
+  private  K   KData;
+
+  public K getKData() {
+    return KData;
+  }
+
+  public void setKData(K KData) {
+    this.KData = KData;
+  }
+
   public T getData() {
     return data;
   }
+
+
 
   public void setData(T data) {
     this.data = data;
@@ -37,6 +50,7 @@ public class Point<T> {
   public String toString() {
     return "Point{" +
         "data=" + data +
+        ", KData=" + KData +
         '}';
   }
 }

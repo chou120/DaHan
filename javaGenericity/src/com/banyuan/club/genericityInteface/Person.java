@@ -7,4 +7,6 @@ package com.banyuan.club.genericityInteface;
  */
 public class Person {
 
+
+
 }

@@ -7,4 +7,16 @@ package com.banyuan.club.genericityMethod;
  */
 public class Test {
 
+  public static void main(String[] args) {
+
+    Point<Integer,Integer> point=new Point<>();
+
+    point.setX(12);
+    point.setY(45);
+
+    Demo1.show5(point);
+
+  }
+
+
 }

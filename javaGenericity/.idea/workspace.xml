@@ -2,18 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2cbfcaf6-c9b5-4814-9867-bce7633fc072" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/$PRODUCT_WORKSPACE_FILE$" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/javaGenericity.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/Demo1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityClass/Point.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityClass/TestPoint.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaBasicTest/.idea/$PRODUCT_WORKSPACE_FILE$" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaBasicTest/.idea/.gitignore" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaBasicTest/.idea/misc.xml" beforeDir="false" />
@@ -23,7 +11,25 @@
       <change beforePath="$PROJECT_DIR$/../JavaBasicTest/.idea/workspace.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaBasicTest/JavaBasicTest.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../JavaBasicTest/src/REAME.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javaGenrice/src/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../javaGenrice/src/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/Person.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/genericityClass/Point.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/genericityClass/Point.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/genericityClass/TestPoint.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/genericityClass/TestPoint.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityClass/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityClass/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityClass/TestPoint.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityClass/TestPoint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface/FunctionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface/FunctionImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface2/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface2/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface2/FunctionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface2/FunctionImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface2/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface2/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface2/TestPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface2/TestPerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface3/Function.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface3/Function.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface3/FunctionImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface3/FunctionImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface3/TestFunction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityInteface3/TestFunction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityMethod/Demo1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityMethod/Demo1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityMethod/Point.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityMethod/Point.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/banyuan/club/genericityMethod/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/banyuan/club/genericityMethod/Test.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -68,13 +74,52 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.TestPoint">
+  <component name="RunManager" selected="Application.TestFunction">
     <configuration name="Demo1" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.banyuan.club.Demo1" />
       <module name="javaGenericity" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.banyuan.club.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.banyuan.club.genericityMethod.Test" />
+      <module name="javaGenericity" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.banyuan.club.genericityMethod.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestFunction" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.banyuan.club.genericityInteface3.TestFunction" />
+      <module name="javaGenericity" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.banyuan.club.genericityInteface3.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestPerson" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.banyuan.club.genericityInteface2.TestPerson" />
+      <module name="javaGenericity" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.banyuan.club.genericityInteface2.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -97,6 +142,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.TestFunction" />
+        <item itemvalue="Application.TestPerson" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.TestPoint" />
         <item itemvalue="Application.Demo1" />
       </list>
@@ -112,7 +160,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1584933442594</updated>
-      <workItem from="1584933444628" duration="1209000" />
+      <workItem from="1584933444628" duration="5869000" />
     </task>
     <servers />
   </component>
