@@ -5,7 +5,7 @@ package com.banyuan.club;
  * @version 1.0
  * @date 2020/3/23 11:19 上午
  */
-public class Person {
+public class Person<T>  implements  Comparable<T>{
 
 
   private  String  name;
@@ -16,5 +16,10 @@ public class Person {
 
   public void setName(String name) {
     this.name = name;
+  }
+
+  @Override
+  public int compareTo(T o) {
+    return 0;
   }
 }

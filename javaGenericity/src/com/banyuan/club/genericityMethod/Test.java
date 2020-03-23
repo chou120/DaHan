@@ -16,6 +16,12 @@ public class Test {
 
     Demo1.show5(point);
 
+    //通过反射的知识  可以获取到class文件
+    //Point.class  操作里面的相应的方法  默认把泛型擦除了
+
+
+
+
   }
 
 
