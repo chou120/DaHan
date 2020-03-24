@@ -1,6 +1,8 @@
 package com.banyuan.club;
 
 import java.io.File;
+import java.io.FileFilter;
+import java.io.FilenameFilter;
 import java.io.IOException;
 
 /**
@@ -81,8 +83,42 @@ public class FileDemo1 {
       System.out.println(f);
     }
 
-    
+
+//    file.listFiles(new FileFilter() {  //文件过滤器
+//      @Override
+//      public boolean accept(File pathname) {
+//        return false;
+//      }
+//    });
+
+    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>");
+
+    //找出满足xxx条件的文件
+   String [] strFile= file.list(new FilenameFilter() {
+      @Override
+      public boolean accept(File dir, String name) {
+       if(name.endsWith(".md")){  //满足条件的文件
+         return  true;
+       }
+       return false;
+      }
+    });
+
+    for (String   st: strFile) {
+      System.out.println(st);
+    }
+
+    //
+    //找到指定文件夹下面的所有的满足 .java 文件
+
+
+
+
+
   }
+
+
+
 
 
 }
