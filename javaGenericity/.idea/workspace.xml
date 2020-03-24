@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="2cbfcaf6-c9b5-4814-9867-bce7633fc072" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/homework/ArraySort.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/homework/Dao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/homework/Demo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/homework/GenericityTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/banyuan/club/homework/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaGenericity/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaGenericity/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/Person.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/Person.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/genericity/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/genericity/Demo.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/genericityMethod/Test.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/javaGenericity/com/banyuan/club/genericityMethod/Test.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/src/README.md" afterDir="false" />
-    </list>
+    <list default="true" id="2cbfcaf6-c9b5-4814-9867-bce7633fc072" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -145,7 +132,7 @@
       <option name="presentableId" value="Default" />
       <updated>1584933442594</updated>
       <workItem from="1584933444628" duration="6278000" />
-      <workItem from="1584946961124" duration="11365000" />
+      <workItem from="1584946961124" duration="11610000" />
     </task>
     <servers />
   </component>
