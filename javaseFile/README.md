@@ -24,3 +24,17 @@
               以此类推  读取所有的 txt文件内容
 
 ```
+```
+安装maven步骤
+    
+    使用homebrew 安装maven
+    brew cask install maven 或者 brew install maven
+    安装成功之后 使用
+    打开.bash_profile 文件 open .bash_profile
+    在里面加入
+    export M2_HOME=/usr/local/opt/maven@3.6
+    export M2=$M2_HOME/bin
+    export PATH=$M2:$PATH
+    mvn -v 查看maven 版本号 如果有显示版本号就说明成功了
+      
+```
