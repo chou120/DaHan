@@ -1,0 +1,10065 @@
+package com.banyuan.club.test;
+
+import com.banyuan.club.Person;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 4:04 下午
+ */
+public class Util {
+
+  public  static  void  show(Pair<?  extends  Employ> p){
+    System.out.println(p.getT());
+  }
+//  public  static  void  show2(Pair<Manager> p){
+//    System.out.println(p.getT());
+//
+//  }
+
+
+   public  static  void  show2(Pair<?  super Manager> p){
+
+
+   }
+
+
+  public static  <T extends  Comparable<T>>  T min(T[] a){
+
+    return  a[0];
+  }
+
+
+
+}
+class  Demo{
+
+  public static void main(String[] args) {
+
+    Person[] myUtils=new  Person[2];
+
+
+    Util.min(myUtils);
+
+
+
+    Pair<Manager>  employPair=new Pair<>();
+    Util.show(employPair);
+
+    Pair<? extends Employ>  em=employPair; // ok
+    em.getT();
+
+
+    Pair<? super Manager> e=employPair;
+    e.setT(new Manager());
+
+    e.getT();//Object
+
+    Util.show2(e);
+
+
+
+  }
+}
+package com.banyuan.club.test;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 4:03 下午
+ */
+public class Manager extends  Employ {
+
+}
+package com.banyuan.club.test;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 4:03 下午
+ */
+public class Pair<T> {
+
+  private  T  t;
+
+  public T getT() {
+    return t;
+  }
+
+  public void setT(T t) {
+    this.t = t;
+  }
+}
+package com.banyuan.club.test;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 4:02 下午
+ */
+public class Employ {
+
+  private  String  firstName;
+  private  String  secondName;
+
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getSecondName() {
+    return secondName;
+  }
+
+  public void setSecondName(String secondName) {
+    this.secondName = secondName;
+  }
+
+  @Override
+  public String toString() {
+    return "Employ{" +
+        "firstName='" + firstName + '\'' +
+        ", secondName='" + secondName + '\'' +
+        '}';
+  }
+}
+package com.banyuan.club.test;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 4:17 下午
+ */
+public class MyUtil<T>  implements  Comparable<T>{
+
+  @Override
+  public int compareTo(T o) {
+    System.out.println("Comparable...");
+    return 0;
+  }
+}
+package com.banyuan.club.genericityMethod;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 1:47 下午
+ */
+public class Point<K,V> {
+
+  K x;
+  V y;
+
+  public Point() {
+  }
+
+  public Point(K x, V y) {
+    this.x = x;
+    this.y = y;
+  }
+
+  public K getX() {
+    return x;
+  }
+
+  public void setX(K x) {
+    this.x = x;
+  }
+
+  public V getY() {
+    return y;
+  }
+
+  public void setY(V y) {
+    this.y = y;
+  }
+
+  @Override
+  public String toString() {
+    return "Point{" +
+        "x=" + x +
+        ", y=" + y +
+        '}';
+  }
+
+}
+package com.banyuan.club.genericityMethod;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 1:40 下午
+ */
+public class Demo1{
+
+  public  static <K,V>  void  show(Point<K,V> point){
+
+    K  k= point.getX();
+    V  v= point.getY();
+
+    //  System.out.println(k+v);
+  }
+
+  public  static   void  show2(Point<Object,Object> point){
+
+    Integer  k= (Integer)point.getX();
+    Integer  v= (Integer)point.getY();
+
+    System.out.println(k+v);
+  }
+  public  static   void  show3(Point<Object,Object> point){
+
+    String  k= (String)point.getX();
+    String  v= (String)point.getY();
+
+    System.out.println(k+v);
+  }
+
+
+  public  static   void  show4(Point<?,?> point){  // 通配符 么有指定一个类型 所以在做操作的时候有限制
+
+    System.out.println(point.x+ " " +point.y);
+  }
+
+
+
+
+  public  static   void  show5(Point<? extends Number,? extends  Number> point){  // 通配符 么有指定一个类型 所以在做操作的时候有限制
+
+    Integer  number=(Integer)point.getX();
+    Integer  number1=(Integer)point.getY();
+
+    System.out.println(number+number1);
+
+  }
+
+
+
+
+
+  //给T一个类型接受限定
+//  public    static <T extends Animal> void  show6(T t){
+//
+//
+//
+//  }
+
+
+
+}
+package com.banyuan.club.genericityMethod;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 1:51 下午
+ */
+public class Test {
+
+  public static void main(String[] args) {
+
+    Point<Integer,Integer> point=new Point<>();
+
+    point.setX(12);
+    point.setY(45);
+
+    Demo1.show5(point);
+
+    //通过反射的知识  可以获取到class文件
+    //Point.class  操作里面的相应的方法  默认把泛型擦除了
+
+
+
+
+  }
+
+
+}
+package com.banyuan.club;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 11:18 上午
+ */
+public class Demo1 {
+
+  public static void main(String[] args) {
+    List<Person> list=new ArrayList<Person>();  //在编译的时候指定数据类型
+//    list.add("渣渣辉");
+//    list.add(45);
+    list.add(new Person());
+
+    List<Integer> list1=new ArrayList();
+    Map<String ,Integer> map=new HashMap<>();
+
+
+    //现在需要对集合里面的person对象进行操作  必须强转
+
+    for (Object  obj:list) {
+      Person  p=(Person)obj;  //此类操作会容易出现运行时异常  那么为了更方便的解决代码问题  可不可以把异常出现的时间提前
+      System.out.println(p);
+    }
+
+
+
+
+  }
+
+
+
+}
+package com.banyuan.club.genericityClass;
+
+import com.banyuan.club.Person;
+import java.util.Map;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 11:31 上午
+ */
+public class TestPoint {
+
+  public static void main(String[] args) {
+
+//    Point<Person> point = new Point();
+//    Person p = new Person();
+//    p.setName("王五");
+//    point.setData(p);
+//
+//    System.out.println(point.getData().getName());
+
+    //泛型类如果接受的是两个参数呢？
+    Point<String,Integer>  point=new Point<>();
+    point.setData("张三");
+    point.setKData(23);
+
+    System.out.println(point.toString());
+
+
+
+  }
+
+}
+package com.banyuan.club.genericityClass;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 11:28 上午
+ */
+public class Point<T,K> {
+
+//  private Object  object;
+//
+//  public Object getObject() {
+//    return object;
+//  }
+//
+//  public void setObject(Object object) {
+//    this.object = object;
+//  }
+//
+//  @Override
+//  public String toString() {
+//    return "Point{" +
+//        "object=" + object +
+//        '}';
+//  }
+
+  private  T   data;
+
+  private  K   KData;
+
+  public K getKData() {
+    return KData;
+  }
+
+  public void setKData(K KData) {
+    this.KData = KData;
+  }
+
+  public T getData() {
+    return data;
+  }
+
+
+
+  public void setData(T data) {
+    this.data = data;
+  }
+
+  @Override
+  public String toString() {
+    return "Point{" +
+        "data=" + data +
+        ", KData=" + KData +
+        '}';
+  }
+}
+package com.banyuan.club;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 11:19 上午
+ */
+public class Person<T>  implements  Comparable<T>{
+
+
+  private  String  name;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  @Override
+  public int compareTo(T o) {
+    return 0;
+  }
+}
+package com.banyuan.club.homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 9:13 上午
+ */
+public class User {
+
+  private  Integer id;
+  private  String name;
+
+  public User(Integer id, String name) {
+    this.id = id;
+    this.name = name;
+  }
+
+  public User() {
+  }
+
+  public Integer getId() {
+    return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  @Override
+  public String toString() {
+    return "User{" +
+        "id=" + id +
+        ", name='" + name + '\'' +
+        '}';
+  }
+}
+package com.banyuan.club.homework;
+
+import java.util.Arrays;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 9:23 上午
+ */
+public class GenericityTest<T extends Number> {
+
+  private  T[] array;
+
+  public GenericityTest(T[] array) {
+    this.array = array;
+  }
+
+  //求泛型里面数据的最小值
+  public  T  getMin(){
+    T min=array[0];
+    for (int i = 1; i < array.length; i++) {
+      if(Double.parseDouble(array[i].toString())<Double.parseDouble(min.toString())){
+          min=array[i];
+      }
+    }
+      return  min;
+  }
+  public  T  getMax(){
+    T max=array[0];
+    for (int i = 1; i < array.length; i++) {
+      if(Double.parseDouble(array[i].toString())>Double.parseDouble(max.toString())){
+        max=array[i];
+      }
+    }
+    return  max;
+  }
+
+  public Double   getAvg(){
+    Double sum=0.0;
+    for (int i = 0; i < array.length; i++) {
+          sum=sum+array[i].doubleValue();
+    }
+    return   sum/array.length;
+  }
+}
+class  TestGen{
+
+  public static void main(String[] args) {
+    Integer [] in=new  Integer[4];
+    in[0]=12;
+    in[1]=121329;
+    in[2]=4;
+    in[3]=1;
+    GenericityTest<Integer> genericityTest=new GenericityTest<>(in);
+   System.out.println(genericityTest.getMin());
+//
+    System.out.println(genericityTest.getAvg());
+
+    System.out.println(genericityTest.getMax());
+
+
+
+
+  }
+}
+package com.banyuan.club.homework;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 9:06 上午
+ */
+public class Dao<T> {
+
+  private Map<String,T> map=new HashMap<>();
+  public void save(String id,T entity){
+    map.put(id, entity);//保存数据
+  }
+  public T get(String id){
+   return  map.get(id);
+  }
+  public  void update(String id,T entity){
+    map.replace(id, entity);
+  }
+  public List<T> list(){
+   List  list=new ArrayList();
+    Collection con=map.values();//返回的是所有值的集合  集合类型是 Collection
+   list.addAll(con); //把集合添加到 list
+   return  list;
+  }
+  public  void delete(String id){
+    map.remove(id);
+  }
+}
+
+class  TestDao{
+
+  public static void main(String[] args) {
+    Dao<User>  dao=new Dao<>();
+    dao.save("1", new User(12,"沾上干1"));
+    dao.save("2", new User(13,"沾上干2"));
+    dao.save("3", new User(14,"沾上干3"));
+    dao.save("4", new User(15,"沾上干4"));
+
+    dao.delete("4");
+
+    List<User> list=dao.list();
+    for (User   u:list) {
+      System.out.println(u.toString());
+    }
+
+
+
+
+  }
+}
+package com.banyuan.club.homework;
+
+import java.util.Arrays;
+import java.util.Comparator;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 10:19 上午
+ */
+public class ArraySort<T  extends Number> {
+
+  private  T[] arr;
+
+  public ArraySort(T[] arr) {
+    this.arr = arr;
+  }
+
+  public  T  getMin(){
+    Arrays.sort(arr, new Comparator<T>() {
+      @Override
+      public int compare(T o1, T o2) {
+        int num= Double.parseDouble(o1.toString())-Double.parseDouble(o2.toString())>0 ? 1:-1;
+        return num;
+      }
+    });
+    return  arr[0];
+  }
+
+}
+
+class  Test{
+
+  public static void main(String[] args) {
+    Integer[]  in=new Integer[5];
+    in[0]=120;
+    in[1]=12131;
+    in[2]=1112312;
+    in[3]=1112;
+    in[4]=99;
+
+    Double[]  dou=new Double[4];
+    dou[0]=145.63412;
+    dou[1]=145.6321312412;
+    dou[2]=3145.63412;
+    dou[3]=45.634121231;
+
+
+
+    ArraySort<Integer>  arraySort=new ArraySort<>(in);
+
+    System.out.println(arraySort.getMin());
+
+
+  }
+
+}
+package com.banyuan.club.homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 9:05 上午
+ */
+public class Demo {
+//  1.定义一个泛型Dao<T>，在其中一个Map成员变量,Map的键为String类型，值为T类型
+//  分别创建以下方法:
+//  public void save(String id,T entity) 保存T乐行的对象到map集合中
+//  public T get(String id) 从map中获取id对应的对象
+//  public  void update(String id,T entity) 替换map中的key为id的内容
+//  public List<T> list()  返回map中所有的 T 对象
+//  public  void delete(String id) 删除指定对象
+//
+//
+//  定义一个User类  Integer id   String name
+//  定义一个测试类 分别对上述方法进行测试
+
+
+  /*
+  第二题.定义泛型类，成员变量是Number类或其子类对象的数组，
+    成员方法有：求数组元素最小值、最大值和平均值。
+    创建泛型类对象，分别求Integer和Double型数组的最小最大、平均值
+   */
+
+
+
+
+}
+package com.banyuan.club.genericityInteface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 1:57 下午
+ */
+public class Person {
+
+
+
+}
+package com.banyuan.club.genericityInteface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 1:56 下午
+ */
+public interface Function<T> {
+
+  T   select(T  t);
+
+  void  add(T  t);
+}
+package com.banyuan.club.genericityInteface;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 1:57 下午
+ */
+public class FunctionImpl<T> implements Function<T> {
+
+  //数据添加到集合里面
+  List<T> list=new ArrayList<>();
+
+  @Override
+  public T select(T t) {
+    for (int i = 0; i <list.size(); i++) {
+      if(list.contains(t)){
+         return list.get(i);
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public void add(T t) {
+        list.add(t);
+  }
+}
+package com.banyuan.club.genericityInteface2;
+
+import java.util.Objects;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 2:07 下午
+ */
+public class Person {
+
+  private  String  name;
+
+  private  String  address;
+
+  public Person() {
+  }
+
+  public Person(String name, String address) {
+    this.name = name;
+    this.address = address;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  @Override
+  public String toString() {
+    return "Person{" +
+        "name='" + name + '\'' +
+        ", address='" + address + '\'' +
+        '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Person person = (Person) o;
+    return Objects.equals(name, person.name) &&
+        Objects.equals(address, person.address);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, address);
+  }
+}
+package com.banyuan.club.genericityInteface2;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 2:17 下午
+ */
+public class TestPerson {
+
+  public static void main(String[] args) {
+    Function  function=new FunctionImpl();
+
+    function.add(new Person("张三","小摔倒"));
+    function.add(new Person("张三1","小摔倒1"));
+    function.add(new Person("张三2","小摔倒4"));
+    function.add(new Person("张三3","小摔倒2"));
+    function.add(new Person("张三4","小摔倒3"));
+
+
+    boolean   flag=function.delete("张三");
+    System.out.println(flag);
+//    flag=function.delete("张三");
+//    System.out.println(flag);
+
+    //function.add("你好啊");//对于已经指定了集合里面元素的类型 其他的类型不能调用相应的方法进行操作
+
+
+  }
+
+}
+package com.banyuan.club.genericityInteface2;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 2:06 下午
+ */
+public interface Function {
+
+  //对集合数据做增删该差操作
+
+  void  add(Person  p);
+
+  boolean delete(String  name);
+
+  void    update(String  name);
+
+
+  //查询  如果集合里面包含这个对象那么就继续下一步操作
+  Person   queryByData(Person  person);
+
+
+}
+package com.banyuan.club.genericityInteface2;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 2:11 下午
+ */
+public class FunctionImpl  implements Function {
+
+  List<Person>   list=new ArrayList<>();
+
+
+  @Override
+  public void add(Person p) {
+        list.add(p);
+  }
+
+  @Override
+  public boolean delete(String name) {
+    int  key=-1;
+//    for (int i = 0; i <list.size(); i++) {
+//      if(name.equals(list.get(i).getName())){
+//            //key=i;
+//        list.remove(i);
+//        return  true;
+//      }
+//    }
+
+    //如果以后你们使用foreach来对集合数据进行操作  可能会发生  并发异常  不建议使用这中方式
+    for (Person  p:list) {
+      if(p.getName().equals(name)){
+        list.remove(p);
+        return true;
+      }
+    }
+//    Person  p=list.remove(key);
+    //if(p!=null){
+
+   // }
+
+    return false;
+  }
+
+  @Override
+  public void update(String name) {
+
+  }
+
+  @Override
+  public Person queryByData(Person person) {
+    for (int i = 0; i <list.size(); i++) {
+      if(list.contains(person)){
+          return   list.get(i);
+      }
+    }
+    return null;
+  }
+}
+package com.banyuan.club.genericity;
+
+import java.util.List;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 3:32 下午
+ */
+public class PetHouse<T> {
+
+  private List<T> list;  //虽然也是一个通配符 但是  在编译的时候就已经确定了类型   所有 list集合可以添加数据
+
+  public PetHouse() {
+  }
+
+  public List<T> getList() {
+    return list;
+  }
+
+  public void setList(List<T> list) {
+    this.list = list;
+  }
+
+  public   void  add(T item){
+    list.add(item);
+  }
+
+  public  T get(){
+    return  list.get(0);
+  }
+
+
+
+}
+package com.banyuan.club.genericity;
+
+import com.banyuan.club.Person;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import javax.sql.rowset.CachedRowSet;
+import sun.jvm.hotspot.oops.ObjArray;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 3:20 下午
+ */
+public class Demo {
+
+
+  //通配符
+  public   static  void  get(PetHouse<? extends Cat>  p){
+
+    System.out.println(p.get());
+  }
+
+  //给泛型方法添加一个限定的类型
+  public    static <T extends Animal> void  show6(T t){
+
+
+
+  }
+
+
+
+
+  //  小知识点  泛型擦除
+  public static void main(String[] args) {
+//    ArrayList<Integer>  list=new ArrayList<>();
+//    ArrayList<String>  list2=new ArrayList<>();
+
+//    System.out.println(list.getClass()==list2.getClass());
+
+
+    PetHouse<Animal>  petHouse=new PetHouse<>();
+    petHouse.add(new Cat1());
+    petHouse.add(new Cat());
+    petHouse.add(new Dog());
+    //petHouse.add();
+
+//    PetHouse<? extends  Cat> petHouse0=new PetHouse<>();
+//    petHouse1.add(new Cat());   // ？得到的是实参
+//    petHouse1.add(new  Cat1());
+//    petHouse1.add(new  Animal());
+//    petHouse1.add(new  Object());
+
+
+
+
+
+    PetHouse<? super   Cat> petHouse1=new PetHouse<>();
+    petHouse1.add(new Cat());
+   // petHouse1.add(new  Animal());
+    petHouse1.add(new Cat1());
+    //petHouse1.add(new  Dog());
+
+    //? extends Cat 当使用这个通配符限定数据类型的是   编译器只知道是Cat类及其子类  但是 具体的是一个数据类型
+    //根本不清楚  只是看到了extends后面 Cat类  有一个叫 占位符的   但是根本不知道是不是和这个占位符匹配 编译器干脆就不让插入
+
+    // ? super Cat  限定了最先的类型    已经限定占位符大小  有数据插入的时候 如果在范围内 默认就能插入
+    //取出数据的时候根本不知道什么类型 所以干脆就返回一个Object   这样就容易造成数据丢失了
+
+    /*
+      1.频繁的往外读取内容的时候 适合使用  extends
+      2.经常往里面插入的时候 使用适合  super
+
+      上界不存 下界不取
+
+     */
+
+    List<Cat1> list=new ArrayList<>();
+
+    List<? extends  Cat>    list1=list;
+
+    PetHouse<Cat>  petHouse2=new PetHouse<>();
+    petHouse2.add(new Cat());
+    petHouse2.add(new Cat1());
+    petHouse2.add(new Cat1());
+
+    get(petHouse2);
+
+
+
+
+    show6(new  Cat());
+
+
+
+  }
+}
+class Animal{
+
+
+}
+class  Cat extends  Animal{
+
+}
+class  Dog extends  Animal{
+
+}
+
+class  Cat1  extends Cat{
+
+}
+
+
+
+
+
+
+package com.banyuan.club.genericityInteface3;
+
+import com.banyuan.club.genericityInteface2.Person;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 2:36 下午
+ */
+public class TestFunction {
+
+  public static void main(String[] args) {
+    Function<Person>  function=new FunctionImpl();
+
+    function.add(new Person("张三", "下水道..."));
+    function.add(new Person("张三1", "下水道1..."));
+    function.add(new Person("张三2", "下水道2..."));
+    function.add(new Person("张三3", "下水道3..."));
+
+
+    Person p=function.queryByT(new  Person("张三","下水道..."));
+
+    if(p!=null){
+      System.out.println("存在这个数据..");
+    }else{
+      System.out.println("您查询的数据不存在");
+    }
+
+    Function<String>  function1=new FunctionImpl<>();
+    function1.add("闫正池1");
+    function1.add("闫正池2");
+    function1.add("闫正池3");
+    function1.add("闫正池4");
+
+    String   str=function1.queryByT("闫正池1");
+    if(str!=null){
+      System.out.println("存在这个数据..");
+    }else{
+      System.out.println("您查询的数据不存在");
+    }
+
+
+
+
+  }
+
+
+}
+package com.banyuan.club.genericityInteface3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 2:27 下午
+ */
+public interface Function<T> {
+
+  //
+  void   add(T  t);
+
+  //删除
+  boolean  delete(T  t);
+
+  //查询
+  T    queryByT(T   t);
+
+  //修改
+  T  update (T  t);
+
+
+}
+package com.banyuan.club.genericityInteface3;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 2:30 下午
+ */
+public class FunctionImpl<T>  implements Function<T> {
+
+  List<T> list=new ArrayList<>();
+
+  @Override
+  public void add(T t) {
+    list.add(t);
+  }
+
+  @Override
+  public boolean delete(T t) {
+    for (int i = 0; i <list.size(); i++) {
+      if(list.contains(t)){
+        list.remove(i);
+        return  true;
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public T queryByT(T t) {
+    for (int i = 0; i <list.size(); i++) {
+      if(list.contains(t)){
+        return  list.get(i);
+      }
+    }
+    return null;
+  }
+
+  @Override
+  public T update(T t) {
+    return null;
+  }
+}
+package com.banyuan.club.oop5_interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:28 上午
+ */
+public interface Function1 {
+    //在jdk1.8之前接口里面都是抽象方法  jdk1.8之后（包括1.8） 可以有普通方法
+    public   abstract  boolean   update(String name, String password);
+
+
+
+    //接口里面只有常量
+    
+
+}
+package com.banyuan.club.oop5_interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:30 上午
+ */
+public class Person  implements  Function ,Function1{
+
+  @Override
+  public boolean login(String name, String password) {
+      if(name.equals("张三")&&password.equals("123456")){
+        System.out.println("登录成功....我是"+COUNTRY+"人");
+        return  true;
+      }
+    System.out.println("账户或者密码错误....");
+    return false;
+  }
+
+  @Override
+  public void test() {
+
+  }
+
+  @Override
+  public boolean update(String name, String password) {
+
+    return false;
+  }
+}
+package com.banyuan.club.oop5_interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:32 上午
+ */
+public class TestPerson {
+
+  public static void main(String[] args) {
+    Function  function=new Person();
+    boolean   flag=function.login("张三", "123456");
+    System.out.println(flag);
+  }
+
+}
+package com.banyuan.club.oop5_interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:28 上午
+ */
+public interface Function {
+    //在jdk1.8之前接口里面都是抽象方法  jdk1.8之后（包括1.8） 可以有普通方法
+    public   abstract  boolean   login(String name,String password);
+
+    public  static  final String COUNTRY="中国";
+
+    //接口里面只有常量
+    //接口继承接口意义不大
+    //接口不可以被实例化  抽象类也不可以实例化
+    //接口可以单继承 也可以多继承    java只支持单继承
+
+        void  test();//   笔试题这种写法没错
+
+
+  // 老师:姓名 年龄 吃饭 数据
+  //学生同上
+  /*
+      由于共性  提取出一个公共的类
+      现在 学生变坏了    学会抽烟了
+      老师也变坏了  在外面找小三
+   */
+
+
+   public default  void  show(){
+
+  };
+
+
+}
+package com.banyuan.club.oop5_interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:35 上午
+ */
+public interface Function3  extends Function1,Function{
+//接口继承接口意义不大
+}
+package com.banyuan.club.oop2;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 3:05 下午
+ */
+public class GrandPa {
+  public void  show(){
+    show2();
+  }
+  public  void  show2(){
+    System.out.println("我");
+  }
+}
+class  Fu  extends  GrandPa{
+
+  public  void  show2(){
+    System.out.println("爱");
+
+  }
+}
+class  Sonny  extends Fu {
+  public   void show(){
+    super.show();
+  }
+  public  void  show2(){
+    System.out.println("你");
+  }
+}
+class  Test{
+  public static void main(String[] args) {
+    GrandPa  grandPa=new Fu();
+    grandPa.show();//请问输出结果
+
+    Fu fu=new Sonny();
+    fu.show();
+  }
+}
+
+/*
+  自己琢磨?
+ */
+
+package com.banyuan.club.oop2;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 3:09 下午
+ */
+public class Person {
+
+  public  void  show(){
+    System.out.println("我是父类的show方法....");
+  }
+
+
+}
+package com.banyuan.club.oop2;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 3:11 下午
+ */
+public class TestPerson {
+//如果使用多态的方式创建对象并且调用子类特有的方法  是不可以调用
+
+  public static void main(String[] args) {
+    Person   p=new Student();
+    //就想调用子类
+    //Student  stu=new Student();
+    //stu.study();  //不建议   占内存
+
+    //向上转型
+    //Person   p=new Student();
+
+    //向下转型
+     Student   student=(Student)p;
+     student.study();
+  }
+
+}
+package com.banyuan.club.oop2;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 3:11 下午
+ */
+public class Student  extends  Person{
+
+  public  void   study(){
+    System.out.println("我是子类特有的方法....");
+  }
+
+  public  void  show(){
+    System.out.println("我是子类重写的方法...");
+  }
+
+
+}
+package com.banyuan.club.oop3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 3:23 下午
+ */
+public class Worker  extends   Person {
+
+  public  void  eat(){
+    System.out.println("Worker在吃饭....");
+
+
+  }
+
+  public  void  sleep(){
+    System.out.println("Worker在睡觉....");
+  }
+
+  public  void  drink(){
+    System.out.println("Worker在喝酒....");
+  }
+
+  @Override
+  public String eat(int num) {
+    return null;
+  }
+
+  @Override
+  public void sleep(Student student) {
+
+  }
+
+  @Override
+  public void drink(int[] num) {
+
+  }
+}
+package com.banyuan.club.oop3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 3:22 下午
+ */
+public abstract class Person {
+
+  /*
+    一个类如果是抽象类  那么此类里面不一定有抽象类(抽象类和普通类的区别)
+    一个类里面如果有抽象方法  那么这个类一定是抽象类
+
+    抽象类不能被创建对象
+
+    子类创建对象 抽象类的无参构造器被调用  父类的无参构造器被调用是因为子类要使用父类的成员
+
+    抽象类并不能描述一个具体存在
+
+    Person  p=new  Person();  //
+
+    抽象类不能被创建对象(不能被实例化)
+        因为它不是具体
+          抽象类里面 有构造方法  但是不能实例化   那么构造方法有什么作用呢
+            用于子类对父类数据的 初始化以及使用
+
+     抽象类的实例化其实是靠具体的子类实现     -----> 抽象类多态
+
+    抽象类里面可以有抽象方法   也可以有非抽象方法
+    成员变量:可以有常量  可以有变量
+
+      abstract 不可以和 final static  private 一起使用
+
+    一个类里面如果没有抽象方法  可不可以定义成抽象类
+
+    抽象类的子类可以是 普通类 也可以是抽象类
+
+
+   */
+
+  public   abstract String  eat(int  num);
+
+  public abstract void  sleep(Student  student);
+
+  public abstract void  drink(int [] num);
+
+  private   String  address="哈哈哈";
+
+  public    String  name="大保健";
+
+  public   void showInfo(){
+    System.out.println("我是抽象类里面的普通方法");
+  }
+
+  public  Person(){
+    System.out.println("我是父类的无参构造方法....");
+  }
+
+  public Person(String address) {
+    this.address = address;
+  }
+
+
+  public   static  void  test(){
+    System.out.println("我是父类的静态方法.....");
+  }
+
+
+}
+package com.banyuan.club.oop3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 3:50 下午
+ */
+public abstract class Person1  extends Person{
+
+  public  abstract  void  play();
+
+
+}
+package com.banyuan.club.oop3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 3:24 下午
+ */
+public class Student  extends  Person {
+  public  void  eat(){
+    System.out.println("Student在吃饭....");
+  }
+
+  public  void  sleep(){
+    System.out.println("Student在睡觉....");
+  }
+
+  public  void  drink(){
+    System.out.println("Student在喝酒....");
+  }
+
+  @Override
+  public String eat(int num) {
+    return null;
+  }
+
+  @Override
+  public void sleep(Student student) {
+
+  }
+
+  @Override
+  public void drink(int[] num) {
+
+  }
+}
+package com.banyuan.club.oop3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 9:54 上午
+ */
+public interface Demo {
+
+  public  static final String ADDRESS="哈哈哈";
+
+  default   void   test(){
+    System.out.println("我不好....");
+  }
+
+
+}
+package com.banyuan.club.oop3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 3:23 下午
+ */
+public class Teacher extends   Person {
+
+  public  void  eat(){
+    System.out.println("Teacher在吃饭....");
+  }
+
+  public  void  sleep(){
+    System.out.println("Teacher在睡觉....");
+  }
+
+  public  void  drink(){
+    System.out.println("Teacher在喝酒....");
+  }
+
+
+  @Override
+  public String eat(int num) {
+    return null;
+  }
+
+  @Override
+  public void sleep(Student student) {
+
+  }
+
+  @Override
+  public void drink(int[] num) {
+
+  }
+}
+package com.banyuan.club.oop3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 9:15 上午
+ */
+public   class A {
+
+  public static void main(String[] args) {
+
+      ClassB b=new ClassB();
+      b.g(new ClassA());
+
+  }
+
+}
+interface InterfaceA{
+  String s="good ";
+  void f();
+
+        void  hahah();
+
+
+
+
+}
+class ClassA implements InterfaceA{
+  public void f(){
+    System.out.print(s);
+  }
+
+  @Override
+  public void hahah() {
+
+  }
+}
+class ClassB{
+  void g(InterfaceA a){
+    a.f();
+  }
+}
+package com.banyuan.club.oop3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 3:51 下午
+ */
+public class Employee  extends  Person1 {
+
+
+  public String eat() {
+    return "";
+  }
+
+
+  public void sleep() {
+
+  }
+
+
+  @Override
+  public void play() {
+
+  }
+
+
+  public void drink() {
+
+  }
+
+  @Override
+  public String eat(int num) {
+    return null;
+  }
+
+  @Override
+  public void sleep(Student student) {
+
+  }
+
+  @Override
+  public void drink(int[] num) {
+
+  }
+}
+package com.banyuan.club.oop3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 3:21 下午
+ */
+public class AbstractDemo {
+  /*
+    抽象类: abstract
+   */
+
+  public static void main(String[] args) {
+//    Person   person =new Student();
+//    person.drink();
+//
+//    Person  person1=new Teacher();
+//    person1.eat();
+//
+//    Person  person2=new Worker();
+//    person2.sleep();
+
+
+    //能不能创建一个父类自己的对象
+    //  Person  person3=new  Person();
+
+
+  }
+
+
+}
+package com.banyuan.club.oop4_Interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:06 上午
+ */
+public class Teacher2  implements CreateFunction {
+
+  @Override
+  public   void  createNew(String   type){
+    System.out.println(type+"老师有研发的功能...");
+  }
+
+}
+package com.banyuan.club.oop4_Interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:06 上午
+ */
+public class Teacher3   implements  CreateFunction{
+
+  //研发功能
+  @Override
+  public   void  createNew(String   type){
+    System.out.println(type+"老师有研发的功能...");
+  }
+
+
+}
+package com.banyuan.club.oop4_Interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:03 上午
+ */
+public class Worker  extends  Person{
+
+  @Override
+  public void eat(String foodName) {
+    System.out.println("工人在吃"+foodName);
+  }
+
+  @Override
+  public void sleep() {
+    System.out.println("工人在睡觉...");
+  }
+}
+package com.banyuan.club.oop4_Interface;
+
+import java.util.Scanner;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:07 上午
+ */
+public class Test {
+
+  public static void main(String[] args) {
+//    Person   p=new Teacher();
+//    Teacher  t=(Teacher)p;
+//    t.createNew("语文");
+//
+//
+//    Teacher2  teacher2=new Teacher2();
+//    teacher2.createNew("数学");
+//
+//
+//    Teacher3  teacher3=new Teacher3();
+//    teacher3.createNew("化学");
+
+
+    //甲方爸爸  项目  --2000万-->>> 乙方
+    // 一年 之内   项目进行交付    1000 + 1000
+    //项目上线  是不是要维护    项目上线需要部署
+
+    // 如果让你们做开发公司  如何让利益最大化     2000万 不仅是拿2000万
+    // 给项目写了很多功能
+    /**
+     * 1.语文老师研发
+     * 2.数学老师研发
+     * 3.化学老师研发的功能
+     *
+     * 卖代码给别的公司   ----->>>>> 10  万
+     *
+     * 卖给了 C  不公开源码   --->>>   把项目打包 对外提供一个接口  C通过访问这个接口
+     * 去调用相应的功能
+     *
+     *
+     */
+    CreateFunction  createFunction=new Teacher2();
+    Tool.show(createFunction, "语文");
+
+    //面向接口编程
+
+
+
+  }
+
+}
+package com.banyuan.club.oop4_Interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:02 上午
+ */
+public  abstract class Person {
+
+  public  abstract  void   eat(String   foodName);
+
+  public  abstract  void   sleep();
+
+}
+package com.banyuan.club.oop4_Interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:19 上午
+ */
+public class Tool {
+
+  private  Tool(){ //构造器私有化 意味着  Tool不能被创建对象
+
+  }
+
+  public   static   void  show(CreateFunction  createFunction,String  type){
+        createFunction.createNew(type);
+  }
+
+
+}
+package com.banyuan.club.oop4_Interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:17 上午
+ */
+public interface CreateFunction {
+  public abstract   void  createNew(String   type);
+
+}
+package com.banyuan.club.oop4_Interface;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 10:03 上午
+ */
+public class Teacher extends  Person  implements CreateFunction{
+
+  @Override
+  public void eat(String foodName) {
+    System.out.println("老师在吃"+foodName);
+  }
+
+  @Override
+  public void sleep() {
+    System.out.println("老师在睡觉...");
+  }
+
+  //老师有一个研发的功能   额外的功能
+  @Override
+  public   void  createNew(String   type){
+    System.out.println(type+"老师有研发的功能...");
+  }
+
+
+}
+package com.banyuan.club.Homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 10:02 上午
+ */
+public class Man implements  Employee{
+  private  double hours;
+  private  final   double  BALANCE_MONEY=4500;
+  private String name;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public double getHours() {
+    return hours;
+  }
+
+  public void setHours(double hours) {
+    this.hours = hours;
+  }
+
+  @Override
+  public double calMoney() {
+    double   sumMoney=0;
+    if(this.hours<196){
+      sumMoney=sumMoney+BALANCE_MONEY;
+    }else{
+      sumMoney=sumMoney+(this.hours-196)*200+BALANCE_MONEY;
+    }
+    return sumMoney;
+  }
+}
+package com.banyuan.club.Homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 9:55 上午
+ */
+public class HourEmp  implements Employee {
+
+  private String name;
+
+  private  double  hour;
+  private  double  hourMoney;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public double getHour() {
+    return hour;
+  }
+
+  public void setHour(double hour) {
+    this.hour = hour;
+  }
+
+  public double getHourMoney() {
+    return hourMoney;
+  }
+
+  public void setHourMoney(double hourMoney) {
+    this.hourMoney = hourMoney;
+  }
+
+  @Override
+  public double calMoney() {
+    double   money=this.hourMoney*this.hour;
+    return money;
+  }
+}
+package com.banyuan.club.Homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 9:57 上午
+ */
+public class SalEmp  implements  Employee{
+
+  private String name;
+  private  double  salMoney;
+  private  final  double  BALANCE=3000;//基本工资
+
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public double getSalMoney() {
+    return salMoney;
+  }
+
+  public void setSalMoney(double salMoney) {
+    this.salMoney = salMoney;
+  }
+
+  @Override
+  public double calMoney() {
+    double moneySum=0;
+    if(this.salMoney<10000){
+      moneySum=moneySum+this.salMoney*0.1+BALANCE;
+    }else  if(this.salMoney>10000&&this.salMoney<100000){
+      moneySum=moneySum+this.salMoney*0.15+BALANCE;
+    }else{
+      moneySum=moneySum+this.salMoney*0.18+BALANCE;
+    }
+
+    return moneySum;
+  }
+}
+package com.banyuan.club.Homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 10:17 上午
+ */
+public class TestCompany {
+
+  public static void main(String[] args) {
+    Company  company=new Company();
+    HourEmp  hourEmp=new HourEmp();
+    hourEmp.setHour(200);
+    hourEmp.setHourMoney(10);
+    hourEmp.setName("张三");
+
+    HourEmp  hourEmp2=new HourEmp();
+    hourEmp2.setHour(230);
+    hourEmp2.setHourMoney(10);
+    hourEmp2.setName("李四");
+
+    company.addEmp(hourEmp);
+    company.addEmp(hourEmp2);
+
+    SalEmp  salEmp=new SalEmp();
+    salEmp.setName("王五");
+    salEmp.setSalMoney(5000);
+
+    SalEmp  salEmp2=new SalEmp();
+    salEmp2.setName("赵六");
+    salEmp2.setSalMoney(200000);
+
+    company.addEmp(salEmp);
+    company.addEmp(salEmp2);
+
+
+    Man  man=new  Man();
+    man.setHours(205);
+    man.setName("大保健");
+
+    company.addEmp(man);
+
+
+    NewMan newMan=new NewMan();
+    newMan.setNumber(30);
+    newMan.setName("田七");
+
+    company.addEmp(newMan);
+    //
+    System.out.println("应发总工资和:"+company.getSalarySum());
+    //  200*9+4500=6700
+    //  39000+14500=53100;
+    // 3500
+    //2300   2000
+
+    company.delGetByEmpName("张三", hourEmp);
+
+    System.out.println(Company.count);
+
+
+  }
+
+}
+package com.banyuan.club.Homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 9:47 上午
+ */
+public class Company {
+
+  Employee  [] employee=new  Employee[6];
+  //   接口多态来接收子类类型的对象  但是有三种不同的子类对象
+  static   int count=0;
+
+  public  void  addEmp(Employee  emp){
+      employee[count++]=emp;
+  }
+
+  public  void   delGetByEmpName(String  name,Employee  emp){ //判断一下是属于哪个工种
+    int  index=-1;
+    for (int i = 0; i <count; i++) {
+        if(employee[i]  instanceof  HourEmp  && emp instanceof HourEmp){
+          //   instanceof  表示判断数据类型
+          /*
+               Employee  [] employee=new  Employee[6]; 接口多态  所有的接口子实现类都可以存放到这个数组里面
+               Employee   emp=new   HourEmp();
+                          emp=new   Man();
+               子类对象存放在父类类型创建数组空间里    子类会被默认提升类型
+
+               此时得用  instanceof  判断 数组里面的对象到底是属于哪个一个类的
+
+           */
+
+          HourEmp  hourEmp=((HourEmp)employee[i]);
+          if(name.equals(hourEmp.getName())){
+            index=i;
+          }
+        }else if(employee[i]  instanceof  SalEmp  && emp instanceof SalEmp){
+          String  eName=((SalEmp)employee[i]).getName();
+          if(name.equals(eName)){
+            index=i;
+          }
+        }else  if(employee[i]  instanceof  Man  && emp instanceof Man){
+          String  eName=((Man)employee[i]).getName();
+          if(name.equals(eName)){
+            index=i;
+          }
+        }
+    }
+
+    for (int i = index; i < count; i++) {
+      if(count==employee.length) {
+        employee[i]=null;
+      }else{
+        employee[i] = employee[i + 1];
+      }
+
+    }
+    count--; //人数少一个
+
+  }
+  //通过员工的名字显示员工的工资
+  public   double   getSalary(String   ename){
+
+
+
+    return 0;
+  }
+
+
+  public  double   getSalarySum(){
+  double  sum=0;
+    for (int i = 0; i <count; i++) {
+      double money = employee[i].calMoney();
+      sum += money;
+    }
+    return     sum;
+  }
+
+
+  //自己尝试写一个数组扩容的方法
+
+
+}
+package com.banyuan.club.Homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 10:27 上午
+ */
+public class NewMan implements Employee {
+
+  private int  number;
+  private String  name;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getNumber() {
+    return number;
+  }
+
+  public void setNumber(int number) {
+    this.number = number;
+  }
+
+  @Override
+  public double calMoney() {
+    return this.number*50;
+  }
+}
+package com.banyuan.club.Homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 9:46 上午
+ */
+public interface Employee {
+
+    double  calMoney();
+
+
+}
+package com.banyuan.club.oop8;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 2:56 下午
+ */
+//问题3
+public class OuterDemo {
+  public  int  number=20;
+  class InnerDemo{
+    public  int  number=40;
+    public  void show(){
+      int number=60;
+      System.out.println();
+      System.out.println();
+      System.out.println();
+    }
+  }
+
+}
+//求输出结构为:  60  40  20
+package com.banyuan.club.oop8;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 2:43 下午
+ */
+public  abstract class Function1 {
+
+  public  abstract  String   getPassword(String   type);
+
+}
+package com.banyuan.club.oop8;
+
+
+import com.sun.corba.se.spi.orbutil.threadpool.Work;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 2:35 下午
+ */
+public class Worker {
+
+    public   String   name="我不好";
+
+    public  class  Inner{
+
+      public   String   name="你好";
+      public  void  show(){
+        System.out.println("我是内部类,并且是私有化的...."+name);
+      }
+
+//      public   String  getName(){
+//        return name;
+//      }
+
+    }
+
+//    public  void  getInner(){
+//       new   Inner().show();
+//    }
+
+
+  public class  Inner1  extends  Function{
+
+    @Override
+    public String getChange(String name) {
+      return null;
+    }
+  }
+
+  public  class  Inner2  extends  Function1{
+
+    @Override
+    public String getPassword(String type) {
+      return null;
+    }
+  }
+
+
+
+
+}
+class  TestWorker{
+
+  public static void main(String[] args) {
+    Worker.Inner wo=new  Worker().new  Inner(); //还是首先要创建外部类对象
+    Worker  worker=new Worker();
+    System.out.println(worker.name+"-----"+wo.name);
+
+  }
+
+}
+
+
+
+package com.banyuan.club.oop8;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 2:42 下午
+ */
+public abstract class Function {
+
+      public  abstract  String   getChange(String   name);
+
+}
+package com.banyuan.club.oop8;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 2:45 下午
+ */
+public class A extends  C implements  B{
+
+  @Override
+  public void login() { //请问 使用的是哪个 login
+    System.out.println("输出.....");
+  }
+}
+
+interface  B{
+  void  login();
+}
+
+abstract  class  C {
+ public  abstract void   login();
+}
+
+
+
+
+//问题
+//interface  Inter{
+//  void  show();
+//}
+//
+//class  Outer {
+//  //请补齐代码
+//}
+//class TestOuter{
+//
+//    public static void main(String[] args) {
+//          Outer.method().show();
+//    }
+//  }
+//
+package com.banyuan.club.oop6;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 11:20 上午
+ */
+public class TestEnum {
+
+  public static void main(String[] args) {
+    Day    day=Day.SUNDAY;
+    System.out.println("--------"+day);
+    switch (day){
+      case SUNDAY:
+        System.out.println("today is SUNDAY");break;
+      case MONDAY:
+        System.out.println("today is MONDAY");break;
+
+      case TUESDAY:
+        System.out.println("today is TUESDAY");break;
+      case FRIDAY:
+        System.out.println("today is FRIDAY");break;
+      case SATURDAY:
+        System.out.println("today is SATURDAY");break;
+
+      case WEDNESDAY:
+        System.out.println("today is WEDNESDAY");break;
+
+      case THURSDAY:
+        System.out.println("today is THURSDAY");break;
+    }
+
+//    for (int i = 0; i <Day.values().length; i++) {
+//      System.out.println(Day.values()[i]);
+//
+//    }
+
+    System.out.println(Day.FRIDAY.ordinal()); //获取枚举类里面常量的索引
+
+
+
+
+
+  }
+
+
+}
+package com.banyuan.club.oop6;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 11:14 上午
+ */
+
+//常用1
+public enum EnumDemo {  //enum   枚举   JDK1.5之后才有的枚举
+    MALE,FEMALE;
+}
+enum  Color  {
+  RED,BLUE,BLACK,GREEN;
+}
+enum  Day{
+  MONDAY,TUESDAY,WEDNESDAY,THURSDAY,FRIDAY,SATURDAY,SUNDAY
+}
+package com.banyuan.club.oop6;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 11:29 上午
+ */
+public enum WeekDay {
+  //常用2
+    MON("周一",0),TUE("TuesDay",1),Wed("WednesDay",2),Thu("THURSDAY",3),Fri("FRIDAY",4),
+    Sat("周六",5),Sun("周日",6);
+  private  final String  day;
+  private  int   index;
+
+  WeekDay(String day,int  index) {  //构造器是私有
+    this.day = day;
+    this.index=index;
+  }
+  public  static  void  printDay(int  i){
+      switch (i){
+        case 0:
+          System.out.println(WeekDay.MON);
+          break;
+        case 1:
+          System.out.println(WeekDay.TUE);
+          break;
+        case 2:
+          System.out.println(WeekDay.Wed);
+          break;
+        case 3:
+          System.out.println(WeekDay.Thu);
+          break;
+        case 4:
+          System.out.println(WeekDay.Fri);
+          break;
+        case 5:
+          System.out.println(WeekDay.Sat);
+          break;
+        case 6:
+          System.out.println(WeekDay.Sun);
+          break;
+      }
+
+  }
+
+  public  String  getDay(){
+    return day;
+  }
+
+}
+
+
+class  TestEnum_Test{
+
+  public static void main(String[] args) {
+    for (WeekDay  w:WeekDay.values()) {
+      System.out.println(w+"------->>>>>"+w.getDay());
+    }
+
+    WeekDay.printDay(2);
+
+
+  }
+}
+package com.banyuan.club.oop1;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 1:51 下午
+ */
+public class Fu {
+
+  public int num = 10;
+
+  public void show() {
+    System.out.println("我是父类的show方法...");
+  }
+
+  public static void function() {
+    System.out.println("我是父类的静态方法....");
+  }
+}
+
+class Son extends Fu {
+
+  public int num = 100;
+  public int num2 = 200;
+
+  @Override
+  public void show() {
+    System.out.println("我是子类的show方法...");
+  }
+
+  public static void function() {
+    System.out.println("我是子类的静态方法....");
+  }
+}
+class TestSon {
+  public static void main(String[] args) {
+    Fu fu = new Son(); //父类引用指向子类对象
+    //Son  son=new Son();
+    //   long  可不可以接收int  数据      Son 继承的是  Fu   Fu > Son
+    //fu.show();
+    Son son = new Son();
+    System.out.println(son.num);
+    System.out.println(fu.num);  //如果左边是 Fu类类型来接收 那么输出的成员变量就是使用父类的成员变量
+
+    fu.function();
+    son.function();
+
+
+  }
+}
+package com.banyuan.club.oop1;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 2:10 下午
+ */
+public class AnimalTool {
+
+
+  /*
+     多态的好处:
+        a.提高了代码的维护性(继承的好处也同时是多态的好处)
+        b.提高了代码的扩展性(多态本身的好处)
+   */
+
+  //动物的工具类   提供动物特性功能
+
+//  public  static   void useCat(Cat   cat){
+//        cat.eat();
+//        cat.run();
+//  }
+//  public  static   void usePig(Pig   pig){
+//    pig.eat();
+//    pig.run();
+//  }
+//  public  static   void useDog(Dog   dog){
+//    dog.eat();
+//    dog.run();
+//  }
+
+  //上述方法升级之后   new   Cat()  0x10001
+  public   static  void  useAnimal(Animal  animal){  //接收的是 继承了此类的子类的对象,包括本身对象
+   if(animal instanceof Cat ){
+     System.out.println("我是Cat");
+   }
+
+    animal.run();
+    animal.eat();
+  }
+
+  // 如果子类有的方法  父类没有子类特有的方法  那么请问父类如何访问
+
+
+}
+package com.banyuan.club.oop1;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 2:05 下午
+ */
+public class Animal {
+
+  public  void  eat(){
+    System.out.println("动物在进食...");
+  }
+
+  public  void  run(){
+    System.out.println("动物在运动....");
+  }
+
+}
+class  Dog extends Animal{
+  public  void  eat(){   //每个动物的功能不一样 发生了方法重写
+    System.out.println("狗在吃骨头...");
+  }
+
+  public  void  run(){
+    System.out.println("狗在跑步....");
+  }
+}
+class  Cat extends Animal{
+  public  void  eat(){   //每个动物的功能不一样 发生了方法重写
+    System.out.println("猫在吃鱼...");
+  }
+  public  void  run(){
+    System.out.println("猫在爬树....");
+  }
+}
+class  Pig extends Animal{
+  public  void  eat(){   //每个动物的功能不一样 发生了方法重写
+    System.out.println("猪在吃大白菜...");
+  }
+
+  public  void  run(){
+    System.out.println("猪在走模特步...");
+  }
+}
+
+
+
+
+
+
+
+
+package com.banyuan.club.oop1;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 2:12 下午
+ */
+public class TestAnimal {
+
+  public static void main(String[] args) {
+//    Dog  dog=new Dog();
+//    dog.eat();
+//    dog.run();
+//
+//    Cat  cat=new Cat();
+//    cat.run();
+//    cat.eat();
+//
+//    Pig  pig  =new Pig();
+//    pig.eat();
+//    pig.run();
+
+
+//    Animal    animal=new Dog();
+//              animal.eat();
+//              animal.run();
+//
+//              animal=new Cat();
+//              animal.eat();
+//              animal.run();
+//
+//              animal=new Pig();
+//              animal.eat();
+//              animal.run();
+//     //
+    //可不可以使用一个工具类  把动物的相同的功能都放到一块
+
+//    AnimalTool.useCat(new  Cat()); //使用工具类  传递一个对象
+//
+//    AnimalTool.useDog(new  Dog());
+
+
+    //升级之后的测试
+      Animal  animal=new Dog();
+      AnimalTool.useAnimal(animal);
+
+  }
+
+
+
+}
+package com.banyuan.club.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 2:00 下午
+ */
+public class AnImpl  extends   Animal{
+
+  @Override
+  public String getDataByName(String name) {
+    name+="真牛逼...";
+    return name;
+  }
+
+  @Override
+  public String getDataByAge(int age) {
+    return null;
+  }
+
+  @Override
+  public String deDataByName(String name) {
+    return null;
+  }
+
+}
+package com.banyuan.club.oop7;
+
+import com.banyuan.club.oop7.StaticOuterInner.Inner;
+import java.util.Stack;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 1:44 下午
+ */
+public class TestInner {
+
+  public static void main(String[] args) {
+
+    //1.在测试类中访问内部类的成员方法 如下
+    // 外部类名.内部类名   变量名=new 外部类名().new 内部类名();
+//    InnerClass.Inner   inner=new InnerClass().new  Inner();
+//    inner.show();
+
+    //2.对于静态内部类的成员访问
+    // StaticOuterInner.Inner  sinner=new StaticOuterInner.Inner();
+    // sinner.showTest();
+    // StaticOuterInner.Inner.run();  //静态内部类的静态方法访问方式...
+
+    /*
+      3.首先对匿名对象的使用   就是没有名字的对象
+     */
+
+    Person p = new Person();
+    System.out.println();
+
+    //从30开始就没有对p使用了  得等到整个程序执行完毕之后p才会被垃圾回收 这样 p在整个程序执行完成之前一直占内存
+    //如果对某个对象里面的成员只使用一次  那么我们可以使用匿名对象
+    //new Person().成员;  一次使用完了之后  该匿名对象 自动被垃圾回收
+
+
+
+
+
+
+  }
+}
+package com.banyuan.club.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 1:55 下午
+ */
+public class Person {
+
+}
+package com.banyuan.club.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 1:59 下午
+ */
+public abstract class Animal {
+
+  public abstract  String  getDataByName(String   name);
+
+  public abstract  String  getDataByAge(int   age);
+
+  public abstract  String  deDataByName(String   name);
+
+
+
+
+
+
+}
+package com.banyuan.club.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 2:16 下午
+ */
+public class Car {
+
+  public   String  show(){//该方法执行完毕之后 是不是就已经结束了  如果是一个正常的局部变量是不是也就消失了
+    //但是在方法内部出现了内部类  内部类因为是class 级别 在创建对象之后  该对象是在堆里面  堆里面的对象会在整个程序结束之后才会消失
+    // 如果该对象在堆里面还对局部变量继续引用  那么按照正常的情况下 局部变量已经消失了  那么就没法对局部变量引用
+    //这个时候只能把局部变量 变成常量 引入到常量池里面 方便下次调用
+  final   String  carName="张三";  //被final默认修饰了
+    class Dog{
+      String   dogName="田园土狗....";
+      public String    method(){
+        System.out.println(dogName+"在搞事情..."+carName);
+        //carName="闫正池"; //只有一种情况下不能变量的值不能被修改
+        return  "哈士奇";
+      }
+    }
+    Dog  dog=new Dog();
+    return  dog.method();
+  }
+
+}
+class  TestCar{
+
+  public static void main(String[] args) {
+    System.out.println(new  Car().show());
+
+  }
+}
+package com.banyuan.club.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 2:01 下午
+ */
+public class TestAnimal {
+
+
+  public static void main(String[] args) {
+    Animal  animal=new AnImpl();
+    String  str=animal.getDataByName("张三丰");
+    System.out.println(str);
+
+    //这个时候发现  知道整个程序结束   该方法只被调用了一次
+
+//    Animal  animal1=new Animal() {
+//      @Override
+//      public String getDataByName(String name) {
+//        name+="你刚刚干嘛去了?";
+//        return name;
+//      }
+//    };
+//
+//    str= animal1.getDataByName("高新光");
+//    System.out.println(str);
+//
+//
+//    new Animal() {  //并且这个匿名对象就被垃圾回收
+//      @Override
+//      public String getDataByName(String name) {
+//        name+="你刚刚干嘛去了?";
+//        return name;
+//      }
+//    }.getDataByName("孙可可");
+
+
+      Animal  animal1=new Animal() {  //因为该抽象类里面的方法实现根本没有一个具体的实现类
+        @Override
+        public String getDataByName(String name) {
+          return null;
+        }
+
+        @Override
+        public String getDataByAge(int age) {
+          return null;
+        }
+
+        @Override
+        public String deDataByName(String name) {
+          return null;
+        }
+      };
+
+      animal1.deDataByName("");
+      animal1.getDataByName("");
+
+
+
+
+  }
+
+}
+package com.banyuan.club.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 1:36 下午
+ */
+public class InnerClass {
+  /*  内部类:
+
+
+   */
+
+  class Inner{  //成员内部类  成员内部类里面不能包含静态的属性和方法
+    private   String  name;
+    private   int age;
+    public  void  show(){
+      System.out.println("我是内部类的show方法..."+password);
+
+      showInfo();
+
+      method();
+    }
+
+  }
+
+  private  String   address;
+
+  private static String   password;
+
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public  void   showInfo(){
+    System.out.println("我是外部类的showInfo方法...");
+  }
+
+  public   static void  method(){
+    System.out.println("我是外部类的静态method方法...");
+
+  }
+
+
+
+
+}
+package com.banyuan.club.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/13 1:49 下午
+ */
+public class StaticOuterInner {
+
+
+  public static  class Inner{
+
+    public   void  showTest(){
+      System.out.println("你好,我是静态内部类的showTest方法..."+password);
+    }
+
+    public   static  void  run(){
+      System.out.println("我是静态内部类的静态方法run..."+password);
+    }
+
+  }
+
+  private  String   address;
+
+  private static String   password;
+
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public  void   showInfo(){
+    System.out.println("我是外部类的showInfo方法...");
+  }
+
+  public   static void  method(){
+    System.out.println("我是外部类的静态method方法...");
+
+  }
+
+
+
+
+}
+package com.banyuan.club;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 1:46 下午
+ */
+public class DuoTaiDemo1 {
+
+  /*
+    什么是多态?
+       同一个对象,在不同时刻表现出来的不同的状态
+    水   液体  固体  气体
+    猫   花猫    黑猫   白猫   蓝猫  ...
+
+    多态的前提:
+      1.类与类之间要有继承关系
+      2.要有方法的重写
+              如果没有重写方法？
+      3.父类的引用指向子类的对象
+
+   */
+
+  public static void main(String[] args) {
+
+
+
+    char  x='B';
+
+    System.out.println(x+3);
+
+    int total = 0;
+    for ( int i = 0; i< 4; i++ ){
+      if ( i == 1) continue;
+      if ( i == 2) break;
+      total += i;
+    }
+    System.out.println(total);
+
+
+  }
+
+
+
+
+}
+package com.banyuan.club;
+
+
+import java.io.Serializable;
+
+/**
+ * 文档注释
+ *
+ * @author sanye
+ * @date 2020年3月6日 上午11：09：00
+ * @since 1.0
+ * @deprecated Operator 运算符知识点
+ */
+
+public class Operator {
+
+  public static void main(String[] args) {
+
+//    &   两个都是1才返回1   位运算
+//    System.out.println(6&-7);  // 6
+//
+//    -7     1 0000 0111
+//           1 1111 1000   反码+1=补码
+//           1 1111 1001;
+
+//    0000  0110
+//    1111  1001
+//   -----------------
+//    0000  0000
+
+//    |     只要有一个1就返回1
+
+//    ~     对位运算符取反     0000 0110    1111 1001  补码-1反码  1111 1000   1 0000 0111 源码
+    System.out.println(~6); //-7
+
+//    ^  相同为0   不同为1
+    System.out.println(5 ^ 7);   // 2
+//    0000 0101
+//    0000 0111
+//   ------------
+//    0000 0010
+
+    //逻辑运算符   &&         &（逻辑判断）
+    // 表达式1  &&  表达式2   只有两个表达式都成立 才为真   true   &也是一样
+    //  && 如果第一个表达式不为真  那么 后面的表达式不会在继续判断    & 前面的表达式为假   后面的还会继续判断
+    int a = 1, b = 2;
+
+    System.out.println(++a > b & ++a < b);
+
+    System.out.println(a);
+
+    //  ||  短路或   表达式只要有一个成立整个式子就成立    true||false
+    //  |   true  |  判断
+
+    System.out.println(++b < 4 || ++b > 7);
+    System.out.println(b); //b=3
+
+    System.out.println(!(++b > 5));
+
+    //  if(b=5){  //是 条件  而不是 数值
+    //
+    //  }
+
+    //  表达式  ? 结果1 ：结果2；   if( ){  }else{  }
+
+    String str = ++a + a++ + 6 > 9 ? "小子,你有点嚣张..." : "还有谁?";
+
+    System.out.println(str);
+
+    int  x=2;
+    int  y=x++ +4 + ++x+1>6? x++ +4 + ++x+1>6?89:99:100;
+    //求 x 的值
+
+    //Serializable  m=1>2?3:"你好";  // 注意了:  到IO 去讲解 序列化
+    //System.out.println("-----"+m);
+    /*
+      switch (4.5-3.6){  // 整数型   字符串    字符串    枚举JDK1.5版本以后才支持的
+
+        case  0.9:
+      }
+    */
+
+    //  a   b  两个数     请 使用 三种方式 将a   b的值 相互交换
+
+    int  n=12,m=14;
+    //第一种方式  中间值
+//    int temp=n;
+//    n=m;
+//    m=temp;
+
+    //System.out.println("n="+n+",m="+m);
+
+    //第二种:加减法
+    n=n+m;
+    m=n-m;
+    n=n-m;
+
+    System.out.println("n="+n+",m="+m);
+
+    //第三种:异或  相同为假 不同为真
+    a=a^b;
+    b=a^b;
+    a=a^b;
+    
+            //   0000 1100
+             //   0000 1110
+     /* ----------------------
+      a=     0000 0010
+             0000 1110
+      ----------------
+      b=      0000 1100
+
+              0000 0010
+      ----------------
+      a=      0000 1110
+
+     */
+
+
+
+
+
+  }
+}
+package com.banyuan.club;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.io.FilenameFilter;
+import java.io.IOException;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 11:04 上午
+ */
+public class FileDemo1 {
+
+  /*
+    file    --->>  IO  CSV   XML<Maven工具使用>
+    并发
+    网络
+    Swing  图形化编程
+    设计模式
+    反射
+    lambda表达式  jdk1.8新特性
+     mysql
+     jdbc
+     邮件发送(Mail)
+     一阶段项目   一个完成  7个工作日
+
+   */
+
+  /**
+   * 什么叫做文件?
+   *    存储在计算机外部介质(磁盘)中的数据 叫文件
+   *  使用编程对文件进行操作
+   *     注册账号   上传图片(头像)  上传图像的核心代码就是文件操作
+   *
+   */
+  public static void main(String[] args) throws IOException {
+    File   file=new File("README.md");//文件路径
+    //System.out.println(file.exists());
+    if(!file.exists()){
+        file.createNewFile();
+    }
+    //获取文件的相对路径  相对于当前项目的路径
+    System.out.println(file.getPath());
+    // 获取文件的绝对路径  /Users/sanye/dahanClass/DaHan/javaseFile/README.md
+    System.out.println(file.getAbsolutePath());
+
+    //System.out.println(file.delete());
+
+    System.out.println(file.isDirectory());//判断是是否是个目录
+    //System.out.println(file.getName());
+
+    //System.out.println(file.renameTo(new File("read.md")));
+    System.out.println(file.isFile());
+
+    System.out.println(file.length());  //得到是文件内容的长度  21个字节   utf-8编码格式  每个汉字占3个字节
+
+    file.setWritable(true);
+    //System.out.println(file.setReadOnly());
+    System.out.println(file.canWrite());
+
+    System.out.println("--------"+file.getParentFile());
+
+    new  File("test").mkdir(); //创建单个文件夹
+    new  File("test/had/pro").mkdirs();//创建多级文件夹
+
+    long  time=file.lastModified();//获取当前文件最近一次修改的时间 精确到秒
+
+    System.out.println(time); //1585020651000
+
+    System.out.println(file.isHidden()+"\n");
+
+    file=new  File("/Users/sanye/dahanClass/DaHan");
+    String [] str=file.list();
+    for (String  st: str) {
+      System.out.println("--"+st);
+    }
+
+    System.out.println();
+
+    File[]  files=file.listFiles();
+    for (File  f: files ) {
+      System.out.println(f);
+    }
+
+
+//    file.listFiles(new FileFilter() {  //文件过滤器
+//      @Override
+//      public boolean accept(File pathname) {
+//        return false;
+//      }
+//    });
+
+    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>");
+
+    //找出满足xxx条件的文件
+   String [] strFile= file.list(new FilenameFilter() {
+      @Override
+      public boolean accept(File dir, String name) {
+       if(name.endsWith(".md")){  //满足条件的文件
+         return  true;
+       }
+       return false;
+      }
+    });
+
+    for (String   st: strFile) {
+      System.out.println(st);
+    }
+
+    //
+    //找到指定文件夹下面的所有的满足 .java 文件
+
+
+
+
+
+  }
+
+
+
+
+
+}
+package com.banyuan.club.io;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 1:44 下午
+ */
+public class Demo1 {
+
+  /*
+     java对文件的操作  使用 输入/输出流进行操作
+
+     `
+     字节流    字节输入流
+              字节输出流
+              字节缓冲流
+
+
+     字符流    字符输入流
+              字节输出流
+              字符缓冲流
+
+   */
+  public static void main(String[] args) {
+    File file=new  File("test/1.txt");
+    if(!file.exists()){
+      try {
+        file.createNewFile();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+    List<String> list=new ArrayList<>();
+    list.add("闫正池");
+    list.add("王淼");
+    list.add("赵一帆");
+    list.add("韩朝");
+    list.add("石金玉");
+    list.add("蒋凡安");
+    list.add("褚雪琪");
+    list.add("孙可可");
+    list.add("刘耀");
+    list.add("谈冬冬");
+    list.add("高新光");
+
+
+    //往文件中写入数据
+    OutputStream   outputStream=null;
+    try {
+      outputStream =new FileOutputStream(file);//追加内容
+      /*
+        每写入五个数据 每个数据后面 + ','  进行换行  如果是最后一个数据 加一个 '.'
+
+       */
+      for (int i = 0; i <list.size(); i++) {
+        outputStream.write(list.get(i).getBytes());
+        if(i!=list.size()-1){
+          if((i+1)%5==0){
+            outputStream.write("\n".getBytes());
+          }else{
+            outputStream.write(",".getBytes());
+          }
+        }else {
+          outputStream.write(".".getBytes());
+
+        }
+      }
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+
+    }finally {
+      try {
+        outputStream.close();  //为什么要关闭流
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+
+    //进行数据读取
+    InputStream  inputStream=null;
+    try {
+    inputStream =new FileInputStream(file);
+   // int   line=inputStream.read(); //一次读取一个字节  如果已经读了一次 就表示文件里面的那个类似于游标的标志往后走了一步
+    byte []bt=new  byte[(int)file.length()];  //得到一个 字节数组
+
+    //此种方式 是一个字节一个字节进行读取
+//    int key=0;
+//    while (line!=-1){
+//      bt[key]=(byte) line;
+//      key++;
+//     // System.out.println(line);
+//      line=inputStream.read();
+//    }
+
+      //一次性读完
+      inputStream.read(bt);
+
+    //把字节数组转换成字符型
+      String   str=new String(bt,0,bt.length);
+
+      System.out.println("文件里面的内容如下:"+str);
+
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      try {
+        inputStream.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+
+  }
+
+
+
+
+
+
+}
+package com.banyuan.club.io;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 2:49 下午
+ */
+public class Person {
+
+  private String  name;
+  private Integer age;
+
+  public Person() {
+  }
+
+  public Person(String name, Integer age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Integer getAge() {
+    return age;
+  }
+
+  public void setAge(Integer age) {
+    this.age = age;
+  }
+
+  @Override
+  public String toString() {
+    return "Person{" +
+        "name='" + name + '\'' +
+        ", age=" + age +
+        '}';
+  }
+}
+package com.banyuan.club.io;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 2:48 下午
+ */
+public class Demo2 {
+
+  public static void main(String[] args) {
+      //自定义对象写入文件中
+    List<Person>  list=new ArrayList<>();
+    list.add(new Person("张三",23));
+    list.add(new Person("刘亦菲",29));
+    list.add(new Person("艾弗森",39));
+    list.add(new Person("詹姆斯",25));
+
+    //把自定义对象写入文件
+    File file=new  File("Person.doc");
+    if(!file.exists()){
+      try {
+        file.createNewFile();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+    OutputStream outputStream=null;
+    try {
+      outputStream =new FileOutputStream(file);
+      for (int i = 0; i < list.size(); i++) {
+        Person  person=list.get(i);
+        outputStream.write(("姓名:"+person.getName()+",").getBytes());
+        outputStream.write(("年龄:"+person.getAge()).getBytes());
+        outputStream.write("\n".getBytes());
+      }
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      if(outputStream!=null) {
+        try {
+          outputStream.close();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+
+    }
+
+    //作业2：把写入进去的文件内容  读取出来 并且把读取出来的数据 原封不动的赋值回去  "张三"--->name  23--->age
+
+
+
+
+
+  }
+
+
+}
+package com.banyuan.club.io;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 3:01 下午
+ */
+public class Demo3 {
+
+  //文件内容复制
+  public static void main(String[] args) {
+    File file = new File("test/had/pro/妹子.jpeg");
+    if (!file.exists()) {
+      try {
+        file.createNewFile();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+    File file2 = new File("/Users/sanye/img/timg.jpeg");
+    byte[] by = new byte[(int) file2.length()];
+    InputStream inputStream = null;
+    try {
+      inputStream = new FileInputStream(file2);
+      inputStream.read(by);
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      if (inputStream != null) {
+        try {
+          inputStream.close();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+    }
+
+    //写入数据
+    OutputStream outputStream = null;
+    try {
+      outputStream = new FileOutputStream(file);
+      outputStream.write(by);
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    } finally {
+      if (outputStream != null) {
+        try {
+          outputStream.close();
+        } catch (IOException e) {
+          e.printStackTrace();
+        }
+      }
+
+
+    }
+  }
+}
+package com.banyuan.club.io1;
+
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 3:22 下午
+ */
+public class Demo1 {
+
+  public static void main(String[] args) {
+    File  file=new File("test/1.txt");
+
+    //缓冲流的效率要高于普通流
+    //缓冲流第一次在读取数据的时候是从磁盘上读取到缓冲区    后面都是从缓冲区读取了
+
+    BufferedInputStream  bufferedInputStream=null;
+    byte [] bytes=new byte[(int)file.length()];
+    try {
+      bufferedInputStream= new BufferedInputStream(new FileInputStream(file));
+
+      bufferedInputStream.read(bytes);
+     String  str=new String(bytes);
+      System.out.println("-----"+str);
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }finally {
+      try {
+        bufferedInputStream.close();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+
+    //缓冲输入流
+    BufferedOutputStream  bufferedOutputStream=null;
+    try {
+      bufferedOutputStream=new BufferedOutputStream(new FileOutputStream(file,true));
+
+      bufferedOutputStream.write(bytes);
+
+      bufferedOutputStream.flush();   //把缓冲区中的数据刷新到文件中  并且没有关闭流  可以继续操作
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    //现在 程序执行到这步 发现  还要把数据往文件中写   但是 流已经关闭了
+    /*
+        如果流不关闭  导致不能把数据写入文件中   没有把缓存区的数据写入文件
+     */
+
+    try {
+      bufferedOutputStream.write("我是大保健".getBytes());
+      bufferedOutputStream.flush();
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }finally {
+      try {
+
+        bufferedOutputStream.close();
+
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+    }
+
+    //流的关闭顺序   先开后关   文件没有关闭一说
+
+
+  }
+}
+
+
+package com.banyuan.club.homework;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/25 9:52 上午
+ */
+public class Test3 {
+
+  //3.创建a/test.txt文件并在其中输入"hello world",
+  //创建一个输入流读取该文件中的文本,并且把小写的l变成大写L再利用输出流写入到b/test.txt中
+
+  public static void main(String[] args) {
+    File file=new File("a");
+    File  file1=null;
+    if(!file.exists()){
+      file.mkdir();
+    }
+    try {
+      file1=new  File(file,"test.txt");
+      file1.createNewFile();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+    BufferedWriter  bufferedWriter=null;
+    try {
+      bufferedWriter =new BufferedWriter(new FileWriter(file1));
+      bufferedWriter.write("hello world");
+      bufferedWriter.flush();
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }finally {
+     if(bufferedWriter!=null){
+       try {
+         bufferedWriter.close();
+       } catch (IOException e) {
+         e.printStackTrace();
+       }
+     }
+    }
+
+    BufferedReader   bufferedReader=null;
+    try {
+      bufferedReader =new BufferedReader(new FileReader(file1));
+      String  str=bufferedReader.readLine();
+     if( str.contains("l")){
+       str=str.replace("l", "L");
+     }
+      new  File("b").mkdir();
+     file1=new  File("b","test.txt");
+
+      file1.createNewFile();
+
+      bufferedWriter =new BufferedWriter(new FileWriter(file1));
+
+      bufferedWriter.write(str);
+      bufferedWriter.flush();
+
+    } catch (FileNotFoundException e) {
+      e.printStackTrace();
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
+
+
+  }
+
+
+
+}
+package com.banyuan.club.homework;
+
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/25 10:08 上午
+ */
+public class Test2 {
+
+  /*
+  2.利用字节流或者换成字符流的方式以指定的格式输入数据
+  如:xxx,xxx,xxx,最后一个数据以 .号结束，一行最多五个数据
+   */
+  public static void main(String[] args) throws IOException {
+    File file=new  File("test/1.txt");
+    if(!file.exists()){
+      file.createNewFile();
+    }
+    BufferedWriter bufferedWriter=new BufferedWriter(new FileWriter(file));
+    List<String> list=new ArrayList<>();
+    list.add("赵赵");
+    list.add("赵小帆");
+    list.add("小帆帆");
+    list.add("小帆");
+    list.add("一帆");
+    list.add("赵");
+    list.add("一一");
+    list.add("帆");
+    list.add("小小帆");
+    list.add("帆帆");
+    list.add("方方");
+    list.add("憨憨");
+    list.add("小韩子");
+    list.add("啦啦");
+
+    for (int i = 0; i <list.size(); i++) {
+      bufferedWriter.write(list.get(i));
+      if(i!=list.size()-1){
+        if((i+1)%5==0){
+          bufferedWriter.write(",\n");
+        }else{
+          bufferedWriter.write(",");
+        }
+      }else{
+        bufferedWriter.write(".");
+      }
+
+    }
+
+    bufferedWriter.close();
+
+
+
+  }
+
+
+}
+package com.banyuan.club.homework;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/25 10:18 上午
+ */
+public class Test4 {
+
+  //读取指定文件夹下（包括子文件）的所有的.java结尾的文件的内容并且把数据写到另一个文件中去
+  static BufferedWriter bufferedWriter = null;
+  static BufferedReader bufferedReader = null;
+
+  public static void main(String[] args) throws IOException {
+
+    getJavaFile(new File("/Users/sanye/dahanClass/DaHan"));
+
+
+  }
+
+  public static void getJavaFile(File file) throws IOException {
+    File[] file1 = file.listFiles();
+    for (File f : file1) {
+      if (f.isDirectory()) {
+        getJavaFile(f); //如果是文件夹重新调用一下方法
+      } else {
+        if (f.getName().endsWith(".java")) {
+          bufferedReader = new BufferedReader(new FileReader(f));
+          bufferedWriter =new BufferedWriter(new FileWriter(new File("test/1.txt"),true));
+          String str = bufferedReader.readLine();
+        while(str!=null){
+          bufferedWriter.write(str+"\n");
+          str = bufferedReader.readLine();
+        }
+          bufferedWriter.close();
+          bufferedReader.close();
+
+
+        }
+      }
+    }
+  }
+
+}
+package com.banyuan.club.homework;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/25 9:05 上午
+ */
+public class Test1 {
+
+  static   List<File> list1 = new ArrayList<>();
+
+  //1.到指定文件夹下面所有满足.java 文件
+
+  public static void main(String[] args) {
+    File file = new File("/Users/sanye/dahanClass/DaHan");
+    if (!file.exists()) {
+      System.out.println("文件不存在....");
+    }
+
+    getJavaFile(file);  //自己调用自己
+
+    for (File  f:list1) {
+      System.out.println(f);
+    }
+
+    //阶乘   斐波那契数列   猴子偷桃    烧脑:汉诺塔
+
+  }
+
+  //使用地柜的方式 得到所有的.java文件
+  public static void  getJavaFile(File file) {
+    File[] file1 = file.listFiles();
+    for (File f : file1) {
+      if (f.isDirectory()) {
+        getJavaFile(f); //如果是文件夹重新调用一下方法
+      } else {
+        if (f.getName().endsWith(".java")) {
+          list1.add(f);
+        }
+      }
+    }
+//    for (File f : list) {
+//      System.out.println(f);
+//    }
+
+  }
+
+}
+package com.banyuan.club.io2;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Reader;
+import java.io.Writer;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 4:12 下午
+ */
+public class Demo1 {
+
+  //字符流
+
+  public static void main(String[] args) throws IOException {
+
+    File file=new File("test/1.txt");
+    Writer  writer=null;
+    try {
+      writer=new FileWriter(file);
+      writer.write("asdasds");
+      writer.flush();
+
+      writer.write("uthgrv12312312312".toCharArray());
+      writer.flush();
+
+      Reader  reader=new FileReader(file);
+
+      char [] ch=new char[(int) file.length()];
+      //一个一个读取   每一个字符进行判断  如果字符和汉字在一起  怎么去处理
+      reader.read(ch);
+      System.out.println(new  String(ch,0,ch.length));
+
+
+    } catch (IOException e) {
+      e.printStackTrace();
+    }finally {
+      writer.close();
+    }
+
+
+    //缓冲字符
+    BufferedWriter    bufferedWriter=new BufferedWriter(new FileWriter(file));
+    bufferedWriter.write("哈哈桑撒");
+    bufferedWriter.newLine();
+
+    bufferedWriter.write("哈哈桑撒2");
+    bufferedWriter.newLine();
+    bufferedWriter.write("哈哈桑撒3");
+    bufferedWriter.flush();
+
+    BufferedReader  bufferedReader=new BufferedReader(new FileReader(file));
+
+//    char [] ch=new char[(int) file.length()];
+//
+//    bufferedReader.read(ch);
+
+
+//    System.out.println(new String(ch));
+
+    String   str=bufferedReader.readLine();
+    while(str!=null){
+      System.out.println(str);
+      str=bufferedReader.readLine();
+    }
+
+  }
+
+}
+package com.banyuan.club.io2;
+
+import java.io.File;
+import java.io.IOException;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/24 9:10 下午
+ */
+public class T {
+
+  public static void main(String[] args) throws IOException {
+
+
+
+
+  }
+
+}
+package com.banyuan.club;
+
+import java.io.IOException;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 3:52 下午
+ */
+public class ImplFunction   implements  Function {
+
+  @Override
+  public void show() throws ArithmeticException,NullPointerException {
+
+  }
+
+  @Override
+  public void login() throws NullPointerException {
+
+  }
+
+
+
+}
+package com.banyuan.club.definitionException;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 4:02 下午
+ */
+public class MyException  extends   Exception {
+
+  public MyException() {
+    super();
+  }
+
+  public MyException(String message) {
+    super(message);
+  }
+
+  @Override
+  public String getMessage() {
+    return super.getMessage();
+  }
+
+  @Override
+  public synchronized Throwable getCause() {
+    return super.getCause();
+  }
+
+  @Override
+  public String toString() {
+    return super.toString();
+  }
+
+  @Override
+  public void printStackTrace() {
+    super.printStackTrace();
+  }
+
+  @Override
+  public StackTraceElement[] getStackTrace() {
+    return super.getStackTrace();
+  }
+}
+package com.banyuan.club.definitionException;
+
+import org.junit.Test;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 4:01 下午
+ */
+public class Demo {
+
+
+  /**
+   * 什么叫做断言？ 断言主要用做  测试和开发用的    对于一些关键的数据进行判断
+   * 如果条件成立 程序停止
+   * 如果条件不成立  继续执行
+   *
+   */
+
+
+  @Test
+  public   void   show(){
+    // System.out.println(1/0);
+    System.out.println("as撒大所大所");
+  }
+
+
+
+  public static void main(String[] args) throws MyException {
+
+      //checkScore(-10);
+
+    int  num=20;
+    assert  num==30:"num并不是30";  // java 默认是关闭断言的
+    System.out.println(num);
+
+    //现在断言基本上没人用   连jvm停止了   现有一个 junit 测试框架    基本已经占用了assert生存空间
+
+
+
+
+  }
+
+
+  public static   void   checkScore(int  score) throws MyException {
+    //分数只有正的  并且是在一定范围内
+    if(score<0 || score>150){
+      throw  new  MyException("你的分数有问题....");
+    }else {
+      System.out.println("是三好生");
+    }
+
+
+  }
+
+  /*
+    作业1:throw 和 throws的区别?
+     1.前者是手动抛出异常对象,后者是主动抛出异常对象
+     2.前者抛出的异常一般是开发人员处理   后者一般是把异常抛给虚拟机
+
+   */
+
+  /*
+    A 走在小箱子里面    看见 B 站在 C 旁边   B 满手是血  C浑身是血躺在地上
+    A 接下来  要 尖叫  然后说  杀人啦   报警
+
+    B 满脸懵逼  说  人不是我杀得 我来就是这样了....
+
+    警察D来了   由于A看到了 B手上有血 于是与就  跟警察说  B杀人了    A:断言
+
+    D  B有嫌疑    D:如果有证据 A断言是对的  抓起来    A断言不对   放人
+
+     D  计算机      -- B -->   程序继续执行
+
+
+
+
+
+
+   */
+
+
+
+
+
+
+}
+package com.banyuan.club;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 3:42 下午
+ */
+public class ExceptionDemo2 {
+
+  public static void main(String[] args){
+    /*
+        try{
+
+        }catch(){
+
+        }finally{
+
+        }
+
+        try{
+
+        }finally{
+
+        }
+
+
+     */
+//  try {
+//    Person p = null;
+//    System.out.println(p.toString());
+//  }catch (Exception  e){
+//    e.printStackTrace();
+//    //System.exit(0); //虚拟机正常退出
+//  }finally {//只要虚拟机不停止  finally  一定会去执行
+//    System.out.println("代码执行");  //专门用来释放资源用的  这个用法会体现在 文件流
+//  }
+
+
+
+
+
+
+  //对异常的处理2:抛出异常  throws   把错误抛给虚拟机处理  虚拟运行时一旦出现错误 就立马停止 整个程序就停止
+//    Person  p=null;
+//    System.out.println(p.toString());
+//
+//    System.out.println("哈撒个.....");
+
+
+
+
+
+
+
+
+    //异常的继承
+    // 父类方法如果抛出的异常是运行时异常  那么 子实现类的异常类型可以运行时异常的任何一个子类 其中 不抛出异常都行
+    // 但是不能抛出总的Exception  因为 Exception类型 异常 包含了编译时异常
+
+    // 空集是任何一个集合的子集
+
+    //编译时异常
+    SimpleDateFormat   sdf=new SimpleDateFormat();
+    try {
+
+      sdf.parse("");  //编译时异常 告诉计算机  这个方法可能会出错
+
+    } catch (ParseException e) {
+      e.printStackTrace();
+    }
+
+
+
+
+  }
+
+}
+package com.banyuan.club;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 3:35 下午
+ */
+public class Person {
+
+}
+package com.banyuan.club;
+
+import java.util.Scanner;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 3:12 下午
+ */
+public class ExceptionDemo {
+
+  public static void main(String[] args) {
+    //为什么要学习 Exception?
+      /*
+          100% 错误  出现也是提升自身能力的一种  同时也会提高自己写代码的效率
+
+          1.可以通过修改代码进行错误修复     Exception
+              异常又分为两种   运行时异常  和 编译时异常(检查异常)
+              数组下标越界   类转换异常   空指针异常等等
+
+          2.系统错误,环境的问题  内容的问题  Error
+
+       */
+    //第一次写代码 并且第一次出现错误的时候
+//    int [] arr={};
+//    System.out.println(arr[0]);//java.lang.ArrayIndexOutOfBoundsException: 0
+
+
+    //我们怎么去学习它
+          //如何去处理异常
+    int  []arr={12,512,56,7,23,11,9};
+
+    Scanner  scanner=new Scanner(System.in);
+//    System.out.println("请输入第一数据:");
+//    int number1=scanner.nextInt();
+//    System.out.println("请输入第二数据:");
+//    int number2=scanner.nextInt();
+
+    try {
+
+//      int  result=number1/number2; //java.lang.ArithmeticException: / by zero
+//      System.out.println("任意两个数相除的商是:"+result);  //当前面报错的时候 后面程序不会在执行
+
+        Person  p=null;
+
+      System.out.println(p.toString());
+
+    }catch (NullPointerException  e){
+      //System.err.println("程序出错了,赶紧来修改...");
+      e.printStackTrace();
+      /*
+      java.lang.NullPointerException
+	at com.banyuan.club.ExceptionDemo.main(ExceptionDemo.java:46)
+       */
+      //System.err.println(e.getCause());
+    }catch (IndexOutOfBoundsException e){
+
+    }
+
+    /*
+
+        try{
+
+        }catch(){
+
+        }finally{
+
+        }
+
+
+     */
+
+
+
+
+    for (int i = 0; i <arr.length; i++) {
+      System.out.print(arr[i]+"  ");
+    }
+
+    //大型的电商网站 如果在某一块显示数据出错  那么该大型网站是不是就崩溃了 不在上线运行  知道修复程序错误？
+    /*
+      如何去处理程序错误？
+      try{
+          可能是会出现错误的代码;
+      }catch(可能会出现错误的类型   变量名){
+          抛出错误信息;
+      }
+
+      使用try 捕捉异常 不会影响整个程序运行
+
+
+     */
+
+
+
+
+
+    //明确Exception
+
+
+
+
+
+
+  }
+
+
+}
+package com.banyuan.club;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 3:51 下午
+ */
+public interface Function {
+
+  void  show()  throws  ArithmeticException;
+
+  void  login()  throws NullPointerException;
+
+}
+package com.banyuan.club;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/9 上午10:47
+ */
+
+public class TestDemo {
+
+  //  一个java程序是由很多 java文件以及相关的插件组成
+  //  java文件之间方法的相互调用（或者是成员的相互调用）
+  // 其他的java文件中如果有本java文件需要的成员 我们可以直接去调用  而不需要再写一遍
+
+
+  public static void main(String[] args) {
+
+    //调用  Demo里面的成员变量  和 成员方法  如何去调用
+    //  公式:  类名   变量名（对象名）=new   类名();   int[] arr=new  int[2];
+    Demo    demo=new  Demo();//给  目标类创建一个对象
+    //调用成员   变量名.成员
+    String  name=demo.username;
+    System.out.println("demo成员变量的name叫:"+name);
+
+    demo.show();
+
+    Demo  demo2=new  Demo(); // 想给 demo2的对象的username改名字
+    demo2.username="王二狗";
+    System.out.println(demo2.username);
+    System.out.println(demo2.address);
+
+    Demo  demo3=new  Demo();
+    //demo  demo2  demo3三个对象的创建  使用的 是不是同一个java文件
+    System.out.println("------"+demo3.username);
+
+
+    // 请问  demo  demo2  demo3  是不是同一个对象  ？ 不是同一个对象
+    //类    变量  方法
+
+
+
+  }
+}
+package com.banyuan.club;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/9 上午10:33
+ */
+public class Demo {//成员变量  成员方法
+
+  // 预习: 什么是类  什么是对象
+  //  面向过程   计算机来进行控制
+  //  面向对象   从一个 执行者 变成 一个 指挥者   甩手掌柜
+  //  一个指令交个xxx 让xxx执行 最终得到结果    中间的过程 我不过问
+  //  面向对的使用: 面向对象(oop)就是 java编程语言的核心
+
+  //  成员变量也叫 demo类的一个属性  ---->成员属性
+  public int   x=10;
+  public String   username="张三";
+  public String   address="住在栖霞市紫东创意园B9栋的下水道...";
+
+  //  函数(方法)  叫Demo 行为特征
+  public  void   test(){
+    System.out.println(x+username);
+  }
+  public void  show(){
+    System.out.println(x+address);
+  }
+
+
+}
+package com.banyuan.homework3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 9:26 上午
+ */
+public class TestAccount {
+
+  /*
+    (1)创建一个Customer ,名字叫 Jane Smith, 他有一个账号为1000,余额为2000元,年利率为 1.23% 的账户。
+    (2)对Jane Smith操作。
+    存入 100 元,再取出960元。再取出2000元。打印出Jane Smith 的基本信息
+    成功存入 :100.0,成功取出:960.0,余额不足,取款失败
+    Customer [Smith, Jane] has a account: id is 1000, annualInterestRate is 1.23%, balance is 1140.0
+    上面这句话是Customer 类里面的一个display方法 被调用时候 就输出类似语句
+   */
+  public static void main(String[] args) {
+//    Customer  customer=new Customer();
+//    customer.setFirstName("Jane");
+//    customer.setLastName("Smith");
+//
+//    Account  account=new Account();
+//    account.setAccountId("1000");
+//    account.setBalance(2000);
+//    account.setAnnualInterestRate(1.23E-2);
+//
+//    account.deposit(100);
+//    String   result=account.withdraw(960);
+//    System.out.println(result);
+//    result=account.withdraw(2000);
+//    System.out.println(result);
+//
+//    customer.setAccount(account);
+//    System.out.println(customer.display());
+
+      //一般情况空指针异常 表示 要么没有检测到数据   要么就是引用为null  极少的情况下  你程序写的逻辑不对 导致传递数据不及时
+    String  [] str=new  String[3];
+   // System.out.println(str[1]);
+    str=null;
+   // System.out.println(str[1]);
+
+    String []  st=new  String[20];  //系统默认给null
+    st[0]="asuashdia";
+    st[1]="凯爹";
+
+    Customer [] customers=new  Customer[10];  //系统不会自动赋值
+    customers[0]=new Customer();
+    customers[1]=new Customer();
+
+    for (int i = 0; i < customers.length; i++) {
+      System.out.println(customers[i].toString());
+    }
+
+  }
+}
+package com.banyuan.homework3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 9:24 上午
+ */
+public class Customer {
+  /*
+  a. 声明三个私有对象属性:firstName、lastName和account。
+b. 声明一个公有构造器,这个构造器带有两个代表对象属性的参数(f和l)
+c. 声明两个公有存取器来访问该对象属性,方法getFirstName和getLastName返回相应的属性。
+d. 声明setAccount 方法来对account属性赋值。
+e. 声明getAccount 方法以获取account属性。
+   */
+  private   String  firstName;
+  private   String  lastName;
+  private   Account   account;
+
+
+  public Customer() {
+  }
+
+  public Customer(String firstName, String lastName, Account account) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.account = account;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(String lastName) {
+    this.lastName = lastName;
+  }
+
+  public Account getAccount() {
+    return account;
+  }
+
+  public void setAccount(Account account) {
+    this.account = account;
+  }
+
+
+  public String display() {
+    return "Customer{" +
+        "firstName='" + firstName + '\'' +
+        ", lastName='" + lastName + '\'' +
+        ", id=" + account.getAccountId() +
+        ",annualInterestRate="+account.getAnnualInterestRate()+
+        ",balance="+account.getBalance()+
+        '}';
+  }
+}
+package com.banyuan.homework3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 9:19 上午
+ */
+public class Account {
+
+  private  String  accountId;
+  private  double  balance;
+  private  double  annualInterestRate;
+
+  public  String withdraw(double  money){  //取款
+    if(this.balance>money){
+        this.balance=this.balance-money;
+        return  "成功取出"+money+",余额还剩:"+this.balance;
+    }else {
+        return "您的余额不足...";
+    }
+  }
+  public void deposit(double  money){ //存款
+    this.balance=this.balance+money;
+    System.out.println("成功存入:"+money);
+  }
+
+  public Account() {
+  }
+
+  public Account(String accountId, double balance, double annualInterestRate) {
+    this.accountId = accountId;
+    this.balance = balance;
+    this.annualInterestRate = annualInterestRate;
+  }
+
+  public String getAccountId() {
+    return accountId;
+  }
+
+  public void setAccountId(String accountId) {
+    this.accountId = accountId;
+  }
+
+  public double getBalance() {
+    return balance;
+  }
+
+  public void setBalance(double balance) {
+    this.balance = balance;
+  }
+
+  public double getAnnualInterestRate() {
+    return annualInterestRate;
+  }
+
+  public void setAnnualInterestRate(double annualInterestRate) {
+    this.annualInterestRate = annualInterestRate;
+  }
+
+  @Override
+  public String toString() {
+    return "Account{" +
+        "accountId='" + accountId + '\'' +
+        ", balance=" + balance +
+        ", annualInterestRate=" + annualInterestRate +
+        '}';
+  }
+
+  /*
+  A.写一个名为Account的类模拟账户。该类包括的属性:账号id,余额balance,年利率annualInterestRate;
+包含的方法:访问器方法(getter和setter方法),取款方法withdraw(),存款方法deposit()。 提示:在提款方法withdraw中,需要判断用户余额是否能够满足提款数额的要求,如果不能,应给出提示。
+
+B.创建Customer类。
+a. 声明三个私有对象属性:firstName、lastName和account。
+b. 声明一个公有构造器,这个构造器带有两个代表对象属性的参数(f和l)
+c. 声明两个公有存取器来访问该对象属性,方法getFirstName和getLastName返回相应的属性。
+d. 声明setAccount 方法来对account属性赋值。
+e. 声明getAccount 方法以获取account属性。
+
+C写一个测试程序。
+(1)创建一个Customer ,名字叫 Jane Smith, 他有一个账号为1000,余额为2000元,年利率为 1.23% 的账户。
+(2)对Jane Smith操作。
+存入 100 元,再取出960元。再取出2000元。打印出Jane Smith 的基本信息
+成功存入 :100.0,成功取出:960.0,余额不足,取款失败
+Customer [Smith, Jane] has a account: id is 1000, annualInterestRate is 1.23%, balance is 1140.0
+上面这句话是Customer 类里面的一个display方法 被调用时候 就输出类似语句
+
+   */
+}
+package com.banyuan.test;
+
+import com.banyuan.oop5.Person;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 3:32 下午
+ */
+public class TestTool {
+
+
+  public static void main(String[] args) {
+    //添加操作
+    Person  person=new Person();
+    person.setAge(34);
+    person.setCountry("🇨🇳");
+    person.setName("大保健");
+    Tool.addPerson(person);
+
+    Person  person2=new Person();
+    person2.setAge(24);
+    person2.setCountry("🇨🇳");
+    person2.setName("保健");
+    Tool.addPerson(person2);
+
+    Person  person3=new Person();
+    person3.setAge(12);
+    person3.setCountry("🇨🇳");
+    person3.setName("小保健");
+    Tool.addPerson(person3);
+
+   // Tool.showInfo();
+
+    // 删除
+    Tool.delPerson("保健");
+
+    //Tool.showInfo();
+
+    //修改
+    Tool.updatePersonByName("小保健", 22);
+    Tool.showInfo();
+
+    //查找
+    Person   p=Tool.selectByName("小保健");
+    System.out.println(p.toString());
+
+
+  }
+
+
+
+}
+package com.banyuan.test;
+
+import com.banyuan.oop5.Person;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 3:24 下午
+ */
+public class Tool {
+
+  /*
+    //1.增加对象
+    //2.根据名字删除指定对象
+    //3.根据名字来修改对象信息
+    //4.根据名字来查询具体的对象的信息
+   */
+
+  /**
+   *
+   * 在Elephant中增加一个静态成员，统计被创建出来的大象对象的数量，私有化这个静态成员，提供静态的get和set方法
+   * 在Elephant中增加一个静态成员，计算大象对象的平均身高，私有化这个静态成员，提供静态的get和set方法
+   */
+
+
+  public static  Person[] person=new  Person[10];  //被static修饰的数据是静态的  能被所有的 类对象  共享
+  public static int count=0;  //被static修饰成员 属于  类(class文件)  不属于对象
+
+
+  //增加
+    public static  void  addPerson(Person  per){
+      person[count]=per;
+      count++;
+    }
+
+  //删除
+    public static void  delPerson(String  name){
+      if(count==0){
+        return;
+      }
+      //找到要删除数据的位置
+      int  index  =-1;
+      for (int i = 0; i < count; i++) {
+          if(person[i].getName().equals(name)){
+            index=i;
+            break;  //默认对象的名字数据不一样
+          }
+      }
+      for(int  i=index;i<count;i++){
+        person[i]=person[i+1];
+      }
+      count--;
+    }
+
+  //修改
+  public static void  updatePersonByName(String  name,int  age) { //根据名字修改其年龄
+    //找到满足条件的
+    for (int i = 0; i < count; i++) {
+      if (person[i].getName().equals(name)) {
+        person[i].setAge(age);
+        break;
+      }
+    }
+  }
+//  public  String show(){
+//      return  "你好";
+//  }
+  //查找
+  public  static Person   selectByName(String  name){
+    for (int i = 0; i <count; i++) {
+      if(person[i].getName().equals(name)){
+        return    person[i];
+      }
+    }
+    return   null;//不满足条件  返回null 也就是对象不在
+  }
+
+
+  public static   void   showInfo(){
+    for (int i = 0; i <count; i++) {
+      System.out.println(person[i].toString());
+    }
+
+  }
+
+}
+package com.banyuan.test;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 1:32 下午
+ */
+class  X{
+  static{
+    System.out.println("静态代码块Fu...");
+  }
+  {
+    System.out.println("构造代码块Fu....");
+  }
+  public  X(){
+    System.out.println("无参构造代码块Fu...");
+  }
+}
+class Son  extends X{
+  static{
+    System.out.println("静态代码块Son...");
+  }
+  {
+    System.out.println("构造代码块Son....");
+  }
+  public  Son(){
+    System.out.println("无参构造代码块Son...");
+  }
+
+}
+class  TestFu_Son{
+  public static void main(String[] args) {
+    Son  son=new  Son();
+  }
+}
+package com.banyuan.homework2;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 9:38 上午
+ */
+public class Util {
+
+  //学生对象存储
+  public static Student[] students = new Student[6];
+  public static Question[] questions = new Question[30];
+  public static String[] answerStr = {"A", "B", "C", "D"};//
+  public static int[] question_index = new int[10];
+
+  static {
+    //在程序启动的时候   6个学生的对象就已经被初始化了
+    for (int i = 0; i < students.length; i++) {
+      Student student = new Student();
+      student.setStuName("张三" + i);
+      student.setStuNum("952" + i);
+      student.setStuGrade(3);
+      students[i] = student;
+    }
+
+    //题目也被初始化了
+    for (int i = 0; i < questions.length; i++) {
+      Question question = new Question();
+      question.setNumber(i + 1);
+      question.setTitle("第" + (i + 1) + "遍提问:老周真帅!!!");
+      //  A B C D
+
+      int index = (int) (Math.random() * answerStr.length);
+
+      question.setAnswer(answerStr[index]);//随机给答案
+      questions[i] = question;
+
+    }
+    for (int i = 0; i < question_index.length; i++) {
+      question_index[i] = -1;
+    }
+  }
+
+  //学生登录的方法
+  public static boolean login(String stuName, String stuNumber) {
+
+    for (int i = 0; i < students.length; i++) {
+      if (students[i].getStuName().equals(stuName)
+          && students[i].getStuNum().equals(stuNumber)) {
+        System.out.println("欢迎" + stuName + "登录");
+        return true;
+      }
+    }
+    return false;
+  }
+
+  //登录成功之后直接进入考试
+  public static void exam() {
+  int  count=0;
+    while(count < question_index.length) {
+      //生成十个随机数
+      int index = (int) (Math.random() * questions.length);  //
+      //先不考虑随机下标一样
+      //question_index[i]=index;
+      //随机一个下标 如果数组里面存在就不放进去
+      boolean flag = true;
+      for (int i = 0; i < count; i++) {
+        if (index == question_index[i]) {
+          flag = false;
+          break;
+        }
+      }
+      if (flag) {
+        question_index[count] = index;
+        count++;
+      }
+    }
+  }
+}
+package com.banyuan.homework2;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 9:34 上午
+ */
+public class Question {
+  //试题编号number,试题内容title,试题选项 answerA  anwserB anwserC anwserD  试题答案  Anwser
+  private  int  number;
+  private  String  title;
+  private  String  answerA="A";
+  private  String  answerB="B";
+  private  String  answerC="C";
+  private  String  answerD="D";
+  private  String  answer;  //答案
+
+  public Question(int number, String title, String answerA, String answerB, String answerC,
+      String answerD, String answer) {
+    this.number = number;
+    this.title = title;
+    this.answerA = answerA;
+    this.answerB = answerB;
+    this.answerC = answerC;
+    this.answerD = answerD;
+    this.answer = answer;
+  }
+
+
+  public Question() {
+  }
+
+  public int getNumber() {
+    return number;
+  }
+
+  public void setNumber(int number) {
+    this.number = number;
+  }
+
+  public String getTitle() {
+    return title;
+  }
+
+  public void setTitle(String title) {
+    this.title = title;
+  }
+
+  public String getAnswerA() {
+    return answerA;
+  }
+
+  public void setAnswerA(String answerA) {
+    this.answerA = answerA;
+  }
+
+  public String getAnswerB() {
+    return answerB;
+  }
+
+  public void setAnswerB(String answerB) {
+    this.answerB = answerB;
+  }
+
+  public String getAnswerC() {
+    return answerC;
+  }
+
+  public void setAnswerC(String answerC) {
+    this.answerC = answerC;
+  }
+
+  public String getAnswerD() {
+    return answerD;
+  }
+
+  public void setAnswerD(String answerD) {
+    this.answerD = answerD;
+  }
+
+  public String getAnswer() {
+    return answer;
+  }
+
+  public void setAnswer(String answer) {
+    this.answer = answer;
+  }
+
+  @Override
+  public String toString() {
+    return "Question{" +
+        "number=" + number +
+        ", title='" + title + '\'' +
+        ", answerA='" + answerA + '\'' +
+        ", answerB='" + answerB + '\'' +
+        ", answerC='" + answerC + '\'' +
+        ", answerD='" + answerD + '\'' +
+        ", answer='" + answer + '\'' +
+        '}';
+  }
+}
+package com.banyuan.homework2;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 9:31 上午
+ */
+
+import com.sun.javaws.IconUtil;
+import java.util.Scanner;
+
+/**
+ * 现有
+ * 学生类（编号stuNum,姓名stuName,年级stuGrade,成绩stuScore）
+ * 试题类（试题编号number,试题内容title,试题选项 anwserA  anwserB anwserC anwserD  试题答案  Anwser）
+ * 要求:
+ * 其中一个学生（有6个）登录账号进行考试,在控制台随机显示10个题目,并且输入题目的正确答案才会有分数,
+ * 每题10分,现在有30个题目(题目自己出,不做要求)。
+ * 求学生考完试在控制台最终得到的分数
+ */
+
+public class TestExam {
+
+  public static void main(String[] args) {
+      // 学号   姓名   password
+    Scanner  sc=new Scanner(System.in);
+    System.out.println("请输入学号:");
+    String   number=sc.next();
+    System.out.println("请输入姓名:");
+    String   name=sc.next();
+
+    boolean   flag=Util.login(name, number);
+    if(flag){
+        Util.exam();
+        int   score=0;
+      for (int i = 0; i <Util.question_index.length; i++) {
+          //显示随机出来的题目
+        System.out.println(Util.questions[Util.question_index[i]].toString());
+        System.out.println("请输入您的答案:");
+        String   an=sc.next();
+        if(an.equals(Util.questions[Util.question_index[i]].getAnswer())){
+          score+=10;
+        }
+      }
+      //把得到的分数塞进学生对象
+      for (int i = 0; i < Util.students.length; i++) {
+        if(Util.students[i].getStuName().equals(name)){
+          Util.students[i].setStuScore(score);
+        }
+      }
+
+      for (int i = 0; i < Util.students.length; i++) {
+        System.out.println(Util.students[i].toString());
+      }
+
+
+
+
+
+
+    }else{
+      System.out.println("小伙子,你盗号呢？....");
+    }
+
+
+  }
+}
+package com.banyuan.homework2;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 9:32 上午
+ */
+public class Student {
+  //编号stuNum,姓名stuName,年级stuGrade,成绩stuScore
+  private  String  stuNum;
+  private  String  stuName;
+  private  int  stuGrade;
+  private  double stuScore;
+
+  public Student(String stuNum, String stuName, int stuGrade, double stuScore) {
+    this.stuNum = stuNum;
+    this.stuName = stuName;
+    this.stuGrade = stuGrade;
+    this.stuScore = stuScore;
+  }
+
+  public Student() {
+  }
+
+  public String getStuNum() {
+    return stuNum;
+  }
+
+  public void setStuNum(String stuNum) {
+    this.stuNum = stuNum;
+  }
+
+  public String getStuName() {
+    return stuName;
+  }
+
+  public void setStuName(String stuName) {
+    this.stuName = stuName;
+  }
+
+  public int getStuGrade() {
+    return stuGrade;
+  }
+
+  public void setStuGrade(int stuGrade) {
+    this.stuGrade = stuGrade;
+  }
+
+  public double getStuScore() {
+    return stuScore;
+  }
+
+  public void setStuScore(double stuScore) {
+    this.stuScore = stuScore;
+  }
+
+  @Override
+  public String toString() {
+    return "Student{" +
+        "stuNum='" + stuNum + '\'' +
+        ", stuName='" + stuName + '\'' +
+        ", stuGrade=" + stuGrade +
+        ", stuScore=" + stuScore +
+        '}';
+  }
+}
+package com.banyuan.oop2;
+
+import java.util.Scanner;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/9 下午1:35
+ */
+public class TestCar {
+
+  public static void main(String[] args) {
+//    Car car = new Car();
+//    car.carBrand = "大奔";
+//    car.carName = "大奔S300";
+//    car.carType = "商务车";
+//    car.carAddress = "🇨🇳";
+//    car.carHeight = 1.8;
+//    car.carLength = 3.1;
+//
+//    car.toString();
+//
+//    Car car1 = new Car();
+//    car1.carBrand = "大奔";
+//    car1.carName = "大奔100";
+//    car1.carType = "家用车";
+//    car1.carAddress = "🇨🇳";
+//    car1.carHeight = 1.6;
+//    car1.carLength = 2.8;
+//
+//
+//    String str = car1.toString();
+//    System.out.println("-----" + str);
+
+    Car car = new Car();
+    //car.carName = "提莫";
+    //car.carLength = -4.5;//单位是米   请问是不是有问题？
+
+    System.out.println(car.toString());//  代码的数据不能偏离实际
+    //保证数据的正确性   是不是只能告诉计算机车长砸某个范围内有效？
+    //  车长必须在 2~4.5米之间
+/*
+    Scanner  sc=new Scanner(System.in);
+    System.out.println("请输入车长:");
+    double  carLength=sc.nextDouble();
+    if(carLength>=2.0&&carLength<=4.5){
+      car.carLength=carLength;  //做个判断
+    }
+    System.out.println(car.toString());
+
+    Car car2= new Car();
+    System.out.println("请输入车长:");
+
+    double  carLength2=sc.nextDouble();
+    if(carLength2>=2.0&&carLength2<=4.5){
+      car.carLength=carLength2;  //做个判断
+    }
+    System.out.println(car2.toString());*/
+
+    Car  newCar=new Car();
+    newCar.setCarLength(6);
+    System.out.println(newCar.toString());
+
+    newCar.setCarHeight(1.8);
+   // newCar.carLength=-1.4;
+
+    System.out.println(newCar.toString());
+
+
+
+    //现在只想得到其中的一两个属性的信息
+    //由于是隐藏起来的属性   并且咱们只想要其中的一两个的数据
+    //System.out.println(newCar.carBrand);
+
+    String  str=newCar.getCarName();//取货汽车名字数据
+    System.out.println("汽车名字:"+str+",Brand:"+newCar.getCarBrand());
+
+    newCar.setCarName("王二麻子");
+    System.out.println(newCar.getCarName());
+
+
+    //
+    Car  car3=new Car();  // car3 在 栈中   new  Car();在堆中  car3引用的其实就是堆里面的那个对象的地址
+    Car  car4=car3;// car3对象的地址 赋值给了car4
+    Car  car5=new Car();
+    car3.setCarName("大众");
+    car5.setCarName("大众");
+    System.out.println(car3.hashCode());//对象在内存的位置
+    System.out.println(car4.hashCode());
+    System.out.println(car5.hashCode());
+
+    car3=null;//  String  str=null;  类是引用类型     null 表示当前对象的名字在内存没有任何指向
+
+    //  java有一个机制 垃圾回收机制  对不用的数据进行垃圾回收
+
+
+    int n=0;
+    n=n++;
+
+
+
+
+
+
+
+
+
+  }
+}
+package com.banyuan.oop2;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/9 下午1:32
+ */
+public class Car {
+
+  //私有化属性和公有化方法的集合 叫封装  java  面向对象的第一个特征  也是一个标准的封装类
+
+  //创建一个汽车   汽车：品牌  名字  长度  高度  类型  产地 ....
+  // 汽车行为特征: 驾驶     制冷    放歌  等等...
+
+  private String  carBrand="长城";//汽车品牌
+  private String  carName="五菱";
+  private double  carLength; //private  私有的  只能在本类中被访问  其他的类不能直接访问
+  private double  carHeight;
+  private String  carType;
+  private String  carAddress;
+
+  //做个判断:判断车长是否满足条件
+  public  void  setCarLength(double  carLength){
+    if(carLength>=2.0 && carLength<=4.5){
+      this.carLength=carLength;  //做个判断
+    }else{
+      this.carLength=1.0;
+    }
+  }
+  public  void  setCarHeight(double  carHeight){
+    if(carHeight>=1.0 && carHeight<=1.9){
+      this.carHeight=carHeight;  //做个判断
+    }else{
+      this.carHeight=1.0;
+    }
+  }
+
+  //
+  public   void  setCarName(String  carName){
+    // 局部变量和全局变量 是不是以为 局部变量优先使用
+    this.carName=carName;  // 把值 赋值给本身   this表示当前对象
+  }
+
+  public   void   setCarBrand(String  carBrand){
+    this.carBrand=carBrand;
+  }
+
+  public  void  setCarAddress(String  carAddress){
+    this.carAddress=carAddress;
+  }
+  public  void  setCarType(String  carType){
+    this.carType=carType;
+  }
+
+//提供对外的访问方式
+  public String getCarName() {
+    return carName;
+  }
+
+  public String getCarAddress() {
+    return carAddress;
+  }
+
+  public double getCarHeight() {
+    return carHeight;
+  }
+
+  public double getCarLength() {
+    return carLength;
+  }
+
+  public String getCarBrand() {
+    carBrand="哈撒给:"+carBrand; //额外的代码操作
+    return carBrand;
+  }
+
+  public String getCarType() {
+    return carType;
+  }
+
+  @Override
+  public String toString() {
+    return "Car{" +
+        "carBrand='" + carBrand + '\'' +
+        ", carName='" + carName + '\'' +
+        ", carLength=" + carLength +
+        ", carHeight=" + carHeight +
+        ", carType='" + carType + '\'' +
+        ", carAddress='" + carAddress + '\'' +
+        '}';
+  }
+
+
+
+  //咱们能不能把公共的输出的代码提取出来
+//  public  String    toString(){
+//    return "车子名称:"+this.carName+",型号:"+this.carType+",品牌:"+this.carBrand+",产地："
+//        + this.carAddress+",车长:"+this.carLength+",车高:"+this.carHeight;
+//  }
+  // 就是说 在类的方法里面 一般情况下 最好不要有输出语句   输出语句一般只在测试类里面存在
+//  public  void driver(){
+//
+//  }
+//
+//  public void  cold(){
+//
+//  }
+//
+//  public void  singSong(){
+//
+//  }
+
+
+}
+package com.banyuan.oop5;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 2:21 下午
+ */
+public class TestWork {
+
+  public static void main(String[] args) {
+    Worker  worker1=new Worker();
+
+    Worker  worker2=new Worker();
+
+    Worker  worker3=new Worker();
+
+
+
+
+  }
+
+
+}
+package com.banyuan.oop5;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 1:49 下午
+ */
+public class Worker {
+  //包工头
+
+  //使用静态代码块的方式 来演示 static  修饰的成员 优先于对象存在
+
+  static{
+    System.out.println("我是 静态代码块...");
+  }
+
+  static  String name="沾上干";
+  String  address="哈哈是";
+
+  public   Worker(){
+    System.out.println("我是无参构造器...");
+  }
+
+  public static  void  info(){
+    //System.out.println(name+"----"+address);
+
+  }
+
+
+
+  public  void   test(){ //非静态的方法 可以任意访问
+    System.out.println(name+"----"+address);
+    findPerson(3);
+  }
+
+
+
+
+  public   void   findPerson(int  age){
+    //首先是不是要得到对象数组的数据
+    // 1.创建 TestPerson对象
+
+    //如果是访问类的静态成员 不需要创建对象  只需要使用  类名.成员名
+    Person[] p=TestPerson.person;
+
+    System.out.println("...."+TestPerson.count);
+
+    for (int i = 0; i < TestPerson.count; i++) {  //count值是  2
+        if(p[i].getAge()<35){  // 假如说我只要一个
+          System.out.println("我以及得到了你了:"+p[i].getName());
+          break;
+        }
+    }
+
+
+  }
+
+
+
+}
+package com.banyuan.oop5;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 1:35 下午
+ */
+public class Person {
+
+  private  String name;
+  private  int  age;
+  private  String  country;//国家
+
+  public Person(String name, int age, String country) {
+    this.name = name;
+    this.age = age;
+    this.country = country;
+  }
+
+  public Person() {
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public String getCountry() {
+    return country;
+  }
+
+  public void setCountry(String country) {
+    this.country = country;
+  }
+
+  @Override
+  public String toString() {
+    return "Person{" +
+        "name='" + name + '\'' +
+        ", age=" + age +
+        ", country='" + country + '\'' +
+        '}';
+  }
+}
+package com.banyuan.oop5;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 2:33 下午
+ */
+public class TestTeacher {
+
+  public static void main(String[] args) {
+//    Teacher  teacher=new Teacher();
+//    int  result=teacher.buyCar(200);
+//    System.out.println("第一个老师剩下:"+result);
+
+//    int  result=teacher.buyFly(200);
+//    System.out.println("还剩下:"+result);
+
+//    Teacher  teacher2=new Teacher();
+//    teacher2.buyCar(200);
+//    System.out.println("第二个老师剩下:"+result);
+
+//    result=teacher.buyFly(200);
+//    System.out.println("还剩下:"+result);
+
+    Teacher teacher = new Teacher();
+//    Teacher teacher2 = new Teacher();
+//    Teacher teacher3 = new Teacher();
+
+
+
+
+  }
+
+
+}
+package com.banyuan.oop5;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 1:37 下午
+ */
+public class TestPerson {
+
+  public static  Person[] person=new  Person[10];  //被static修饰的数据是静态的  能被所有的 类对象  共享
+  int   number;
+  static int count=0;  //被static修饰成员 属于  类(class文件)  不属于对象
+
+  /**
+   * static  关键字
+   * @param args
+   *
+   * class文件只会被加载一遍
+   *
+   * class文件在内存中加载的时候   被static 修饰的成员立即加载    static修饰的成员叫  类成员
+   *
+   *  static  修饰的成员 优先于对象存在、
+   *
+   *  static  修饰的成员被所有的对象共享
+   *
+   *  静态的方法只能调用静态成员
+   *
+   *  非静态的可以任意调用
+   *
+   */
+
+
+  public static void main(String[] args) {
+    //以对象数组作为一个存储的容器
+    //1.增加对象
+    //2.根据名字删除指定对象
+    //3.根据名字来修改对象信息
+    //4.根据名字来查询具体的对象的信息
+
+    //以对象数组作为一个数据存储  其他的类只能对这个容器里面数据 操作 请问  怎么办？
+
+
+    // 增加对象
+    person[0]=new  Person("张三",34,"中国");
+    count++;
+    person[1]=new  Person("张三2",334,"中国");
+    count++;
+    person[2]=new  Person("张三3",33,"中国");
+    count++;
+
+    //   删除  得到满足的对象的数组的下标
+    int   index=-1;
+    for (int i = 0; i < count; i++) {
+      if(person[i].getName().equals("张三")){ //字符串的比较是否一样
+          index=i;
+          break;
+      }
+    }
+    for (int i =index; i < count; i++) {
+        person[i]=person[i+1];
+
+    }
+    //删除之后  count应该 -1
+    count--;
+    for (int i = 0; i <count; i++) {
+      System.out.println(person[i].toString());
+    }
+
+    //调用工人的方法
+      Worker  worker=new Worker();
+      worker.findPerson(35);
+
+    //修改
+
+
+    //查询
+
+
+  }
+  public  static  void   show(){
+    // 也要对对象里面的数据进行操作
+    System.out.println(person[0].getName());
+
+
+  }
+
+
+
+
+
+
+
+
+
+
+
+}
+package com.banyuan.oop5;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 2:31 下午
+ */
+public class Teacher {
+
+  public   int   number=300; //非静态的成员是属于对象的
+  public  static  int  money=500;  //其中第一个老师 管了班费 500
+
+  public  int   buyCar(int money){
+    return  number=number-money;
+  }
+
+  public  int  buyFly(int  mon){
+    System.out.println("我用班费"+mon);
+    return   money=money-mon;
+  }
+
+ static int  x=1;
+
+  public  Teacher(){
+    x++;
+    System.out.println("这是构造函数代码块...."+x);
+  }
+
+  {
+   x= x++ +1;
+    System.out.println("这是构造代码块...."+x);
+  }
+
+   static{
+    x++;
+     System.out.println("这是静态代码块"+x);
+   }
+
+
+
+
+
+}
+package com.banyuan.oop4;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 11:03 上午
+ */
+public class TestEmployee {
+
+
+  public static void main(String[] args) {
+    Employee  emp=new Employee();
+    emp.setEmpIDCard("1242212321132X");
+    emp.setEmpName("章鱼");
+    emp.setEmpNumber("9527");
+
+    Department  department=new Department();
+    department.setDepartmentNumber("9527");
+    department.setDepartmentName("研发部");
+    department.setDepartmentAddress("召唤师峡谷红buff旁边");
+
+    emp.setDepartment(department); //设置的是一个对象
+
+
+    Employee  emp2=new Employee();
+    emp2.setEmpIDCard("4221232113299");
+    emp2.setEmpName("章鱼3");
+    emp2.setEmpNumber("9528");
+
+    Department  department2=new Department();
+    department2.setDepartmentNumber("9528");
+    department2.setDepartmentName("后勤部");
+    department2.setDepartmentAddress("召唤师峡谷蓝buff旁边");
+
+    emp2.setDepartment(department2);
+
+    System.out.println(emp2.toString());
+
+
+    //  现在的两个员工对象 都有对Department的引用
+
+
+    //  一个员工一个部门      那么 一部门里面的 有多个员工
+    // 要求:两个部门  一个研发部 一个后勤部
+    // 在控制台显示 两个部门的所有的信息以及该部门下的所有的 员工信息
+    /* 如下显示:
+        研发部  xxxx    xxxx    xxx
+                员工1{  } ,员工2{  }
+        后勤部  依次类推
+
+      */
+
+
+  }
+
+}
+package com.banyuan.oop4;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 11:09 上午
+ */
+public class Department {
+
+  private String departmentName;//部门名称
+  private String departmentAddress; //因为存在分部  可能同一个部门  但是呢 分布在全国各地
+  //当分部多了的时候  给每个部门唯一的标识    001    002  003
+  private String departmentNumber;//部门编号
+
+  public Department() {
+  }
+
+  public Department(String departmentName, String departmentAddress,
+      String departmentNumber) {
+    this.departmentName = departmentName;
+    this.departmentAddress = departmentAddress;
+    this.departmentNumber = departmentNumber;
+  }
+
+  public String getDepartmentName() {
+    return departmentName;
+  }
+
+  public void setDepartmentName(String departmentName) {
+    this.departmentName = departmentName;
+  }
+
+  public String getDepartmentAddress() {
+    return departmentAddress;
+  }
+
+  public void setDepartmentAddress(String departmentAddress) {
+    this.departmentAddress = departmentAddress;
+  }
+
+  public String getDepartmentNumber() {
+    return departmentNumber;
+  }
+
+  public void setDepartmentNumber(String departmentNumber) {
+    this.departmentNumber = departmentNumber;
+  }
+
+  @Override
+  public String toString() {
+    return "Department{" +
+        "departmentName='" + departmentName + '\'' +
+        ", departmentAddress='" + departmentAddress + '\'' +
+        ", departmentNumber='" + departmentNumber + '\'' +
+        '}';
+  }
+}
+package com.banyuan.oop4;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 11:07 上午
+ */
+public class HuaWeiEmployee {
+
+  private String empNumber;
+  private String empName;
+  private String empIDCard;
+  private String job;
+
+  private Department  department;//对目标类的引用
+
+  public Department getDepartment() {
+    return department;
+  }
+
+  public void setDepartment(Department department) {
+    this.department = department;
+  }
+
+  public HuaWeiEmployee() {
+  }
+
+  public HuaWeiEmployee(String empNumber, String empName, String empIDCard, String job,
+      String departmentName, String departmentAddress, String departmentNumber) {
+    this.empNumber = empNumber;
+    this.empName = empName;
+    this.empIDCard = empIDCard;
+    this.job = job;
+  }
+
+  public String getEmpNumber() {
+    return empNumber;
+  }
+
+  public void setEmpNumber(String empNumber) {
+    this.empNumber = empNumber;
+  }
+
+  public String getEmpName() {
+    return empName;
+  }
+
+  public void setEmpName(String empName) {
+    this.empName = empName;
+  }
+
+  public String getEmpIDCard() {
+    return empIDCard;
+  }
+
+  public void setEmpIDCard(String empIDCard) {
+    this.empIDCard = empIDCard;
+  }
+
+  public String getJob() {
+    return job;
+  }
+
+  public void setJob(String job) {
+    this.job = job;
+  }
+
+  @Override
+  public String toString() {
+    return "HuaWeiEmployee{" +
+        "empNumber='" + empNumber + '\'' +
+        ", empName='" + empName + '\'' +
+        ", empIDCard='" + empIDCard + '\'' +
+        ", job='" + job + '\'' +
+        ", department=" + department.toString() +
+        '}';
+  }
+}
+package com.banyuan.oop4;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 10:55 上午
+ */
+public class Employee {
+  //
+  private  String  empNumber;
+  private  String  empName;
+  private  String  empIDCard;
+  private  String  job;
+  private  double  monthMoney;
+
+  //把部门的对象作为一个属性
+  private  Department  department; //对目标类进行引用
+
+  public Department getDepartment() {
+    return department;
+  }
+
+  public void setDepartment(Department department) {
+    this.department = department;
+  }
+
+  public Employee() {
+  }
+
+  public Employee(String empNumber, String empName, String empIDCard, String job, double monthMoney,
+      String departmentName, String departmentAddress, String departmentNumber) {
+    this.empNumber = empNumber;
+    this.empName = empName;
+    this.empIDCard = empIDCard;
+    this.job = job;
+    this.monthMoney = monthMoney;
+  }
+
+  public String getEmpNumber() {
+    return empNumber;
+  }
+
+  public void setEmpNumber(String empNumber) {
+    this.empNumber = empNumber;
+  }
+
+  public String getEmpName() {
+    return empName;
+  }
+
+  public void setEmpName(String empName) {
+    this.empName = empName;
+  }
+
+  public String getEmpIDCard() {
+    return empIDCard;
+  }
+
+  public void setEmpIDCard(String empIDCard) {
+    this.empIDCard = empIDCard;
+  }
+
+  public String getJob() {
+    return job;
+  }
+
+  public void setJob(String job) {
+    this.job = job;
+  }
+
+  public double getMonthMoney() {
+    return monthMoney;
+  }
+
+  public void setMonthMoney(double monthMoney) {
+    this.monthMoney = monthMoney;
+  }
+
+  @Override
+  public String toString() {
+    return "Employee{" +
+        "empNumber='" + empNumber + '\'' +
+        ", empName='" + empName + '\'' +
+        ", empIDCard='" + empIDCard + '\'' +
+        ", job='" + job + '\'' +
+        ", monthMoney=" + monthMoney +
+        ", department名称=" + department.getDepartmentName() +
+        '}';
+  }
+}
+package com.banyuan.oop3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 10:27 上午
+ */
+public class TestStudent {
+
+    public static void main(String[] args) {
+
+      //请问:对象是被谁创建的？
+      Student  student=new  Student();
+      student.setAddress("西栖霞区");
+      student.setAge(23);
+      student.setStuName("剑圣");
+
+      System.out.println(student.toString());
+     // Student  student2=new  Student();
+
+
+      //通过有参构造器创建对象  在创建对象的同时给对象的属性赋值
+      Student   stu=new  Student("贾克斯",25,"峡谷之巅");
+      System.out.println(stu.toString());
+
+      //
+      Student   stu1=new   Student("小学生之手",45);
+
+      System.out.println(stu1.toString());
+
+      Student   stu2=new Student("凯爹");
+      System.out.println(stu2.toString());
+
+
+
+
+    }
+
+}
+package com.banyuan.oop3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 9:59 上午
+ */
+public class Student {
+
+  private  String stuName;
+  private  int  age;
+  private  String  address;
+
+  //对象是被类里面的构造器创建的
+  // 访问修饰符  类名(参数...){   }
+  public  Student(){  //构造函数  无参构造函数  在一个类中如果没有显示的构造器  java会默认的提供一个无参构造器
+    System.out.println("我是无参构造器...");
+  }
+  /*
+    如果没有无参构造器但是类里面有有参构造器   那么只能通过有参构造器来创建对象 系统不会在自动提供无参构造器
+   */
+
+  //有参构造器
+  public  Student(String stuName,int  age,String  address){
+      this.stuName=stuName;
+      this.age=age;
+      this.address=address;
+    System.out.println("我是有参构造函数...");
+  }
+
+  public  Student(String stuName,int  age){
+    this.stuName=stuName;
+    this.age=age;
+    System.out.println("我是有参构造函数...22222....");
+  }
+
+  public  Student(String stuName){
+    this.stuName=stuName;
+    System.out.println("我是有参构造函数...22222....");
+  }
+  /*
+      当 方法名一样  参数列表不一样时 这个叫方法的重载(方法的重载跟返回值没有任何关系)
+   */
+
+  public  double sum(double  x,double  y){
+    return x+y;
+  }
+
+  public  int   sum(int  x,int y){
+    return  x+y;
+  }
+
+  public  int   sum(int x,int y,int z){
+
+    return  x+y+z;
+  }
+
+  public  int   sum(int x,int y,int z,int q){
+    return  x+y+z+q;
+  }
+
+
+
+  public String getStuName() {
+    return stuName;
+  }
+
+  public void setStuName(String stuName) {
+    this.stuName = stuName;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  @Override
+  public String toString() {
+    return "Student{" +
+        "stuName='" + stuName + '\'' +
+        ", age=" + age +
+        ", address='" + address + '\'' +
+        '}';
+  }
+}
+package com.banyuan.finalDemo;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 10:38 上午
+ */
+public class Person {
+
+  private String  name;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+}
+package com.banyuan.finalDemo;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 10:51 上午
+ */
+public class Demo {
+
+  int num ;
+  final int num2 =90;
+
+
+}
+
+class Sonny extends Demo {
+
+  public void show() {
+    num = 100;
+    System.out.println(num);
+    //num2 = 200;
+    System.out.println(num2);
+  }
+
+
+  public static void main(String[] args) {
+    Sonny sonny = new Sonny();
+    sonny.show();
+  }
+}
+
+package com.banyuan.finalDemo;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 10:26 上午
+ */
+public class Son extends FinalDemo {
+
+
+
+}
+
+class Test{
+
+  public static void main(String[] args) {
+    Son  son=new Son();
+    FinalDemo  finalDemo=new FinalDemo();
+    finalDemo.show(34);
+  }
+}
+package com.banyuan.finalDemo;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 10:21 上午
+ */
+public  class FinalDemo {
+
+  // 字面值常量
+
+  // 自定义常量    final
+  /*
+    final 可以修饰类 修饰方法  修饰变量
+    特点:被final修饰的变量的值 不可以被修改
+        ...........类    不能被继承
+        ...........方法   不能重写
+    被final修饰的自定义常量一定要有初始化值  否则报错
+
+    final出现的位置: 方法的形参前面
+    public  void  show(final  int  age)
+
+
+   */
+  private  final String  COUNTRY="中国";  //  变量变成常量
+
+  public   final static  String  COUNTRY_CITY="苏州市";
+
+
+  public String getCountry() {
+    return COUNTRY;
+  }
+
+  public  void  show(final  int  AGE){//一旦有了第一次传递过来的数据  那么就不能进行修改了
+    //AGE=123;
+    final  String  address="沾上干";
+    //请问  address 在内存中什么时候消失  是show方法结束的时候消失 还是整个程序结束的时候消失
+    System.out.println("地址为:"+address);
+
+  }
+
+  public  void  show(final  Person  person){//一旦有了第一次传递过来的数据  那么就不能进行修改了
+    //请问  被final修饰的person对象是否可以修改
+    person.setName("韩朝"); //为什么整个操作可以
+    //person  接收端 是对象的地址  而person.setName()只是对对象的方法进行操作
+    // person 接受的地址根本没有发生改变
+   // person =new Person(); //这个操作是改变了person接受的地址 不在指向的是之前的对象 所以报错
+
+
+  }
+
+  /**
+   *
+   * class  Demo{
+   *   int  num=10;
+   *   final  int  num2=20;
+   * }
+   * class  Son extends Demo{
+   *
+   *   public void  show(){
+   *     num=100;
+   *     System.out.println(num);
+   *     num2=200;
+   *     System.out.println(num2);
+   *   }
+   *
+   *  main(){
+   *    Son  son=new  Son();
+   *    son.show(); //请问执行结果
+   *  }
+   *
+   *
+   * }
+   *
+   *
+   *
+   *
+   *
+   *
+   *
+   */
+
+
+
+
+
+
+
+
+
+
+
+
+
+  public static void main(String[] args) {
+    String   st="大保健";
+    st="你好";
+    System.out.println("哈哈哈是");  //常量是不可变的
+
+
+  }
+
+}
+package com.banyuan.oop;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/9 上午11:10
+ */
+public class TestStudent {
+
+  public static void main(String[] args) {
+
+    Student  student=new  Student();//
+
+    student.username="韩朝";
+    student.age=12;
+    student.height=5.6F;
+    student.weight=120;
+
+    student.eat();
+    student.sleep();
+    student.paoNiu();
+
+    Student  student1=new Student();//
+    student1.username="刘耀";
+    student1.address="垃圾桶旁边...";
+    student1.paoNiu();
+
+
+    //
+    Student  student2=new Student();
+    System.out.println("输出结果是:"+student2.username);  //null
+    System.out.println(student2.age);
+    //如果成员变量没有给具体的值 那么在创建对象的时候计算机会给所有的成员属性 赋默认值
+
+
+    //创建一个汽车   汽车：品牌  名字  长度  高度  类型  产地 ....
+    // 汽车行为特征: 驾驶     制冷    放歌  等等...
+
+
+
+
+  }
+
+}
+package com.banyuan.oop;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/9 上午11:05
+ */
+public class Student {  //Student.class 创建对象
+    // 对象就是按照类的模板来创建的   类是创建的对象的模板     对象是类所存在的实例
+    // 学生 本身有什么属性
+
+
+    public String   username;
+    public String   address;
+    public int    age;
+    public double   weight;
+    public float   height;
+
+    // 学生 有什么行为特征
+    public   void  sleep(){
+      System.out.println(username+"在睡觉...");
+    }
+
+    public  void   eat(){
+      System.out.println(username+"不知道在吃什么...");
+    }
+
+    public  void  paoNiu(){
+      System.out.println(username+"泡妞...");
+    }
+
+
+
+}
+package com.banyuan.homework;
+
+import java.util.Scanner;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 9:24 上午
+ */
+public class Test1 {
+
+  /*
+  作业3：现在有五个学生,每个学生有4门课程  语文  数学 英语  理科综合,还有姓名属性
+      要求:1.求出平均分最高的人的所有信息
+          2.找出理科成绩最高的人
+   */
+  public static void main(String[] args) {
+    String[] str = new String[4];  //创建的是引用数据类型的数组
+    str[0] = "哈哈啥事";
+
+    //   八大基本数据类型    还有引用类型       类    接口   数组  等等
+    // 创建对象数组      类名[] 变量名=new 类名[数组长度];
+
+//    Student st = new Student();
+//    st.setStuName("张三");
+//    st.setChinese(45);
+//    st.setScience(278);
+//    st.setEnglish(35.6);
+//    st.setMath(145);
+//    stu[0] = st;
+//
+//    Student st2 = new Student();
+//    st2.setStuName("李四");
+//    st2.setChinese(50);
+//    st2.setScience(278);
+//    st2.setEnglish(35.6);
+//    st2.setMath(145);
+//    stu[1] = st2;
+
+    Student[] stu = new Student[3]; //装五个学生学生对象
+    //使用循环的方式给数组赋值
+    Scanner  sc=new Scanner(System.in);
+    for (int i = 0; i < stu.length; i++) {
+      Student  st=new Student();
+      System.out.println("请输入第"+(i+1)+"个学生的姓名:");
+      st.setStuName(sc.next());
+      System.out.println("请输入第"+(i+1)+"个学生的成绩:");
+      double math=sc.nextDouble();
+      st.setMath(math);
+      double eng=sc.nextDouble();
+      st.setEnglish(eng);
+      double ch=sc.nextDouble();
+      st.setChinese(ch);
+      double science=sc.nextDouble();
+      st.setScience(science);
+      stu[i]=st;
+    }
+
+    //得到平均分最高
+    int  index=0;
+    double   max=stu[0].getAvgScore();//假设默认的是第一个数据
+    for (int i = 1; i < stu.length; i++) {
+      if(max<stu[i].getAvgScore()){
+        max=stu[i].getAvgScore(); //得到平均分最大值其实就是得到具体的哪个对象
+        index=i;//得到 平均分最大值的下标
+      }
+    }
+    System.out.println("平均分最大值的人所有的信息如下:"+stu[index].toString());
+
+  }
+}
+package com.banyuan.homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/10 9:24 上午
+ */
+public class Student {
+
+  private  String  stuName;
+  private  double  chinese;
+  private  double  math;
+  private  double  english;
+  private  double  science;
+
+  public String getStuName() {
+    return stuName;
+  }
+
+  public void setStuName(String stuName) {
+    this.stuName = stuName;
+  }
+
+  public double getChinese() {
+    return chinese;
+  }
+
+  public void setChinese(double chinese) {
+    this.chinese = chinese;
+  }
+
+  public double getMath() {
+    return math;
+  }
+
+  public void setMath(double math) {
+    this.math = math;
+  }
+
+  public double getEnglish() {
+    return english;
+  }
+
+  public void setEnglish(double english) {
+    this.english = english;
+  }
+
+  public double getScience() {
+    return science;
+  }
+
+  public void setScience(double science) {
+    this.science = science;
+  }
+
+  //求平均分的方法
+  public  double  getAvgScore(){
+    return  (this.chinese+this.math+this.english+this.science)/4;
+  }
+
+  @Override
+  public String toString() {
+    return "Student{" +
+        "stuName='" + stuName + '\'' +
+        ", chinese=" + chinese +
+        ", math=" + math +
+        ", english=" + english +
+        ", science=" + science +
+        '}';
+  }
+
+
+
+
+}
+package com.banyuan.oop8;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 10:00 上午
+ */
+public class ExtendsOver {
+    /*
+      public void add(i nt a) {…}
+      A.public void add(int b) {…}
+      B.void add(int a) {…}
+      C.public int add(int a) {…}
+      D.public void add(float a) {…}
+     */
+
+    protected   void   add(int  a){
+
+    }
+
+
+}
+package com.banyuan.oop8;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/12 10:00 上午
+ */
+public class Son  extends  ExtendsOver {
+
+  //千万不要修改重写方法的任何一个地方  除了参数名称  否则就变成了重载
+  //因为还有一个对父类的隐藏的同名继承方法
+  //子类继承的方法的访问权限一定要大于等于父类的方法的访问权限   不然会报错
+  public    void   add(int  b){
+
+  }
+}
+package com.banyuan.oop6;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 3:10 下午
+ */
+public class TestSon {
+
+  public static void main(String[] args) {
+    Son son = new Son("王五");
+    //son.showInfo();
+    System.out.println(son.getName());
+
+    son.test();
+
+  }
+
+
+}
+package com.banyuan.oop6;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 3:06 下午
+ */
+public class Fu {
+
+  private  String name="张大炮";
+  public  String  address="炮王";
+
+  private  int   age=1;
+
+  public Fu(String name) {
+    this.name = name;
+    System.out.println("我是父类的有参构造器1");
+  }
+
+  public Fu(String name, int age) {
+    this.name = name;
+    this.age = age;
+    System.out.println("我是父类的有参构造器2...");
+
+  }
+
+  public Fu() {
+    System.out.println("我是父类的无参构造....");
+
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public   void  test(){
+    System.out.println(this.age+"父类的...."+this.name);
+  }
+
+}
+package com.banyuan.oop6;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 1:34 下午
+ */
+public class ExtendsDemo {
+
+  /**
+   * public     任意包的任意类都可以访问
+   * protected  可以在不同的包的子类中被访问 其他的类不能访问
+   * 默认        同一个包的子类访问
+   * private    只能在本类中访问
+   */
+
+      /*
+         私有化的成员能不能被继承？私有化的成员不能被继承
+       * 那么如果去使用父类中私有化的成员: 通过继承父类的公有化方法区访问
+       *
+       * 注意:除了私有化的成员都可以被继承
+       *
+       * 问题:创建子类对象的时候 父类做了什么事情? 父类在创建子类对象之前先创建了对象
+       * 那么请问,为什么创建子类对象之前要先创建父类对象？
+       *  为了对父类成员的引用...
+       *  那么如何去引用父类对象的   super
+       *
+       *  父类如果没有无参构造器 只有有参 那么 子类里面分无参构造并不能够访问父类的无参构造会报错
+       * (除非在子类的无参构造里面去调用父类的有参构造器)
+       *
+       *  父类构造函数会不会被继承? 父类的构造函数不会被继承   super() 调用父类的无参构造
+       *  构造函数不存在继承
+       *
+       * 问题: 1.父类和子类如果同时出现相同的成员(变量和方法)  怎么确定调用的是父类还是子类的成员(变量和方法)
+       *    结论1:如果父类和子类同时出现相同的成员变量名,那么优先使用子类自己的
+       *    结论2:如果同时出现相同的方法名时,还有优先使用子类自己的(不考虑静态方法)
+
+         问题:父类有show   子类有show方法  请问 子类继承了父类的show方法嘛?
+                没有继承父类 show方法
+                如果子类和父类的方法名参数列表返回类型一致 表名子类重写了父类的方法
+
+        问题: 静态方法能不能被重写？可不可以被继承？
+
+            静态方法是属于类成员不能被重写(多态)
+
+            但是可以被继承
+
+        super  表示父类对象   super() 表示对父类对象的无参构造器的引用
+
+        this   表示当前对象   this() 表示引用当前对象的无参构造器
+
+        a.子类使用有参构造创建对象的时候  如果子类的有参构造器里面没有super(参数...)那么就意味着
+        默认的去访问父类的无参构造器
+        b.如果想要通过子类的有参构造器去给父类的成员变量进行赋值,那么要在子类的有参构造器里面添加指向父类
+        的有参构造器   super(参数列表);
+
+
+       */
+
+
+  // 继承
+  public static void main(String[] args) {
+//    Teacher  teacher=new Teacher();
+//    System.out.println(teacher.toString());
+
+    Student  student=new Student();
+    student.setName("李扣篮");
+    student.setAddress("芝加哥");
+
+    System.out.println(student.country+","+student.city);
+
+    //student.show();
+    //student.test();
+
+    Student.test();
+
+  }
+
+}
+package com.banyuan.oop6;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 1:35 下午
+ */
+public class Student   extends  Teacher{  //子类
+
+
+  public  String  country="美国";
+  String   city="佛罗里达";
+
+  //现在需要借用 Teacher 类里面的 一些成员属性
+
+//  public   void  show(){
+//    //System.out.println("身份证号:"+IDCard+"---"+city+">>>"+country);
+//    //System.out.println(name);
+//  }
+
+  public  Student(){
+    super("zhangsan","下水道",34); //子类的构造器里面都有一个super(参数...) 一般情况下都会被隐藏起来
+    //在构造器里面   super()处于第一
+    System.out.println("我是子类构造器...");
+  }
+
+  //假设继承了父类的show
+
+  //重写方法 发生在  继承中  并且是父类的方法满足不了自己的需求 那么可以进行对父类方法的重写
+  public  void  show(){
+    System.out.println("展示一下自己的魔鬼身材...");
+  }
+
+
+  //不想重写   想自己写一个方法 info()  但是没有考虑继承  到这一步  父类的show方法还是被继承了
+//  public   void  info(){
+//    System.out.println("展示一下自己的魔鬼身材...");
+//  }
+
+  //静态放属于 类   不属于任何一个对象
+
+
+
+}
+package com.banyuan.oop6;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 3:06 下午
+ */
+public class Son  extends Fu {
+  private  String  name="炮哥";
+  public   String  address="炮楼";
+
+  public Son() {
+    super();  //调用 是父类的构造器
+    System.out.println("我是子类的无参构造器....");
+  }
+
+  public Son(String name) { //在创建子类对象之前首先创建的是 父类对象
+    super(name);
+    this.name = name;
+    System.out.println("我是子类的有参构造器....");
+  }
+
+  @Override
+  public String getName() {
+    return name;
+  }
+
+  @Override
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public  void  showInfo(){
+    System.out.println(super.address+"-----"+this.address+">>>>>>"+address);
+
+    System.out.println(super.getName()+"-----"+this.getName()+">>>>>>"+getName());
+
+  }
+
+  //有个隐藏的 test()方法
+  //子类发现父类的功能满足不了我的需求  为了维护代码的可用型  只能重写
+
+  //又隐藏的 继承了  test()  在子类里面 有用吗  没用的
+
+//  public   void   test(){
+//
+//  }
+
+}
+package com.banyuan.oop6;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 1:34 下午
+ */
+public class Teacher {  //父类
+
+  private String name = "张三分";
+  private String address = "洛杉矶";
+  private int age = 22;
+
+  //访问修饰符的问题
+  public String country = "中国";
+  String city = "南京";
+  protected String IDCard = "342901123123123122";
+
+  public Teacher() {
+    System.out.println("父类构造器执行....");
+  }
+
+  public Teacher(String name, String address, int age) {
+    this.name = name;
+    this.address = address;
+    this.age = age;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  public void show() {
+    System.out.println("用来显示自己多有钱的功能...");
+  }
+
+
+
+  public  static  void  test(){
+    System.out.println("我是父类中的 静态方法....");
+  }
+
+
+
+  @Override
+  public String toString() {
+    return "Teacher{" +
+        "name='" + name + '\'' +
+        ", address='" + address + '\'' +
+        ", age=" + age +
+        '}';
+  }
+}
+package com.banyuan.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 4:18 下午
+ */
+public class GrandPa {
+  public void  show(){
+      show2();
+  }
+  public  void  show2(){
+    System.out.println("我");
+  }
+}
+class  Fu  extends  GrandPa{
+  public  void  show2(){
+    System.out.println("爱");
+    super.show2();
+  }
+}
+class  Sonny  extends  Fu{
+  public   void show(){
+    super.show2();
+  }
+  public  void  show2(){
+    System.out.println("你");
+  }
+}
+class  Test{
+  public static void main(String[] args) {
+    Sonny  sonny=new Sonny();
+    sonny.show();//请问输出结果
+  }
+}
+//今天晚上预习的内容  final关键字   多态
+package com.banyuan.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 4:11 下午
+ */
+public class GrandFather {
+  //爷爷
+  private  String  name="英雄人物";
+
+
+  public GrandFather(String name) {
+    this.name = name;
+  }
+
+  public  void   show(){
+    System.out.println("我是你爷爷..."+name);
+  }
+
+
+
+
+
+}
+package com.banyuan.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 4:10 下午
+ */
+public class Demo {
+
+  /*
+    多层继承
+        ---- 1
+            ----2
+              ---- 3
+   */
+
+  public static void main(String[] args) {
+
+//      Son  son=new  Son();
+//      son.show();
+
+    Father  father=new Father("小人物...");
+    father.show();
+
+    Father1  father1=new Father1("英雄人物");
+    father1.show();
+
+
+  }
+
+}
+package com.banyuan.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 4:11 下午
+ */
+public class Son  extends  Father{
+
+  public Son(String name) {
+    super(name);
+  }
+
+  public  void   show(){
+    System.out.println("我是你我是孙子......");
+  }
+
+}
+package com.banyuan.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 4:11 下午
+ */
+public class Father extends GrandFather {
+
+  public Father(String name) {
+    super(name);
+  }
+}
+package com.banyuan.oop7;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/11 4:11 下午
+ */
+public class Father1 extends GrandFather {
+
+  public Father1(String name) {
+    super(name);
+  }
+}
+package com.banyuan.club.bigNumber;
+
+import java.math.BigDecimal;
+import java.math.BigInteger;
+import java.math.RoundingMode;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 2:24 下午
+ */
+public class Demo {
+
+  public static void main(String[] args) {
+    System.out.println(0.09+0.01); //0.09999999999999999 基本类型的小数在做相加操作的时候会 造成数据丢失
+    //一般情况下 开发 很少使用double 或者是 float来定义小数
+    //大数值
+
+    BigDecimal   bigDecimal1=new BigDecimal("0.009");
+    BigDecimal   bigDecimal2=new BigDecimal("0.2");
+
+    BigDecimal  big= bigDecimal1.add(bigDecimal2);
+
+    System.out.println(bigDecimal1.multiply(bigDecimal2));
+
+    System.out.println(bigDecimal1.divide(bigDecimal2));
+
+    System.out.println(bigDecimal1.subtract(bigDecimal2));
+
+    System.out.println(bigDecimal1.divide(bigDecimal2,1 , RoundingMode.HALF_UP));
+
+
+
+    BigInteger   bigInteger1=new BigInteger("7867564534");
+    BigInteger   bigInteger2=new BigInteger("7867564534");
+
+
+    System.out.println(bigInteger1.multiply(bigInteger2));
+
+
+
+  }
+
+}
+package com.banyuan.club.utilArray;
+
+import java.util.Arrays;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 1:36 下午
+ */
+public class ArraysDemo {
+
+  public static void main(String[] args) {
+
+    int[] arr = {12, 3412, 412, 56, 13, 98};
+    int[] arr1 = Arrays.copyOf(arr,arr.length+1); //之前让你们  数组扩容
+
+    System.out.println( Arrays.equals(arr, arr1));
+
+    System.out.println(Arrays.toString(arr));
+
+    arr1=Arrays.copyOfRange(arr, 1, 3);//不包含最后一个
+
+    //sort  自然升序排序
+    Arrays.sort(arr,2,arr.length);
+
+    for (int  array:arr) {
+      System.out.println(array);
+    }
+
+    System.out.println(Math.abs(-1));
+
+    System.out.println(Math.ceil(2.00001));
+
+    
+
+
+
+
+
+
+  }
+
+
+}
+package com.banyuan.club.util;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 2:22 下午
+ */
+public class Student {
+
+  private   Double  weight;
+  private   Integer  age;  //  字符串  56
+
+}
+package com.banyuan.club.util;
+
+import org.omg.PortableInterceptor.Interceptor;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 1:58 下午
+ */
+public class Demo {
+
+  //为什么要学自动装箱和自动拆箱   使用包装类方便在任意数据类型之间进行数据类型的切换操作
+  public static void main(String[] args) {
+    String str = "313";
+
+    int number = 213;   // int  包装类   Integer
+    //求两个数据相加的和 ? 请问 你们怎么做
+
+
+    //自动装箱操作
+    // Integer  in=Integer.valueOf(str);  //对字符串进行拆箱操作
+     int  num1=Integer.parseInt(str);  //这个方法直接就完成了 自动装箱和拆箱的操作
+
+    //把数据进行包装
+    Integer inter = new Integer(str);  //把 String类型的数据包装成 Integer
+    int num = inter.intValue();  //把Integer 类型拆箱   拆成 int类型
+
+    num=inter+number;  //自动拆箱操作
+
+    System.out.println(num + number);
+
+    /*
+      包装类:    Integer     Double   Float    Byte   Short    Boolean    Long   Character
+      基本数据类型:int        double   float    byte    short    boolean   long     char
+
+      问题:  请问  int  和 Integer  有什么区别？
+          int 属于基本数据类型   成员变量的int 的默认值为 0
+          Integer  属于int包装类 有默认值  null
+
+     */
+    boolean   flag=Character.isDigit('2'); //判断这个字符是否是数字
+    int   result=Character.compare('f', 'b'); // 两个字符如果相等就为0
+
+    System.out.println(Character.isUpperCase('F'));
+
+    System.out.println(Character.toUpperCase('a'));
+
+
+  }
+
+
+}
+package com.banyuan.club.utilAPI;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 11:03 上午
+ */
+public class DateDemo {
+
+
+  public static void main(String[] args) throws ParseException {
+
+    Date   date =new  Date();
+    System.out.println(date);//Tue Mar 17 11:05:25 CST 2020
+
+
+   // date=new Date(1000); //计算机元年  1970.01.01  8:00:00
+    //System.out.println(date); //Thu Jan 01 08:00:01 CST 1970
+
+    System.out.println(date.getYear());  //  1900+120 =2020
+    System.out.println(date.getTime()/1000/3600/24/30/12);  //  表示距离计算机元年早上8点过去多少毫秒 1584414679181
+
+    date.setTime(1000);
+    System.out.println(date);
+
+
+    SimpleDateFormat  simpleDateFormat=new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒 SSS毫秒");//可以对时间进行解析 或者是包装
+
+    String   strDate=simpleDateFormat.format(new  Date());
+
+
+    System.out.println(strDate);
+
+
+
+    String str="1998年0101112235";
+
+    simpleDateFormat=new SimpleDateFormat("yyyy年MMddHHmmss");
+    date=simpleDateFormat.parse(str);
+
+    System.out.println(date);
+
+
+    //随堂作业:通过手动输入请计算  现在距离你出生的时间过去了多少年  多少月  多少天  多少个小时
+
+    Calendar  calendar=Calendar.getInstance();//获取本地时间的一个Calendar对象
+
+    System.out.println("Calendar:"+calendar.getTime()+"---"+new Date());
+
+    //calendar.set(2020, 4, 4);
+
+   // System.out.println(calendar.getTime());
+
+
+    System.out.println(calendar.get(Calendar.MONTH)+1);//  0  1
+
+    System.out.println(calendar.get(Calendar.YEAR));
+
+    System.out.println(calendar.get(Calendar.DATE));
+
+    System.out.println(calendar.get(Calendar.SECOND));
+
+
+    //五年前    add表示添加过去的时间
+    calendar.add(Calendar.YEAR, 5);
+    calendar.add(Calendar.MONTH, -1);
+
+    System.out.println(calendar.getTime());
+
+    calendar.clear();  //清除当前时间   回复到计算机元年
+    System.out.println(calendar.getTime());
+
+
+  }
+}
+package com.banyuan.club;
+
+import java.util.Objects;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 1:39 下午
+ */
+public class Person {
+
+  private   String   IDCard;
+  private   String   username;
+  private   String   address;
+
+
+  public Person(String IDCard, String username, String address) {
+    this.IDCard = IDCard;
+    this.username = username;
+    this.address = address;
+
+  }
+
+  public Person() {
+  }
+
+  public String getIDCard() {
+    return IDCard;
+  }
+
+  public void setIDCard(String IDCard) {
+    this.IDCard = IDCard;
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  //重写  equals()
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Person person = (Person) o;
+    return Objects.equals(IDCard, person.IDCard) &&
+        Objects.equals(username, person.username) &&
+        Objects.equals(address, person.address);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(IDCard, username, address);
+  }
+
+//  @Override
+//  public boolean  equals(Object  object){
+//    boolean  flag=false;
+//  //首先来判断一下 如果传递过来的是  null  你们觉得还有必要进行比较嘛
+//  if(object ==null){
+//    return flag;
+//  }
+//  //如果不为空  继续判断
+//    if(!(object  instanceof  Person)){
+//        return  flag;
+//    }
+//    Person   p=(Person)object;
+//  if(this.IDCard.length()==p.getIDCard().length()){
+//      if(this.IDCard.equals(p.getIDCard())){
+//         flag=true;
+//      }
+//  }
+//    if(this.username.length()==p.getUsername().length()){
+//      if(this.username.equals(p.getUsername())){
+//         flag=true;
+//      }else {
+//        flag=false;
+//        return  flag;
+//      }
+//    }else{
+//      flag=false;
+//      return  flag;
+//    }
+//
+//    if((this.address.length()==p.getAddress().length())){
+//      if(this.address.equals(p.getAddress())){
+//          flag=true;
+//      }else{
+//        flag=false;
+//        return  flag;
+//      }
+//
+//    }else{
+//      flag=false;
+//      return  flag;
+//    }
+//    return    flag;
+//  }
+
+
+
+
+
+
+
+
+
+
+
+  @Override
+  public String toString() {
+    return "Person{" +
+        "IDCard='" + IDCard + '\'' +
+        ", username='" + username + '\'' +
+        ", address='" + address + '\'' +
+        '}';
+  }
+}
+package com.banyuan.club.homework;
+
+import java.io.UnsupportedEncodingException;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/17 9:31 上午
+ */
+public class Demo {
+
+  public static void main(String[] args) throws UnsupportedEncodingException {
+    String str = "我ABCD此生不悔入华夏";//  '_ _ _'
+    str=subStr(str,7);
+    System.out.println(str);
+
+  }
+
+  //汉字不能截取一半
+
+  public static String subStr(String str, int length) throws UnsupportedEncodingException { //截取指定长度的子串
+    if (str == null) {
+      return null;
+    }
+    if ("".equals(str)) {
+      return "";
+    }
+    //如果  指定的长度超过字符串本身的长度   length默认长度就是字符串的长度
+    byte[] by = str.getBytes();
+    int  len=by.length;
+
+    if (len < length) {
+      length = len;
+    }
+    //
+    String st;
+    if (by[length] < 0) {
+      st = new String(by, 0, --length);
+    } else {
+      st = new String(by, 0, length);
+    }
+    return st;
+  }
+}
+package com.banyuan.club;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 1:41 下午
+ */
+public class TestPerson {
+
+
+  public static void main(String[] args) {
+    Person  person=new Person("34567890","张三w","栖霞区");
+    Person  person2=new Person("34567890","张三","栖霞区");
+
+    //System.out.println(person.equals(person2));
+
+    //我们要让自己算完全的遵循我们自己的意愿来进行判断
+    System.out.println(person.equals(person2));
+
+
+
+  }
+
+
+}
+package com.banyuan.club;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 11:33 上午
+ */
+public class Student  implements  Cloneable{
+
+  @Override
+  protected Object clone() throws CloneNotSupportedException {
+    return super.clone();
+  }
+
+
+
+
+  private   String  name;
+  private   String   address;
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public String getAddress() {
+    return address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+
+  @Override
+  public String toString() {
+
+    return "Student{" +
+        "name='" + name + '\'' +
+        ", address='" + address + '\'' +
+        '}';
+  }
+}
+package com.banyuan.club;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 11:23 上午
+ */
+public class Demo  extends   Object{
+
+  // Object  是所有类的父类
+  public static void main(String[] args) throws CloneNotSupportedException {
+
+    Object  obj=new Object();
+
+    System.out.println(obj.getClass());  //表示在哪个类路径下
+
+    //System.out.println("----"+obj.getClass().getName());
+
+    System.out.println(Integer.toHexString(obj.hashCode())); //对象在内存中的 地址
+
+    System.out.println(obj.toString()); //java.lang.Object@610455d6
+
+    Object  obj2=new  Object();
+    System.out.println(Integer.toHexString(obj2.hashCode()));
+
+    //Object 比的是 对象的地址        如果equals() 被重写了 一般是要进行地址和内容的比较
+    //
+    // 请问: equals()比较两个对象是否是同一个对象根据现实生活中  能完成咱们的 需求吗？
+    System.out.println(obj.equals(obj2));
+
+
+    Student   student=new  Student();
+    Object   ob=student.clone();  //得到的是一个clone的副本
+
+    Student    stu=(Student) ob;
+
+    //请问  student 和 stu两个对象是否是同一个对象
+
+    System.out.println(student.hashCode());
+    System.out.println(stu.hashCode());
+
+
+    // 请问: equals()比较两个对象是否是同一个对象根据现实生活中  能完成咱们的 需求吗？
+    /*
+         现实生活中 能不能根据两个人相同的信息 去判断这两个人其实就是同一个人？
+
+
+
+
+     */
+
+
+
+
+
+  }
+
+}
+package com.banyuan.club.strAPI;
+
+import java.io.UnsupportedEncodingException;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 2:07 下午
+ */
+public class StringAPI {
+
+  public static void main(String[] args) throws UnsupportedEncodingException {
+    String str = new String();
+    //System.out.println(str.length());
+
+    byte[] bytes = {97, 98, 99, 100, 101};
+    str = new String(bytes);
+
+    //System.out.println(str);
+
+    str = new String(bytes, "GBK");
+    //System.out.println(str);
+
+    str = "张三李四王二麻子";
+    byte[] ss = str.getBytes("GBK");
+
+    str = new String(ss, "GBK");
+    System.out.println(str);
+
+    System.out.println("-------------------------------");
+    String   st="好好,学习,天天向上,我好我好大家好";
+//    String[] stt=st.split(",");
+//    for (String   string: stt) {
+//      System.out.println(string);
+//    }
+
+   // System.out.println(st.charAt(2));
+
+
+
+  }
+}
+package com.banyuan.club.strAPI;
+
+import com.banyuan.club.Person;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/16 3:50 下午
+ */
+public class StringAPI2 {
+
+
+  public static void main(String[] args) {
+
+    String str="你好";
+    String   str1="你好";
+    System.out.println(str.equals(str1)+"----"+(str==str1));
+
+
+    str1=new  String("你好");
+    System.out.println(str.equals(str1)+"----"+(str==str1));
+
+    str="hello";
+    str1="java";
+
+    String  str3=str+str1;  // new BufferString(str).append(str1)
+    System.out.println(str3.equals(str+str1)+"----"+(str3==(str+str1)));
+
+
+    str="he";
+    str1="llo";
+    str3="hello";
+
+    System.out.println(str3.equals(str+str1)+"----"+(str3==(str+str1)));
+
+    //请问String  str=new String("你好"); 这步操作 创建了几个对象
+
+    //一个是字符串常量对象   你好  + 还有一个是 new String()
+
+    // equals 比较的是内容是否相等    ==  比较的是  地址和内容是否一样
+
+    System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+
+    StringBuffer   stringBuffer=new StringBuffer();//在内存中创建了一个缓存区
+    System.out.println(stringBuffer.capacity());//理论的长度值
+    System.out.println(stringBuffer.length());//实际长度指的是有效的内容的长度
+
+    stringBuffer =new StringBuffer(60);
+
+    stringBuffer=new StringBuffer("张三");
+    stringBuffer.append("张三丰"); //追加  就是往缓存区中追加
+
+    stringBuffer.append(new Person("534212","王五","天上"));
+
+    stringBuffer.append(true);
+    stringBuffer.deleteCharAt(20);
+    String   st=stringBuffer.substring(3,stringBuffer.length()-1);
+
+
+    stringBuffer=new StringBuffer("564534231231");
+
+    stringBuffer.reverse(); //反转
+
+
+    System.out.println(",反转之后的数据:"+stringBuffer+"\n---截取得到的数据:"+st);
+
+    //被加入字符串缓冲区的  不管什么类型的数据都会被同化成字符串
+
+
+
+    //被String 修饰的字符串内容不可以改变   而被StringBuffer修饰的字符串内容是可以改变的 为什么
+
+    String  string="大保健";
+    String  string2="你真好";
+    StringBuffer  sb=new StringBuffer("凯爹");
+    StringBuffer  sb2=new StringBuffer("程咬金");
+    //string=string+"你好"; //new   StringBuilder(String.valueOf(str).append("你好"))
+
+    //
+    //sb.append("我不好");
+    changeStr(string, string2);
+
+    System.out.println(string+">>>>>"+string2); //结果根本没变
+    changeSb(sb,sb2);
+    System.out.println(sb.toString()+"-----"+sb2.toString());
+
+  }
+
+  public   static  void   changeStr(String str1,String  str2){
+    str1=str2;
+    str2=str1+str2;
+  }
+
+
+  public   static  void   changeSb(StringBuffer str1,StringBuffer  str2){
+    str1=str2;
+    str2.append(str1);
+  }
+
+  /*
+    String  StringBuffer  StringBuilder   总结
+
+
+   */
+
+
+
+
+}
+package com.banyuan.club.collection;
+
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Spliterator;
+import java.util.function.Predicate;
+import java.util.stream.Stream;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/18 11:17 上午
+ */
+public class MyCollection implements Collection {
+
+  @Override
+  public int size() {
+    return 0;
+  }
+
+  @Override
+  public boolean isEmpty() {
+    return false;
+  }
+
+  @Override
+  public boolean contains(Object o) {
+    return false;
+  }
+
+  @Override
+  public Iterator iterator() {
+    return null;
+  }
+
+  @Override
+  public Object[] toArray() {
+    return new Object[0];
+  }
+
+  @Override
+  public boolean add(Object o) {
+    return false;
+  }
+
+  @Override
+  public boolean remove(Object o) {
+    return false;
+  }
+
+  @Override
+  public boolean addAll(Collection c) {
+    return false;
+  }
+
+  @Override  //不用谢写
+  public boolean removeIf(Predicate filter) {
+    return false;
+  }
+
+  @Override
+  public void clear() {
+
+  }
+
+  @Override  //不用写
+  public Spliterator spliterator() {
+    return null;
+  }
+
+  @Override  //不用写
+  public Stream stream() {
+    return null;
+  }
+
+  @Override //不用写
+  public Stream parallelStream() {
+    return null;
+  }
+
+  @Override
+  public boolean retainAll(Collection c) {
+    return false;
+  }
+
+  @Override
+  public boolean removeAll(Collection c) {
+    return false;
+  }
+
+  @Override
+  public boolean containsAll(Collection c) {
+    return false;
+  }
+
+  @Override
+  public Object[] toArray(Object[] a) {
+    return new Object[0];
+  }
+}
+package com.banyuan.club.collection;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/19 9:55 上午
+ */
+public class Joker {
+
+  public static void main(String[] args) {
+
+    //  54张牌        51     17+3    17    17
+    String[] jokerColor = {"♥", "♦", "♣", "♠"};
+    String[] jokerNum = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
+    //还有大小王
+    //整理牌
+    String str = "";
+    List array = new ArrayList<>();  //一副牌
+    for (int i = 0; i < jokerColor.length; i++) {
+      for (int j = 0; j < jokerNum.length; j++) {
+        str = jokerColor[i] + jokerNum[j];
+        array.add(str);
+      }
+    }
+    //存放大小王
+    array.add("大王");
+    array.add("小王");
+
+    System.out.println(array.size());
+
+    //洗牌   打乱牌序
+    List arrayNew = new ArrayList();
+    for (int i = 0; i < array.size(); i++) {
+      //随机数   但是 随机数可能会重复
+      int index = (int) (Math.random() * 54);
+      //判断 数组里面是否包含这张牌
+      if (!arrayNew.contains(array.get(index))) {
+        arrayNew.add(array.get(index));
+      } else {
+        i--;
+      }
+    }
+
+    //接下来  发牌   三个人
+    List listN = new ArrayList();
+    List listN1 = new ArrayList();
+    List listN2 = new ArrayList();
+
+    //如果想要确定地主 那么就要随机出一张牌
+    List  arr=new ArrayList();
+    for (int i = 0; i <3; i++) {
+      int index = (int) (Math.random() * 54);
+      arr.add(arrayNew.get(i));
+    }
+    //
+   // System.out.println("----"+arrayNew.containsAll(arr));
+    arrayNew.removeAll(arr);
+
+    //从剩下的牌里面找到一个 地主标志牌
+    int index = (int) (Math.random() * arrayNew.size());
+    String flag_D=(String)arrayNew.get(index);
+
+
+    for (int i = 0; i <arrayNew.size(); i++) {
+      if(i%3==0){
+        listN.add(arrayNew.get(i));
+      }else if(i%3==1){
+        listN1.add(arrayNew.get(i));
+      }else if(i%3==2){
+        listN2.add(arrayNew.get(i));
+      }
+    }
+    //  随机出三张牌  另外存储 三张牌  谁满足地主条件就把牌给他
+
+    if(listN.contains(flag_D)){
+      listN.addAll(arr);
+
+    }else if(listN1.contains(flag_D)){
+      listN1.addAll(arr);
+
+    }else {
+      listN2.addAll(arr);
+
+    }
+
+
+    System.out.println("第一个人的牌有"+listN.size()+"张,如下:"+listN);
+    System.out.println("第二个人的牌:"+listN1.size()+"张,如下:"+listN1);
+    System.out.println("第三个人的牌:"+listN2.size()+"张,如下:"+listN2);
+
+
+
+  }
+
+}
+package com.banyuan.club.collection;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/18 9:28 上午
+ */
+public class Demo1 {
+
+  /*
+      数组 只能存放单一类型数据    并且长度一旦确定就不能变化
+
+      集合:解决的数组的缺点  并且还有自身提供的一些方法 来对集合里面的数据进行方便操作
+           存放各种数据类型的数据
+           长度随着数据的多少进行变化
+
+                 Collection
+
+     List                            Set
+
+ArrayList  LinkedList
+Stack      Vector
+
+   */
+
+
+  public static void main(String[] args) {
+    Collection collection = new ArrayList();
+    collection.add("闫正池");
+    collection.add("韩朝");
+   // collection.add(5.67);
+    //collection.add('a');
+    //collection.add(56);
+    //collection.add(true);
+   // collection.add("");
+    //collection.add(5.67);
+    collection.add(new Person("张三", "123456"));
+
+  //  System.out.println(collection.toString());
+    //System.out.println();
+
+    collection.remove(5.67);//默认的移除首先找到的数据  请问  后面一个5.67的位置变了没有
+    System.out.println("---------"+collection);
+
+
+
+//    Collection collection2 = new ArrayList();
+//    collection2.add("闫正池2");
+//    collection2.add("韩朝2");
+//    collection2.add('b');
+//    collection2.add(56.0);
+//    collection2.add(true);
+//
+//     collection.addAll(collection2);
+    //System.out.println(collection.toString());
+
+    //collection.remove("韩朝");
+
+    //collection.clear();
+    //就目前的案例为什么不建议使用转换成对象数组进行输出
+
+
+
+    //collection.removeAll(collection2);
+
+//    System.out.println( collection.size());
+//
+//    System.out.println(collection.contains("韩朝"));
+//
+
+
+   // Object[] obj=collection.toArray();
+    //如果在集合中存放数据之前不确定能具体存放什么数据   然后存放了很多类型的数据
+    //将不建议使用  转换成对象数据  为什么  ？比如 我现在要输出  Person  的一个属性值
+
+//    for (int i = 0; i <collection.size(); i++) {
+//      Person   p=(Person)obj[i];//java.lang.ClassCastException: java.lang.String cannot be cast to com.banyuan.club.Person
+//      System.out.println(p.getUsername());
+//    }
+
+
+//    Iterator it=collection.iterator();  //把集合所有的数据全部存入迭代器 让迭代器进行迭代输出
+//    while(it.hasNext()){  //判断 迭代器里面有没有下一个元素
+//      //  next  表示输出下一个元素 并且 有一个类似于指针的东西(游标) 移到下一元素
+//      Object  obj=it.next();
+//      System.out.println(obj);
+//    }
+
+//    for (Object  obj:collection) {
+//      System.out.println(obj);
+//    }
+    /*
+       增强for循环的底层原理就是  迭代器
+
+     */
+
+
+
+
+
+  }
+}
+package com.banyuan.club.collection;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/18 9:40 上午
+ */
+public class Person {
+
+  private  String  username;
+  private  String  password;
+
+  public Person(String username, String password) {
+    this.username = username;
+    this.password = password;
+  }
+
+  public Person() {
+  }
+
+  public String getUsername() {
+    return username;
+  }
+
+  public void setUsername(String username) {
+    this.username = username;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  @Override
+  public String toString() {
+    return "Person{" +
+        "username='" + username + '\'' +
+        ", password='" + password + '\'' +
+        '}';
+  }
+}
+package com.banyuan.club.collection;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/18 10:48 上午
+ */
+public class Demo2 {
+
+  public static void main(String[] args) {
+    Collection collection = new ArrayList();
+    collection.add("闫正池");
+    collection.add("韩朝");
+    collection.add(5.67);
+    collection.add('a');
+    collection.add(56);
+    collection.add(true);
+
+    Collection collection2 = new ArrayList();
+//    collection2.add("闫正池");
+//    collection2.add("韩朝");
+//    collection2.add(5.67);
+
+
+    collection.retainAll(collection2); //求集合的交集  并且把交集的结果赋值给前者
+
+    System.out.println(collection);
+    System.out.println(collection2);
+
+
+
+
+
+
+
+  }
+
+}
+package com.banyuan.club.collection.homework;
+
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 10:29 上午
+ */
+public class Demo1 {
+
+  /*
+
+  4.产生10个1~20之间的随机数，要求随机数不能重复
+  5.手动输入一行字符串，去掉其中重复字符，打印出不同的那些字符
+
+   */
+  public static void main(String[] args) {
+  //  Set set=new HashSet<>();
+//    for (int i = 0; i <10; i++) {
+//      int  num=(int)(Math.random()*20+1);
+//        if(!set.contains(num)){
+//          set.add(num);
+//        }else{
+//          i--;
+//        }
+//    }
+//      while(set.size()<10){
+//        int  num=(int)(Math.random()*20+1);
+//        set.add(num);
+//      }
+//    System.out.println(set);
+
+    Scanner  sc=new Scanner(System.in);
+    System.out.println("请输入一串英文字符:");
+    String  str=sc.nextLine();
+    char [] ch=str.toCharArray();
+
+    Set  set=new HashSet();
+    for (char  c:ch) {
+      set.add(c);
+    }
+    System.out.println(set);
+
+  }
+
+
+}
+package com.banyuan.club.collection.homework;
+
+import com.banyuan.club.homework.Stu;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 10:38 上午
+ */
+public class Demo2 {
+  /*
+    9.有一个学生类Student   学生编号，学生姓名，现在对学生仓库做增删改查操作
+    学生每次被添加  该学生的学号自加1   如 9527   9528  等等
+
+   */
+  public static void main(String[] args) {
+    Student  student=new Student("王五");
+    StuTool.addStu(student);
+    student=new Student("王五2");
+    StuTool.addStu(student);
+    student=new Student("王五3");
+    StuTool.addStu(student);
+
+    System.out.println(StuTool.delStuByStuNum(9528));
+
+
+    List  list=StuTool.show();
+    for (Object obj:list) {
+      System.out.println(obj);
+    }
+
+
+  }
+
+}
+class  StuTool{
+  private  static List  list=new ArrayList();
+  private  static  Integer STU_NUM=9527;
+  private  StuTool(){}
+
+  //添加学生
+  public static void  addStu(Student  student){
+      student.setStuId(STU_NUM++);
+      list.add(student);
+  }
+
+  //删除学生
+  public  static  boolean delStuByStuNum(Integer num){
+      //list集合里面不是有一个
+       int index= queryByNum(num);
+        if(index==-1){
+          return false;
+        }
+    list.remove(index);
+    return true;
+  }
+
+  //查询出这个对象的下标
+  public static Integer  queryByNum(Integer num){
+    for (int i = 0; i <list.size(); i++) {
+      Student  student=(Student) list.get(i);
+        if(num.equals(student.getStuId())){  //用的都是包装类 数值这里不能直接使用 ==号判断
+            return   i;
+        }
+    }
+      return  -1;
+  }
+
+  //为了方便修改功能  因为如果要进行某个数据的修改   你首先要查到这个数据再什么位置  然后在来修改
+
+  //根据名字查询 得到数据
+
+
+
+  //输出集合里面的数据
+  public  static  List show(){
+    return list;
+  }
+
+}
+package com.banyuan.club.collection.homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 10:39 上午
+ */
+public class Student {
+  private  Integer stuId=9526;
+  private  String  stuName;
+
+  public Student() {
+
+  }
+
+  public Integer getStuId() {
+    return stuId;
+  }
+
+  public void setStuId(Integer stuId) {
+    this.stuId = stuId;
+  }
+
+  public Student(String stuName) {
+    this.stuName = stuName;
+  }
+
+  public Student(Integer stuId, String stuName) {
+    this.stuId = stuId;
+    this.stuName = stuName;
+  }
+
+  public String getStuName() {
+    return stuName;
+  }
+
+  public void setStuName(String stuName) {
+    this.stuName = stuName;
+  }
+
+  @Override
+  public String toString() {
+    return "Student{" +
+        "stuId=" + stuId +
+        ", stuName='" + stuName + '\'' +
+        '}';
+  }
+}
+package com.banyuan.club.collection;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.ListIterator;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/18 10:51 上午
+ */
+public class Demo3 {
+
+
+  public static void main(String[] args) {
+    List list = new ArrayList();
+    list.add("张三");
+    list.add("李四");
+    list.add("田七");
+    list.add("王五");
+    list.add("赵六");
+    list.add("田七");
+
+    list.add(1, "杨八妹");  //添加到指定的位置
+//    for (int i = 0; i <list.size(); i++) {
+//          Object  obj=list.get(i);
+//      System.out.print(obj+" ☆ ");
+//    }
+//    System.out.println();
+    list.remove(1);
+    Object obj = list.set(1, "杨六郎");//相当于把原有的值挤出来了
+    int  index=list.indexOf("田七");  //只会找一次
+
+    index=list.lastIndexOf("田七");   // 因为 ArrayList  底层是数组存储的  数组可以通过下标来进行操作
+
+    //System.out.println(index + "-----" + list.toString());
+
+    ListIterator li= list.listIterator(); //连续 存储   只要知道其中一个数据  是不是就能找到其他的
+
+//    li.add("大保健");
+//    li.add("大保健2");
+
+//      while(li.hasNext()){
+//        System.out.println(li.next()+"---"+li.nextIndex());
+//      }//因为循环已经结束  游标已经到最后
+     // li.remove();  //从最后一个往前移除     刚开始的时候  游标在 集合的第一个位置  只有等游标到最后一个位置才可以往回移除
+
+    System.out.println(">>>>>>>>>>>>>>>");
+
+      while(li.hasPrevious()){  //鸡肋的方法
+        System.out.println(li.previous()+"   "+li.previousIndex());
+      }
+
+  // System.out.println("-----" + list.toString());
+
+
+
+
+
+
+  }
+
+
+}
+//package com.banyuan.club;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//import java.util.Random;
+//
+///**
+// * @author sanye
+// * @version 1.0
+// * @date 2020/3/18 4:33 下午
+// */
+//public class A {
+//  final static String[] PokerDeal = {"红桃A","红桃2","红桃3","红桃4","红桃5","红桃6","红桃7","红桃8","红桃9","红桃10","红桃J","红桃Q","红桃K",
+//      "黑桃A","黑桃2","黑桃3","黑桃4","黑桃5","黑桃6","黑桃7","黑桃8","黑桃9","黑桃10","黑桃J","黑桃Q","黑桃K",
+//      "方片A","方片2","方片3","方片4","方片5","方片6","方片7","方片8","方片9","方片10","方片J","方片Q","方片K",
+//      "梅花A","梅花2","梅花3","梅花4","梅花5","梅花6","梅花7","梅花8","梅花9","梅花10","梅花J","梅花Q","梅花K",
+//      "大王","小王"};
+//
+//  // 随机数
+//  static final int randNum (){
+//    Random random = new Random();
+//    return random.nextInt(53);
+//  }
+//
+//  // 发牌
+//  static void deal(){
+//    int[] dellNum = new int[54];
+//    for (int i = 0; i < dellNum.length; i++){
+//      dellNum[i] = randNum();
+//      // 去掉重复的数
+////      for (int j = 0; j < i; j++){
+////        if(dellNum[i] == dellNum[j]){
+////          --i;
+////        }
+////      }
+//    }
+//
+////        // 判断哪个玩家是地主，最大的是地主
+////        int[] player = new int[3];
+////        for (int i = 0; i < player.length; i ++){
+////            player[i] = randNum();
+////        }
+////        int max = 0;
+////        if(player[max] < player[1]){
+////            max = 1;
+////        }else if(player[max] < player[2]){
+////            max = 2;
+////        }
+//
+//    System.out.println("玩家A的牌：");
+//    for (int i = 0; i < 17; i++){
+//      System.out.printf(PokerDeal[dellNum[i]]+" ");
+//    }
+//    System.out.println();
+//    System.out.println("玩家B的牌：");
+//    for (int i = 17; i < 35; i++){
+//      System.out.printf(PokerDeal[dellNum[i]]+" ");
+//    }
+//    System.out.println();
+//    System.out.printf("玩家C地主的牌：");
+//    for (int i = 35; i <= 54; i++){
+//      System.out.printf(PokerDeal[dellNum[i]]+" ");
+//    }
+//
+//
+//
+//  }
+//  public static void main(String[] args) {
+//    String[] a = { "方块", "黑桃", "梅花", "红桃" };
+//    String[] b = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
+//    List box = new ArrayList();
+//
+//    for (int i = 0; i < a.length; i++)
+//      for (int j = 0; j < b.length; j++)
+//        box.add(a[i] + b[j]);
+//    box.add("大王");
+//    box.add("小王");
+////    将box内数据打乱（没写成功） 重新定义一个box1，将打乱后的数存在里面，
+//
+//    List nongMin1 = new ArrayList();
+//    List nongMin2= new ArrayList();
+//    List diZhu = new ArrayList();
+//
+//    for (int i = 0; i < box1.size() - 3; i++) {
+//      if(i%3==0)
+//        nongMin1.add(box1.get(i));
+//      else if(i%3==1)
+//        nongMin2.add(box1.get(i));
+//      else if(i%3==2)
+//        diZhu.add(box1.get(i));
+//    }
+//
+//    diZhu.add(box1.get(51));
+//    diZhu.add(box1.get(52));
+//    diZhu.add(box1.get(53));
+//
+//    System.out.println("农民1："+nongMin1);
+//    System.out.println("农民2："+nongMin2);
+//    System.out.println("地主："+diZhu);
+//  }
+//
+//}
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//  }
+//
+//  public   static    int   show(){
+//    try{
+//
+//      System.out.println("try,......");
+//
+//      return 5;
+//
+//    }catch (Exception  e){
+//      e.getStackTrace();
+//    }finally {
+//      System.out.println("你猜我会不会执行....");
+//    }
+//    return  0;
+//  }
+//
+//
+//}
+//
+//class  B extends A{
+//
+//
+//}
+//
+package com.banyuan.club.homework3;
+
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 10:10 上午
+ */
+public class Util {
+
+  private static List listStudent = new ArrayList(); //学生容器
+  private static List listQuestions = new ArrayList(); //试题容器
+
+  private static String [] str={"A","B","C","D"};
+  private static Integer index=0;
+
+
+  private Util() {
+
+  }
+
+  //程序刚开始在启动的时候试题容器里面已经有数据了
+  static {
+    for (int i = 0; i < 3; i++) {
+      Student  stu=new Student("9527"+i,"张三"+i,"12345"+i,0.0);
+      listStudent.add(stu);
+    }
+
+    for (int i = 0; i <20; i++) {
+
+      listQuestions.add(new Questions(100+index++, "胡萝卜好吃吗"+i,"A.好吃"+i,"B.好吃"+i,
+          "C.好吃"+i, "D.好吃"+i,str[(int)(Math.random()*str.length)]));
+    }
+  }
+
+
+
+  public  static   Student  login(String uName,String password){
+
+    for (int i = 0; i <listStudent.size(); i++) {
+      Student  st=(Student) listStudent.get(i);
+      if(uName.equalsIgnoreCase(st.getStuName()) && password.equalsIgnoreCase(st.getPassword())){
+        //进行考试
+          return st;
+      }
+    }
+      return  null;
+  }
+
+
+  //登录成功 之后 直接进行考试  的方法
+  public  static   List  questionList(){
+    List  arr=new ArrayList();
+    for (int i = 0; i <5; i++) {
+      int  index=(int)(Math.random()*listQuestions.size());
+      Object  obj=listQuestions.get(index);
+      if(!arr.contains(obj)){
+           arr.add(obj);
+      }
+    }
+    return  arr;
+  }
+
+
+  //修改学生数据的方法
+  public  static  Object  update(Student  student){
+    for (int i = 0; i <listStudent.size(); i++) {
+      if(listStudent.contains(student)){
+        return  listStudent.set(i, student);
+      }
+    }
+    return null;
+  }
+
+
+
+}
+package com.banyuan.club.homework3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 10:07 上午
+ */
+public class Questions {
+
+  private Integer qId;  //增长
+  private String qTitle;
+  private String  choiceA;
+  private String  choiceB;
+  private String  choiceC;
+  private String  choiceD;
+  private String  choiceAnswer;
+
+  public Questions() {
+  }
+
+  public Questions(Integer qId, String qTitle, String choiceA, String choiceB,
+      String choiceC, String choiceD, String choiceAnswer) {
+    this.qId = qId;
+    this.qTitle = qTitle;
+    this.choiceA = choiceA;
+    this.choiceB = choiceB;
+    this.choiceC = choiceC;
+    this.choiceD = choiceD;
+    this.choiceAnswer = choiceAnswer;
+  }
+
+  public Integer getqId() {
+    return qId;
+  }
+
+  public void setqId(Integer qId) {
+    this.qId = qId;
+  }
+
+  public String getqTitle() {
+    return qTitle;
+  }
+
+  public void setqTitle(String qTitle) {
+    this.qTitle = qTitle;
+  }
+
+  public String getChoiceA() {
+    return choiceA;
+  }
+
+  public void setChoiceA(String choiceA) {
+    this.choiceA = choiceA;
+  }
+
+  public String getChoiceB() {
+    return choiceB;
+  }
+
+  public void setChoiceB(String choiceB) {
+    this.choiceB = choiceB;
+  }
+
+  public String getChoiceC() {
+    return choiceC;
+  }
+
+  public void setChoiceC(String choiceC) {
+    this.choiceC = choiceC;
+  }
+
+  public String getChoiceD() {
+    return choiceD;
+  }
+
+  public void setChoiceD(String choiceD) {
+    this.choiceD = choiceD;
+  }
+
+  public String getChoiceAnswer() {
+    return choiceAnswer;
+  }
+
+  public void setChoiceAnswer(String choiceAnswer) {
+    this.choiceAnswer = choiceAnswer;
+  }
+
+  @Override
+  public String toString() {
+    return "Questions{" +
+        "qId=" + qId +
+        ", qTitle='" + qTitle + '\'' +
+        ", choiceA='" + choiceA + '\'' +
+        ", choiceB='" + choiceB + '\'' +
+        ", choiceC='" + choiceC + '\'' +
+        ", choiceD='" + choiceD + '\'' +
+        ", choiceAnswer='" + choiceAnswer + '\'' +
+        '}';
+  }
+}
+package com.banyuan.club.homework3;
+
+import java.util.List;
+import java.util.Scanner;
+import sun.tools.jstat.Scale;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 10:27 上午
+ */
+public class Test {
+
+  public static void main(String[] args) {
+    Scanner scanner = new Scanner(System.in);
+    int count = 3;
+    while (count > 0) {
+      System.out.println("请输入姓名:");
+      String name = scanner.next();
+      System.out.println("请输入密码:");
+      String password = scanner.next();
+      Student stu = Util.login(name, password);
+      if (stu != null) {//当login之后返回是数据不是 null 就继续考试
+        List arr = Util.questionList();//答一题显示一题
+        //统计分数
+        Double score = 0.0;
+        for (int i = 0; i < arr.size(); i++) {
+          //首先是显示题目
+          Questions questions = (Questions) arr.get(i);
+          System.out.println(
+              "题号:" + questions.getqId() + "." + questions.getqTitle() + "\n" + questions
+                  .getChoiceA()
+                  + "\t" + questions.getChoiceB() + "\t" + questions.getChoiceC() + "\t" + questions
+                  .getChoiceD());
+          System.out.print("请输入答案:");
+          String answer = scanner.next();
+          if (answer.equalsIgnoreCase(questions.getChoiceAnswer())) {
+            //如果选项是一模一样的答案  那么就给该考试的学生添加分数  一题10分
+            score += 10;
+          }
+        }
+        //做题完成之后 给当前登录的学生赋值分数 问题:当前学生是谁？
+        stu.setScore(score);
+        //集合里面的学生数据没变 进行修改
+        Object obj = Util.update(stu);
+        if (obj != null) {
+          System.out.println("学生数据修改成功...考试结束");
+          break;
+        } else {
+          System.out.println("学生数据修改失败...");
+        }
+      } else {
+
+        if (count != 0) {
+          System.out.println("账户或密码不正确,您还有" + (--count) + ",请重新输入...");
+        } else {
+          System.out.println("你输入的次数已经超过三次...程序结束...");
+          System.exit(0);
+        }
+      }
+    }
+    //考试结束你们还可以查询一下啊自己的成绩   如果对于成绩不满意还可以继续进行考试
+  }
+}
+package com.banyuan.club.homework3;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/23 10:02 上午
+ */
+public class Student {
+//  学生考试管理系统
+//  要求：1.学生类,学生编号,学生姓名,学生密码,学生成绩
+//       2.试题类：试题编号（自增长）,试题名称,试题选项（四个 A B C D）,试题答案
+//       3.现有两个数据存储容器,存储学生和存储考试试题,学生需要登录考试系统才能进行考试,每答对一题加十分,如果答错没有分
+//       现在有一个学生进行考试,请在控制台输出这个学生的考试成绩
+
+  private  String  stuNum;
+  private  String  stuName;
+  private  String  password;
+  private  Double  score;
+
+  public Student() {
+  }
+
+  public Student(String stuNum, String stuName, String password, Double score) {
+    this.stuNum = stuNum;
+    this.stuName = stuName;
+    this.password = password;
+    this.score = score;
+  }
+
+
+  public String getStuNum() {
+    return stuNum;
+  }
+
+  public void setStuNum(String stuNum) {
+    this.stuNum = stuNum;
+  }
+
+  public String getStuName() {
+    return stuName;
+  }
+
+  public void setStuName(String stuName) {
+    this.stuName = stuName;
+  }
+
+  public String getPassword() {
+    return password;
+  }
+
+  public void setPassword(String password) {
+    this.password = password;
+  }
+
+  public Double getScore() {
+    return score;
+  }
+
+  public void setScore(Double score) {
+    this.score = score;
+  }
+
+  @Override
+  public String toString() {
+    return "Student{" +
+        "stuNum='" + stuNum + '\'' +
+        ", stuName='" + stuName + '\'' +
+        ", password='" + password + '\'' +
+        ", score=" + score +
+        '}';
+  }
+}
+package com.banyuan.club;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Iterator;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/19 1:35 下午
+ */
+public class MyCollection implements Collection {
+
+  private Object[] obj;
+
+  private int size;  //默认值为0
+
+  public Object[] getObj() {
+    return obj;
+  }
+
+  public MyCollection() {
+    obj = new Object[0];
+  }
+
+  public MyCollection(int initCount) {
+    // obj=new Object[initCount];
+  }
+
+  @Override
+  public boolean add(Object e) {
+    //数组扩容
+    obj = Arrays.copyOf(obj, obj.length + 1);
+    obj[obj.length - 1] = e;
+    size++;
+    return true;
+  }
+
+  @Override
+  public int size() {
+    return size;
+  }
+
+  @Override
+  public boolean isEmpty() {
+    if (obj == null) {
+      return true;
+    }
+    return false;
+  }
+
+  @Override
+  public boolean contains(Object o) {
+    for (Object ob : obj) {
+      if (ob.equals(o)) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public Iterator iterator() {
+    return new Iterator() {
+      private int afterindex = -1;//后一个位置
+      @Override
+      public boolean hasNext() {
+        return afterindex +1 < size;
+      }
+      @Override
+      public Object next() {
+        afterindex++; // 0
+        return obj[afterindex];
+      }
+    };
+  }
+  @Override
+  public Object[] toArray() {
+    Object[] object = new Object[size];
+    for (int i = 0; i < size; i++) {
+      object[i] = obj[i];
+    }
+    return object;
+  }
+
+  @Override
+  public boolean remove(Object o) {
+    for (int i = 0; i < size; i++) {
+
+      if (obj[i].equals(o)) {
+
+        for (int j = i; j < size - 1; j++) {
+          obj[j] = obj[j + 1];
+          if (j + 1 == obj.length - 1) {
+            obj[j + 1] = null;
+            size--;
+            return true;
+          }
+        }
+      }
+    }
+    return false;
+  }
+
+  @Override
+  public boolean addAll(Collection c) {
+    //利用数组扩容
+    obj = Arrays.copyOf(obj, obj.length + c.size());
+    Object[] o = c.toArray();
+    for (int i = 0; i < c.size(); i++) {
+      obj[size + i] = o[i];
+    }
+    size = size + c.size();
+    return true;
+
+  }
+
+  @Override
+  public void clear() {
+    obj = null;
+  }
+
+  @Override
+  public boolean retainAll(Collection c) {
+    // 求交集 并且把交集到调用者的容器里面
+    int i = 0, w = 0;
+    for (; i < size; i++) {
+      if (c.contains(obj[i]) == true) {
+        obj[w++] = obj[i];  //
+      }
+      if (i + 1 == size) {
+        size = w;
+      }
+    }
+    return true;
+  }
+
+  @Override
+  public boolean removeAll(Collection c) {
+
+
+    return true;
+  }
+
+  @Override
+  public boolean containsAll(Collection c) {
+
+    //增强for循环    可以对 数组  可以对 集合进行循环遍历
+    // 它的底层是  迭代器   可以满足常用一些集合 来用增强for进行遍历
+//        for (Object  o: obj) {  // NullPointException
+//            System.out.println();
+//        }
+
+    Iterator it = c.iterator();
+    while (it.hasNext()){
+      Object o=it.next();
+      //   System.out.println("---"+o);
+      if(!contains(o)){  //
+        return false;
+      }
+    }
+    return  true;
+
+  }
+
+  @Override
+  public Object[] toArray(Object[] a) {
+
+    return new Object[0];
+  }
+
+
+}
+package com.banyuan.club.map;
+
+import java.util.Objects;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 1:45 下午
+ */
+public class Person {
+  private  String  name;
+
+  public Person(String name) {
+    this.name = name;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  @Override
+  public String toString() {
+    return "Person{" +
+        "name='" + name + '\'' +
+        '}';
+  }
+
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    Person person = (Person) o;
+    return Objects.equals(name, person.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name);
+  }
+
+}
+package com.banyuan.club.map;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Hashtable;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 1:55 下午
+ */
+public class Demo2 {
+
+  public static void main(String[] args) {
+    //现在有三个班级  每个班级三个人
+    //现在想要把所有人的信息按一下格式输出
+    /*
+        班级1:
+          学生信息
+        班级2:
+          学生信息
+            ...
+     */
+    Map map = new HashMap<>();
+
+
+    map.put("班级3", "");
+
+    List  list=new ArrayList();
+    list.add(new Person("王五"));
+    list.add(new Person("王五2"));
+    list.add(new Person("王五3"));
+    map.put("班级1", list);
+
+    list=new ArrayList();
+    list.add(new Person("王4"));
+    list.add(new Person("王45"));
+    list.add(new Person("王43"));
+
+    map.put("班级2", list);
+
+    list=new ArrayList();
+    list.add(new Person("王八"));
+    list.add(new Person("王4⑧"));
+    list.add(new Person("王🦍"));
+
+    map.put("班级3", list);
+
+
+   Set set= map.keySet();
+    for (Object obj:set) {
+      System.out.println(obj);
+      System.out.println(map.get(obj));  //得到是是一个集合
+
+    }
+
+    System.out.println("------------------");
+
+    Hashtable  hashtable=new Hashtable();
+//    hashtable.put("哈哈哈",null);
+//
+//    System.out.println(">>>>"+hashtable);
+
+    /**
+     * Hashtable 和 HashMap的区别：
+     *  前者不支持键值对为null 否则空指针异常
+     *      前者是线程安全的 效率低
+     *      后者线程不安全  效率高
+     *
+     * HashMap的实现原理
+     *          key  value     底层是hash表
+     *  java.util.concurrent.ConcurrentHashMap
+     */
+
+
+
+
+
+  }
+
+}
+package com.banyuan.club.map;
+
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.TreeMap;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 2:12 下午
+ */
+public class Demo3 {
+
+  public static void main(String[] args) {
+
+//    TreeMap treeMap = new TreeMap();  // 根据键自然排序
+//    treeMap.put(6, "展示给你");
+//    treeMap.put(7, "展示给你");
+//    treeMap.put(2, "展示给你");
+//    treeMap.put(1, "展示给你");
+//    treeMap.put(4, "展示给你");
+//
+//    System.out.println(treeMap);
+
+    TreeMap treeMap = new TreeMap(new Comparator() {
+      @Override
+      public int compare(Object o1, Object o2) {
+        Person person1=(Person)o1;
+        Person person2=(Person)o2;
+        int num=person1.getName().length()-person2.getName().length();
+        int num2=  num==0 ?person1.getName().compareTo(person2.getName()):num;
+        return num2;
+      }
+    });
+
+    treeMap.put(new Person("dasdwssasw"), "抠脚大汉");
+    treeMap.put(new Person("asdaws"), "抠脚大汉2");
+    treeMap.put(new Person("fefqda"), "抠脚大汉3");
+    treeMap.put(new Person("basdwssasw"), "抠脚大汉4");
+
+    System.out.println(treeMap);
+
+
+
+    treeMap=new TreeMap();
+    List array=new ArrayList<>();
+    array.add(5343);
+    array.add(2);
+    array.add(343);
+    array.add(53);
+    array.add(51);
+    array.add(21);
+
+    for (Object  ob:array) {
+      treeMap.put(ob, 9);
+    }
+
+
+    System.out.println(treeMap);
+
+
+
+
+
+
+  }
+
+
+}
+package com.banyuan.club.map;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 2:31 下午
+ */
+public class Demo4 {
+
+  public static void main(String[] args) {
+    Map map = new LinkedHashMap<>();
+    /*
+      存储数据的方式  由链表和哈希表组成
+        链表保持键的有效顺序  (key)
+        哈希表保证数据的唯一  (key)
+     */
+
+    map.put("沾上干2", 122121);
+    map.put("沾上干43", 122121);
+    map.put("2沾2上干2", 122121);
+    map.put("321沾上干", 122121);
+    map.put("沾32上干", 122121);
+    map.put("沾上干2", 122121);
+
+    // System.out.println(map);
+    Object obj = map.replace("沾上干2", "大保健");
+    System.out.println(map);
+    System.out.println("----" + obj);  //返回的是替换了的数据
+
+
+  }
+
+}
+package com.banyuan.club.map;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 1:39 下午
+ */
+public class Demo {
+
+  public static void main(String[] args) {
+   // Map map=new HashMap();//是以键值对的方式存储数据  map集合的Key是唯一的
+    Map  map=new HashMap();
+    map.put(12, 12);
+    map.put("你", 12);
+    map.put(true, 12);
+    map.put("", 12);
+    map.put(12.3, 12.3);
+    map.put(12.3, 8888);
+    map.put(45, "测试");
+
+    map.put(null, "sa");
+    map.put("洒水", null);
+
+    map.put(new Person("李四"), new Person("李四老婆"));
+    map.put(new Person("李四"), new Person("李四小老婆"));
+
+   // System.out.println(map);
+
+    Map  map2=new HashMap();
+    map2.put("张三", 115);
+    map2.put("王麻子", 11);
+    map2.put("赵老二", 13);
+//    System.out.println(map);
+//
+//    System.out.println(map.get("")); //通过键获取相应的值
+//    System.out.println(map.remove(12.3));
+
+     //map.putAll(map2);
+
+   // System.out.println(map);
+
+    Collection con=map.values();//获取map集合里面 所有的值
+    //System.out.println(con);
+
+    //输出方式如下  key=value
+    //            key1 = value1
+
+    Set  set=map.keySet();//map集合的键不能用迭代器    应为 键不是有序的
+
+    for (Object  obj:set) {
+      System.out.println("键为:"+obj+",值为:"+map.get(obj));
+    }
+
+    map.containsKey("12");
+
+  }
+
+
+}
+package com.banyuan.club.homework;
+
+import java.util.Comparator;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 9:40 上午
+ */
+public class Stu {
+
+  private String  stuNum;
+  private String  name;
+  private Integer score;
+
+  public Stu(String stuNum, String name, Integer score) {
+    this.stuNum = stuNum;
+    this.name = name;
+    this.score = score;
+  }
+
+  public Stu() {
+  }
+
+  public String getStuNum() {
+    return stuNum;
+  }
+
+  public void setStuNum(String stuNum) {
+    this.stuNum = stuNum;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public Integer getScore() {
+    return score;
+  }
+
+  public void setScore(Integer score) {
+    this.score = score;
+  }
+
+  @Override
+  public String toString() {
+    return "Stu{" +
+        "stuNum='" + stuNum + '\'' +
+        ", name='" + name + '\'' +
+        ", score=" + score +
+        '}';
+  }
+
+
+}
+package com.banyuan.club.homework;
+
+import com.sun.xml.internal.xsom.impl.scd.Iterators.Array;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 9:12 上午
+ */
+public class TestC_s {
+
+  public static void main(String[] args) {
+    Set<Course> courses = new HashSet<>();
+//        Course course=new Course("java基础",9527);
+//        Course course1=new Course("C#",9768);
+//        Course course2=new Course("javaScript",9898);
+    courses.add(new Course("java基础",9527));
+    courses.add(new Course("C#",9768));
+    courses.add(new Course("javaScript",9898));
+    Student student=new Student("张三",1,courses);
+    //Student student2=new Student("张三2",2,courses);
+   // System.out.println(student);
+
+
+    courses = new HashSet<>();
+    courses.add(new Course("java基础2",9527));
+    courses.add(new Course("C#2",9768));
+    courses.add(new Course("javaScript2",9898));
+    Student student2=new Student("张三2",1,courses);
+
+    List array=new ArrayList<>();
+    array.add(student);
+    array.add(student2);
+
+   Iterator  it= array.iterator();
+    while (it.hasNext()){
+      Student  stu=(Student)it.next();
+      System.out.println(stu.toString());
+    }
+
+  }
+
+}
+package com.banyuan.club.homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 9:12 上午
+ */
+public class Course {
+  private String cname;
+  private int cid;
+
+  public Course() {
+
+  }
+
+  public Course(String cname, int cid) {
+    this.cname = cname;
+    this.cid = cid;
+  }
+
+  public String getCname() {
+    return cname;
+  }
+
+  public void setCname(String cname) {
+    this.cname = cname;
+  }
+
+  public int getCid() {
+    return cid;
+  }
+
+  public void setCid(int cid) {
+    this.cid = cid;
+  }
+
+  @Override
+  public String toString() {
+    return "Course{" +
+        "cname='" + cname + '\'' +
+        ", cid=" + cid +
+        '}';
+  }
+}
+package com.banyuan.club.homework;
+
+import java.util.Comparator;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 10:13 上午
+ */
+public class MyComparator  implements Comparator {
+
+  @Override
+  public int compare(Object o1, Object o2) {
+    Stu  st1=(Stu)o1;
+    Stu  st2=(Stu)o2;
+
+    int  num=st2.getScore()-st1.getScore();
+    int   num2=  num==0 ? Integer.valueOf(st1.getStuNum())-Integer.valueOf(st2.getStuNum()) :num;
+    return num2;
+  }
+}
+package com.banyuan.club.homework;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 9:12 上午
+ */
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+/*
+1.模拟在校学生选课系统,使用集合完成
+要求：1.学生类:学号，姓名，所选课程Set<Course>
+学生可以对课程做增删改查操作
+ */
+public class Student {
+  private String stuName;
+  private int stuId;
+  private Set<Course> courses;
+
+  public Student() {
+  }
+
+  public Student(String stuname, int stuid, Set<Course> courses) {
+    this.stuName = stuname;
+    this.stuId = stuid;
+    this.courses = courses;
+  }
+
+  public String getStuName() {
+    return stuName;
+  }
+
+  public void setStuName(String stuName) {
+    this.stuName = stuName;
+  }
+
+  public int getStuId() {
+    return stuId;
+  }
+
+  public void setStuId(int stuId) {
+    this.stuId = stuId;
+  }
+
+  public Set<Course> getCourses() {
+    return courses;
+  }
+
+  public void setCourses(Set<Course> courses) {
+    this.courses = courses;
+  }
+
+  @Override
+  public String toString() {
+    return "Student{" +
+        "stuName='" + stuName + '\'' +
+        ", stuId=" + stuId +
+        ", courses=" + courses +
+        '}';
+  }
+}
+package com.banyuan.club.homework;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Random;
+import java.util.Set;
+import java.util.TreeSet;
+import javax.swing.plaf.basic.BasicBorders.MarginBorder;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 9:38 上午
+ */
+public class Collection2Pro2Test {
+
+  /*
+    2.某班级有 40 个学生，学号为 180201-180240，全部参加 Java 集合阶段检测，
+    给出所有同学的成绩（可随机产生，范围为 50-100），
+    请编写程序将本班各位同学成绩从高往低排序打印输出，
+    注：成绩相同时学号较小的优先打印要求：
+    打印的信息包含学号、姓名（姓名统一为“同学 J”[J=10,11,12。。。]）和成绩
+
+   */
+  public static void main(String[] args) {
+
+  List set=new ArrayList();
+
+    for (int i = 1; i <=40; i++) {
+      Stu  stu=null;
+      int score=(int) (Math.random()*51+50);  //Math.random() 表示0~1之间 但是 包括0 [0,1)
+      if(i<=9){
+        stu=new Stu("18020"+i,"同学"+i,score);
+        set.add(stu);
+      }else{
+        stu=new Stu("1802"+i,"同学"+i,score);
+        set.add(stu);
+      }
+    }
+        //Comparable 内部比较器
+//    Collections.sort(set, new Comparator() {   //外部比较器
+//      @Override
+//      public int compare(Object o1, Object o2) {
+//          Stu  st1=(Stu)o1;
+//          Stu  st2=(Stu)o2;
+//
+//          int  num=st2.getScore()-st1.getScore();
+//          int   num2=  num==0 ? Integer.valueOf(st1.getStuNum())-Integer.valueOf(st2.getStuNum()) :num;
+//        return num2;
+//      }
+//    });
+
+    Collections.sort(set,new MyComparator());
+
+
+
+    for (Object  obj:set) {
+      System.out.println(obj);
+    }
+
+  }
+
+
+}
+package com.banyuan.club.list;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Vector;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/19 11:13 上午
+ */
+public class LinkedListDemo {
+
+
+  public static void main(String[] args) {
+//
+//    LinkedList list = new LinkedList();  //底层存储是链表  查询慢  增删快   线程不安全  效率高
+//    list.add("沾上干1");
+//    list.add("沾上干2");
+//    list.add("沾上干3");
+//    list.add("沾上干4");
+//    list.add("沾上干5");
+//    list.add("沾上干6");
+//
+//    System.out.println(list.peek());
+//    System.out.println(list.peek());
+//    list.offerFirst("你好");  //
+//    list.offer("大棒子");  //    格式化 option+command+L
+//    list.addFirst("哈哈哈哈");
+//    System.out.println(list);
+//
+////        list.addLast("小棒子");
+////        list.addFirst("哈哈哈哈");
+//
+//    //list.clear();
+//
+//    System.out.println(list.poll());
+//    System.out.println(list.poll());  //删除链表的第一个数据
+//    System.out.println(list);
+//
+//    System.out.println(list.pop()); //弹出  跟上面方法一样
+//
+//    System.out.println(list);
+//
+//    list.push("你好1");
+//    list.push("你好2");
+//    list.push("你好3");
+//    list.push("你好4");
+//    list.push("你好5");
+//
+//    System.out.println(list);
+//    System.out.println(list.pop());
+
+
+    Vector vector=new Vector();  //底层存储是数组  增删慢 查询快  synchronized安全  效率低
+    vector.addElement("数据1");
+    vector.add("数据2");
+    vector.add("数据3");
+
+    vector.setElementAt("马大哈", 1);
+
+    vector.insertElementAt("大保健", 1);
+
+    System.out.println(vector.capacity());
+
+    Object [] o=new Object[vector.size()];
+    vector.copyInto(o);
+    System.out.println(vector);
+
+    for (Object  obj:o) {
+      System.out.println(obj);
+    }
+
+
+  }
+
+
+}
+package com.banyuan.club.list;
+
+import java.util.Stack;
+import sun.tools.jstat.Jstat;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/19 1:47 下午
+ */
+public class StackDemo {
+
+  public static void main(String[] args) {
+
+    Stack    stack=new Stack();  //栈   先进后出
+    stack.add("你哈");
+    stack.add("哈撒给");
+    stack.add("肥宅快乐水...");
+    stack.add("健康养生浴...");
+    stack.add("椒盐锅巴团...");
+    stack.add("增肥没商量...");
+
+    System.out.println(stack);
+
+    //System.out.println(stack.pop());
+
+    int index=stack.search("增肥没商量...");  //在栈中的 第一个位置
+    System.out.println(index);
+
+    stack.push(34);
+    System.out.println(stack);   //push   pop    search 都有栈的特性
+
+    System.out.println(stack.remove(0)); //跟普通的集合一样  从头到尾开始移除
+    System.out.println(stack);
+
+
+
+
+
+
+
+
+  }
+
+
+}
+package com.banyuan.club.homework1;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 10:19 上午
+ */
+public class Course {
+  private  String CId;
+  private  String CName;
+
+  public Course() {
+  }
+
+  public Course(String CId, String CName) {
+    this.CId = CId;
+    this.CName = CName;
+  }
+
+  public String getCId() {
+    return CId;
+  }
+
+  public void setCId(String CId) {
+    this.CId = CId;
+  }
+
+  public String getCName() {
+    return CName;
+  }
+
+  public void setCName(String CName) {
+    this.CName = CName;
+  }
+
+  @Override
+  public String toString() {
+    return "Course{" +
+        "CId='" + CId + '\'' +
+        ", CName='" + CName + '\'' +
+        '}';
+  }
+}
+package com.banyuan.club.homework1;
+
+import com.banyuan.club.homework.Stu;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/20 10:17 上午
+ */
+public class Student {
+
+  /*
+    1.模拟在校学生选课系统,使用集合完成
+  要求：1.学生类:学号，姓名，所选课程Set<Course>
+  学生可以对课程做增删改查操作
+  2.课程类：编号 课程名称
+  3.学生选课清单类
+  完成:有n个人 显示出每个人所选的课程信息
+  如：姓名：张三:    所选课程如下： 9527  java基础 ，9768 C# ，9898 javaScript 等
+
+   */
+
+  private String stuNum;
+  private String stuName;
+  private Set<Course> courseSet;
+
+  public Student(String stuNum, String stuName,
+      Set<Course> courseSet) {
+    this.stuNum = stuNum;
+    this.stuName = stuName;
+    this.courseSet = courseSet;
+  }
+
+  public Student() {
+  }
+
+  public String getStuNum() {
+    return stuNum;
+  }
+
+  public void setStuNum(String stuNum) {
+    this.stuNum = stuNum;
+  }
+
+  public String getStuName() {
+    return stuName;
+  }
+
+  public void setStuName(String stuName) {
+    this.stuName = stuName;
+  }
+
+  public Set<Course> getCourseSet() {
+    return courseSet;
+  }
+
+  public void setCourseSet(Set<Course> courseSet) {
+    this.courseSet = courseSet;
+  }
+
+  @Override
+  public String toString() {
+    return "Student{" +
+        "stuNum='" + stuNum + '\'' +
+        ", stuName='" + stuName + '\'' +
+        ", courseSet=" + courseSet +
+        '}';
+  }
+}
+
+class Test {
+
+  /**
+   * 完成:有n个人 显示出每个人所选的课程信息 如：姓名：张三:    所选课程如下： 9527  java基础 ，9768 C# ，9898 javaScript 等
+   *
+   * @param args
+   */
+
+  public static void main(String[] args) {
+    Set<Course> set = null;
+    List  list=new ArrayList();
+    for (int i = 0; i < 5; i++) {
+      set = new HashSet<>();
+      set.add(new Course("9527", "java"));
+      set.add(new Course("9528", "CVA"));
+      set.add(new Course("9529", "php"));
+
+      Student student = new Student("952" + i, "老三" + i, set);
+      list.add(student);
+
+    }
+
+    for (Object ob : list) {
+      Student  stu=(Student)ob;
+      System.out.println("学生信息如下:"+stu.getStuNum()+","+stu.getStuName());
+      Set<Course> s=stu.getCourseSet();
+      System.out.println("学生的课程信息如下:"+s+"\n");
+
+    }
+
+
+
+  }
+
+}
+
+
+package com.banyuan.club.set;
+
+import java.util.Comparator;
+import java.util.Objects;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/19 2:06 下午
+ */
+public class Person implements Comparable {
+
+  private  String  name;
+  private  int age;
+
+  public Person(String name, int age) {
+    this.name = name;
+    this.age = age;
+  }
+
+  public Person() {
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public int getAge() {
+    return age;
+  }
+
+  public void setAge(int age) {
+    this.age = age;
+  }
+
+  @Override
+  public String toString() {
+    return "Person{" +
+        "name='" + name + '\'' +
+        ", age=" + age +
+        '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    Person person = (Person) o;
+    return age == person.age &&
+        Objects.equals(name, person.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name, age);
+  }
+
+  @Override
+  public int compareTo(Object o) {
+    //如果是升序 当前对象参数在前  - 传递对象的参数在后
+    //只需要判断当前对象的各个属性和传递过来的 o对象的属性进行比较 就行
+    Person p=(Person)o;
+    int  num=this.age-p.getAge();
+    //num=0 表示 年龄  (如果年龄都不一样  就没有必要去比较姓名)
+    // 如果年龄一样就去比较名字长度
+    // 如果名字的长度一样  就去比较字符从内容是否一样  如:// abdc   hgfd
+
+    int  num1=    num==0 ? this.name.length()-p.name.length():num;
+    // abdc   hgfd
+    int num2=  num1==0 ? this.name.compareTo(p.name):num1;
+    // 如果长度一样   那就比较内容
+
+    return  num2;
+  }
+    //课堂练习:实现Comparable接口比较只是其中的一种方式  还有一种方式 实现 Comparator
+    //你们手动去尝试一下:  年龄  工资   姓名
+    //做完之后 两者进行对比
+
+
+
+
+
+}
+package com.banyuan.club.set;
+
+import java.util.HashSet;
+import java.util.LinkedHashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
+/**
+ * @author sanye
+ * @version 1.0
+ * @date 2020/3/19 1:58 下午
+ */
+public class SetDemo {
+
+  public static void main(String[] args) {
+    Set  set=new HashSet();//没有重复元素   最多只有一个空元素  存放的元素是无序的
+
+    set.add("李四");
+    set.add("王五");
+    set.add("战三咖");
+    /* 为什么在少量数据的时候 set无序的特性表现不出来...? 因为底层的存储 在某个存储空间内  刚好数据的存储位置一致
+    *   当set集合里面的数据越来越多的时候   set无序的特性才会显示出来
+    *  */
+
+//    set.add(null);
+//    set.add(56);
+//    set.add("战三咖");
+//    set.add("哈哈啥");/**/
+//    set.add(45.67);
+//    set.add(null);
+
+    set.add(new Person("老李", 36));
+    set.add(new Person("老林", 40));
+    set.add(new Person("老李", 36));
+
+
+
+    //System.out.println(set);
+
+//    for (Object obj:set) {
+//      System.out.println(obj);
+//    }
+
+    /**
+     * for(集合或者是数组里面的元素的数据类型   变量名:集合名或者是数组名){
+     *    System.out.println(变量名);
+     * }
+     *
+     */
+
+     // Object []  obj=set.toArray();
+
+//    String [] string={"赵一帆","韩朝"};
+//
+//    for (String ob:string) {  //增强 for 底层的原理就是  迭代器  Iterator
+//      System.out.println(ob);
+//    }
+
+//    Person [] per=new  Person[2];
+//    per[0]=new Person("老李", 36);
+//    per[1]=new Person("老李1", 37);
+//
+//    for (Person   p: per) {
+//      System.out.println(p.getName());
+//    }
+
+
+    /*
+      假设 如果让你 去设计一个人员信息的统计  程序 你如何设计 ？
+      身份证是保证 人员是否只有一个的 标志
+
+     */
+
+
+
+    LinkedHashSet  linkedHashSet=new LinkedHashSet();
+        /*
+            底层存储：链表 保证数据的顺序
+                    hash表 保证数据的唯一
+         */
+    linkedHashSet.add("你好1");
+    linkedHashSet.add("你好2");
+    linkedHashSet.add("你好2");
+    linkedHashSet.add("你好4");
+    linkedHashSet.add(true);
+    linkedHashSet.add("你好5");
+
+
+   // System.out.println(linkedHashSet);
+
+    TreeSet  treeSet=new TreeSet(); //底层的存储是以 平衡树(红黑树)存储原理进行数据存储
+
+
+//    treeSet.add("周日");
+//    treeSet.add("周二");
+//    treeSet.add("周一");
+//    treeSet.add("周六");
+//    treeSet.add("周四");
+//    treeSet.add("周五");
+
+    /*
+        根据年龄进行排序   得到最终输出的结果
+        如果年龄一样  那么就根据字母的先后顺序输出
+     */
+    treeSet.add(new Person("张三", 34));
+    treeSet.add(new Person("李四", 27));
+    treeSet.add(new Person("王五", 31));
+    treeSet.add(new Person("赵三", 24));
+
+    //TreeSet集合已经实现了平衡树   你只需要要数据放进去  或者是要比较的条件放进去
+
+
+
+    for (Object  obj:treeSet) {
+      Person  p=(Person)obj;
+      System.out.println(p);
+    }
+
+
+
+  }
+}
