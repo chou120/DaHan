@@ -36,5 +36,22 @@
     export M2=$M2_HOME/bin
     export PATH=$M2:$PATH
     mvn -v 查看maven 版本号 如果有显示版本号就说明成功了
+
+
+
+JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.8.0_181.jdk/Contents/Home
+PATH=$JAVA_HOME/bin:$PATH:
+export JAVA_HOME
+export PATH
+
+export M2_HOME=/usr/local/opt/maven@3.6
+export M2=$M2_HOME/bin
+export PATH=$M2:$PATH 
+export HOMEBREW_BOTTLE_DOMAIN=https://mirrors.ustc.edu.cn/homebrew-bottles
+
+
       
 ```
+
+
+

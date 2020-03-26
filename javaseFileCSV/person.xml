@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+  <person id="1234">
+    <name class="No.1"> 张三 </name>
+    <age>12</age>
+  </person>
+</root>
+
