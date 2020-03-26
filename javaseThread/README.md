@@ -17,6 +17,6 @@
 如何实现多线程？
      1.继承Thread     2.实现Runnale接口    3.Callable     
 
-
 ```
+![img](/../img/u=3031642779,5963365&fm=26&gp=0.jpg)
 

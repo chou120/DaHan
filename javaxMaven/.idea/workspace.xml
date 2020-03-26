@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="574c4e32-6091-42e5-873d-8aa730008cb9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../javaseThread/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaseThread/src/main/java/com/banyuan/club/ThreadDemo1.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaseThread/src/main/java/com/banyuan/club/implThread/Demo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaseThread/src/main/java/com/banyuan/club/implThread/MyThread.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaseThread/src/main/java/com/banyuan/club/implThread2/Demo.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaseThread/src/main/java/com/banyuan/club/implThread2/MyThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseThread/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseThread/img/u=3031642779,5963365&amp;fm=26&amp;gp=0.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseThread/src/main/java/com/banyuan/club/implThread3/MyThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseThread/src/main/java/com/banyuan/club/implThread3/TestThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseThread/src/main/java/com/banyuan/club/implThread4/MyThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseThread/src/main/java/com/banyuan/club/implThread4/TestMyThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseThread/src/main/java/com/banyuan/club/implThread5/MyThread.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseThread/src/main/java/com/banyuan/club/implThread5/TestMyThread.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaseThread/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../javaseThread/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaseThread/target/classes/com/banyuan/club/implThread2/Demo.class" beforeDir="false" afterPath="$PROJECT_DIR$/../javaseThread/target/classes/com/banyuan/club/implThread2/Demo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../my-app/target/maven-archiver/pom.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../my-app/target/maven-archiver/pom.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../my-app/target/my-app-1.0-SNAPSHOT.jar" beforeDir="false" afterPath="$PROJECT_DIR$/../my-app/target/my-app-1.0-SNAPSHOT.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../my-app/target/surefire-reports/TEST-com.mycompany.app.AppTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../my-app/target/surefire-reports/TEST-com.mycompany.app.AppTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../my-app/target/surefire-reports/com.mycompany.app.AppTest.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../my-app/target/surefire-reports/com.mycompany.app.AppTest.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
