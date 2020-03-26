@@ -7,3 +7,19 @@
 在HTML中，属性名可以没有值。例如，<input type=Mradio" name="language" value="Java"checked>。
 在XML中，所有属性必须都有属性值。比如，"true"或checked="checked"。
 ```
+
+
+
+```text
+任务1:使用xml作为一个数据存储,尝试做出在线考试系统   
+Student       学号  名字   密码   成绩可以可无   可以修改自己信息 和查询自己的信息
+管理员admin    可以添加学生  删除学生 
+答题Question   学生回答问题
+
+```
+```text
+任务2:自己去了解下 Sax解析
+
+
+
+```

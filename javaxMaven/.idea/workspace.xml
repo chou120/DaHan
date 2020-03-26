@@ -2,12 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="574c4e32-6091-42e5-873d-8aa730008cb9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../javaseFileCSV/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaseFileCSV/person.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaseFileCSV/src/main/java/com/banyuan/xml/Dom4jXML.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaseFileCSV/src/main/java/com/banyuan/xml/Person.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../javaseFileCSV/src/resources/person.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../javaseFile/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../javaseFile/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseFileCSV/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseFileCSV/src/main/java/com/banyuan/xml/DomXML.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseFileCSV/src/main/java/com/banyuan/xml/UseDom4jWriteDataToXML.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseFileCSV/src/main/java/com/banyuan/xml/sax/MyHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseFileCSV/src/main/java/com/banyuan/xml/sax/Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../javaseFileCSV/src/main/java/com/banyuan/xml/sax/xmlSaxParse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaseFileCSV/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/../javaseFileCSV/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaseFileCSV/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../javaseFileCSV/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaseFileCSV/src/main/java/com/banyuan/xml/Dom4jXML.java" beforeDir="false" afterPath="$PROJECT_DIR$/../javaseFileCSV/src/main/java/com/banyuan/xml/Dom4jXML.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../javaseFileCSV/target/classes/com/banyuan/xml/Dom4jXML.class" beforeDir="false" afterPath="$PROJECT_DIR$/../javaseFileCSV/target/classes/com/banyuan/xml/Dom4jXML.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />

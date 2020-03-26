@@ -1,69 +1,41 @@
 package com.banyuan.xml;
 
 import java.io.File;
-import java.io.IOException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.Text;
-import org.xml.sax.SAXException;
+import java.util.Iterator;
+import org.dom4j.Document;
+import org.dom4j.DocumentException;
+import org.dom4j.DocumentHelper;
+import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 
 /**
  * @author sanye
  * @version 1.0
- * @date 2020/3/26 9:12 上午
+ * @date 2020/3/26 10:47 上午
  */
 public class Dom4jXML {
 
-  public static void main(String[] args)
-      throws ParserConfigurationException, IOException, SAXException {
-    //
-    DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();//获取生成文档解析器的工厂
-    DocumentBuilder builder = factory.newDocumentBuilder(); //获取文档解析器
+  public static void main(String[] args) throws DocumentException {
+    //第一步：创建一个SAXReader解析器
+    SAXReader reader = new SAXReader();
+    //第二步：解析xml文件，重新构建成一个Document对象
+    File file = new File("person.xml");
+    Document doc = reader.read(file);
 
-    Person  person =new  Person();
+    //第三步：处理Document对象信息，在控制台打印
+    Element element = doc.getRootElement();
+    Iterator<Element> it = element.elementIterator();
+    while (it.hasNext()) {
+      Element e = it.next();
+      //System.out.println("---"+e.attribute("id").getValue());
+      // System.out.println(e.attributeValue("id"));
+      Iterator<Element> elementIterator = e.elementIterator();
 
-    File f =new  File("person.xml");
-    Document doc = builder.parse(f);  //开始解析 xml文档
-
-    Element root=doc.getDocumentElement();  //获取xml文档的根节点
-
-    //System.out.println(root.getTagName()); //获取的是根目录的名称
-    NodeList  nodeList=root.getChildNodes();
-
-    for (int i = 0; i <nodeList.getLength(); i++) {
-
-      Element  e=(Element) nodeList.item(1);
-      //获取person 节点属性值
-      System.out.println("=------======="+e.getAttribute("id"));
-      NodeList  nodeList1=nodeList.item(i).getChildNodes(); //获取子节点的子节点
-      for (int j = 0; j < nodeList1.getLength(); j++) {
-        Node child=nodeList1.item(j);
-        if (child instanceof Element) {  //判断子节点是否是一个元素  文本空白符不是元素
-          Element childElement = (Element) child;
-          System.out.println("----"+childElement.getAttribute("class"));
-          Text  text=(Text)childElement.getFirstChild();
-          String  str=text.getData().trim();
-          if(childElement.getTagName().equals("name")){
-            person.setName(str);
-          }
-          if(childElement.getTagName().equals("age")){
-            person.setAge(Integer.valueOf(str));
-          }
-        }
+      while (elementIterator.hasNext()) {
+        Element element1 = elementIterator.next();
+        String str = (String) element1.getData();
+        System.out.println(element1.getName() + "----" + element1.getTextTrim());
       }
     }
-    System.out.println("得到数据有:"+person.toString());
-
-    //以上是dom格式的解析  w3c一个标准解析   并不是市场常用解析  市场常用的解析是Dom4j解析
-
-
-
   }
-
 }
