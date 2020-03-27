@@ -1,5 +1,7 @@
 package com.banyuan.club.implThread5;
 
+import java.util.Hashtable;
+
 /**
  * @author sanye
  * @version 1.0
@@ -9,24 +11,40 @@ public class MyThread  implements  Runnable{
 
   private  int number =50;
   Object   obj=new Object();
+  int   x=0;
 
   @Override
   public void run() {
-
-    while (true) {
-      synchronized (obj) {  //如果实现Runnable接口  锁对象可以是任意一个对象
-        if (number > 0) {
-          System.out.println(Thread.currentThread().getName() + "卖第" + (number--) + "票");
-        } else {
-          break;
-        }
+    while (number>0) {
+        if(x%2==0){
+            show();
+        }else{
+            show1();
       }
-      try {
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
+        x++;
     }
-
   }
+  //静态同步方法的锁是  当前类的class     非静态同步方法锁是 this
+  public  synchronized void    show(){  //同步方法  请问同步方法的锁是什么？  this
+      if (number > 0) {
+        System.out.println(Thread.currentThread().getName() + "卖第" + (number--) + "票");
+      }
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+  public synchronized  void    show1(){
+      if (number > 0) {
+        System.out.println(Thread.currentThread().getName() + "卖第" + (number--) + "票");
+      }
+    try {
+      Thread.sleep(1000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
+  }
+
+
 }
