@@ -47,8 +47,6 @@ public class MyThread {
       System.out.println(thread.getName()+"没有获取到锁...被其他线程占用了....");
     }
   }
-
-
 }
 class  TestMyThread{
 
