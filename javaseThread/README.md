@@ -57,8 +57,8 @@ wait(),notify(),notifyAll(),用来操作线程为什么定义在了Object类中�
 3，锁可以是任意对象，所以任意对象调用的方法一定定义Object类中。
 
 
+遗留问题:如果一个类同时实现Runable()接口和继承Thread类  那么会执行 哪个run方法
 
-
-
+书名:java高并发编程详解
 
 ```
