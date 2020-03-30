@@ -58,14 +58,6 @@ public class ReflectDemo1 {
      Method me= clazz.getDeclaredMethod("show",String.class);
      //me.setAccessible(true);
      me.invoke(obj,"王二麻子");  //调用目标方法
-      
-
-
-
-
-
-
-
 
 
     } catch (ClassNotFoundException e) {
