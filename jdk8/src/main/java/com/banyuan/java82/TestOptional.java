@@ -83,7 +83,7 @@ public class TestOptional {
 	//运用 Optional 的实体类
 	@Test
 	public void test6(){
-		Optional<Godness> godness = Optional.ofNullable(new Godness("林志玲"));
+		Optional<Godness> godness = Optional.ofNullable(new Godness("刘亦菲"));
 		
 		Optional<NewMan> op = Optional.ofNullable(new NewMan(godness));
 		String name = getGodnessName2(op);
