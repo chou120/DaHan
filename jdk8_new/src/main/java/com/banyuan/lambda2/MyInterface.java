@@ -9,7 +9,5 @@ import java.util.List;
  */
 @FunctionalInterface
 public interface MyInterface<T> {
-
       List<T> getValue();
-
 }
