@@ -37,7 +37,7 @@ public class Demo {
     //数组引用
     Function<Integer,Integer[]>  supplier1=(n)-> new  Integer[n];
     Integer[] integers=supplier1.apply(4);
-    
+
     integers[0]=12;
     integers[1]=22;
     integers[2]=32;
